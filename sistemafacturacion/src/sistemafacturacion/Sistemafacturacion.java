@@ -20,8 +20,7 @@ public class Sistemafacturacion {
         Scanner entrada = new Scanner(System.in);
         
         
-        int azucar = 0;
-        int sal = 0;
+        System.out.println("sistemafacturacion");
         
         
     }// FIN DE MAIN
