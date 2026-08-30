@@ -19,6 +19,7 @@ public class Proyectofacturacion {
         // TODO code application logic here
         
         Scanner entrada = new Scanner(System.in);
+        int hola =0;
     }
     
 }
