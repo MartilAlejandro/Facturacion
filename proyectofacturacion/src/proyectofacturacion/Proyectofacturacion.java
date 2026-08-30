@@ -4,7 +4,7 @@
  */
 package proyectofacturacion;
 
-import java.util.Scanner;
+
 /**
  *
  * @author marti
