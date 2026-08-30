@@ -4,6 +4,8 @@
  */
 package proyectofacturacion;
 
+import java.util.Scanner;
+
 /**
  *
  * @author marti
@@ -15,7 +17,7 @@ public class Proyectofacturacion {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        int hola=0;
+        Scanner entrada = new Scanner(System.in);
 
     }
     
