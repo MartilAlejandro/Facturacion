@@ -18,7 +18,7 @@ public class Proyectofacturacion {
     public static void main(String[] args) {
         // TODO code application logic here
         
-        Scanner Input = new Scanner(System.in);
+        java.util.Scanner Input = new java.util.Scanner(System.in);
         
         System.out.println("facturacion de electronica");
        
