@@ -19,7 +19,7 @@ public class Proyectofacturacion {
         // TODO code application logic here
         int hola=0;
         
-        double quesoLB = 0;
+        int queso=0;
         
        
     }
