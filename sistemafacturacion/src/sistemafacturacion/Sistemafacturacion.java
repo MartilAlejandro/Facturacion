@@ -22,6 +22,7 @@ public class Sistemafacturacion {
         
         System.out.println("sistemafacturacion");
         
+        System.out.println("Prueba de merge Domingo");
         
     }// FIN DE MAIN
     
