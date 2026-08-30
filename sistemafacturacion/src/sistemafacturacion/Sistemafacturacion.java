@@ -22,6 +22,7 @@ public class Sistemafacturacion {
         int azucar = 0;
         int sal = 0;
 
+        System.out.println("sistemafacturacion");
     }// FIN DE MAIN
 
 }// FIN DE CLASS
