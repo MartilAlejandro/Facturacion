@@ -23,6 +23,7 @@ public class Sistemafacturacion {
         int sal = 0;
 
         System.out.println("sistemafacturacion");
+        System.out.println("hola");
     }// FIN DE MAIN
 
 }// FIN DE CLASS
