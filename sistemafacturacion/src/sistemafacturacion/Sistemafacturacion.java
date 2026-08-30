@@ -21,6 +21,8 @@ public class Sistemafacturacion {
         int hola=0;
         int azucar =0;
         
+        System.out.println("hola");
+        
     }
     
 }
