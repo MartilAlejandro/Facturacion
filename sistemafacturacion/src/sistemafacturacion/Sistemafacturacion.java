@@ -4,6 +4,8 @@
  */
 package sistemafacturacion;
 
+import java.util.Scanner;
+
 /**
  *
  * @author marti
@@ -15,6 +17,8 @@ public class Sistemafacturacion {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        Scanner entrada = new Scanner(System.in);
+        
     }
     
 }
