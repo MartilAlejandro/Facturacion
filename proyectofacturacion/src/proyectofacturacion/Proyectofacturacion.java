@@ -18,7 +18,8 @@ public class Proyectofacturacion {
     public static void main(String[] args) {
         // TODO code application logic here
         
-        Scanner entrada = new Scanner(System.in);
+       
+         Scanner entrada = new Scanner(System.in);
     }
     
 }
