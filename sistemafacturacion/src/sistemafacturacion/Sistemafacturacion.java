@@ -19,6 +19,11 @@ public class Sistemafacturacion {
         // TODO code application logic here
         Scanner entrada = new Scanner(System.in);
         
-    }
+        
+        int azucar = 0;
+        int sal = 0;
+        
+        
+    }// FIN DE MAIN
     
-}
+}// FIN DE CLASS
