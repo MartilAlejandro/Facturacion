@@ -17,10 +17,9 @@ public class Proyectofacturacion {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        int hola=0;
         
-        
-        int hola =0;
-        int g =0;
+       
     }
     
 }
