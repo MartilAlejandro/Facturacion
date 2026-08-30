@@ -20,6 +20,7 @@ public class Proyectofacturacion {
         
         Scanner entrada = new Scanner(System.in);
         int hola =0;
+        int g =0;
     }
     
 }
