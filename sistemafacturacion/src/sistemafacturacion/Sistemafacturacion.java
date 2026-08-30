@@ -22,7 +22,7 @@ public class Sistemafacturacion {
         
         int azucar = 0;
         int sal = 0;
-        double papasLB = 0;
+        
         
     }// FIN DE MAIN
     
