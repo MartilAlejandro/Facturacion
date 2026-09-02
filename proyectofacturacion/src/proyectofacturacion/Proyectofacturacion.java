@@ -32,7 +32,7 @@ public class Proyectofacturacion {
       int Re =0;
       int Us =0;
       int Con =0;
-      
+      int Sa =0;
 
       
       
