@@ -6,10 +6,13 @@ package proyectofacturacion;
 
 import java.util.Scanner;
 
+
 /**
  *
  * @author marti
  */
+
+
 public class Proyectofacturacion {
 
     /**
@@ -488,5 +491,4 @@ public class Proyectofacturacion {
   }//fin main
 
 }//fin class
-
 
