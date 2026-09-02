@@ -31,9 +31,7 @@ public class Proyectofacturacion {
       int Com= 0;
       int Re =0;
       int Us =0;
-      int Con =0;
-      int Sa =0;
-      int ale = 0;
+      
 
       
       
