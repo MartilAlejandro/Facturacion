@@ -25,17 +25,7 @@ public class Proyectofacturacion {
       
       int Menu =0;
       int Smenu =0;
-      int PI =0;
-      int Cl =0;
-      int Fact =0;
-      int Com= 0;
-      int Re =0;
-      int Us =0;
-      int Com= 0;
-      int Re =0;
-      int Us =0;
-      int Con =0;
-      int Sa =0;
+     
       
 
       
