@@ -32,7 +32,8 @@ public class Proyectofacturacion {
       int Re =0;
       int Us =0;
       int Con =0;
-      
+      int Sa =0;
+      int ale = 0;
 
       
       
@@ -490,5 +491,4 @@ public class Proyectofacturacion {
   }//fin main
 
 }//fin class
-
 
