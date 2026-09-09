@@ -284,18 +284,16 @@ public class Proyectofacturacion {
         break;
 
 
-        //me quede por aqui 
-
          case 6:
        do{
-      //Sub Menu Principal de Proveedores
+      //Sub Menu Principal de compras
       System.out.println("=========================================");
-      System.out.println("            Menu de Proveedores");
-      System.out.println("1.Registrar Proveedor");
-      System.out.println("2.Buscar Proveedor");
-      System.out.println("3.Modificar Proveedor");
-      System.out.println("4.Eliminar Proveedor");
-      System.out.println("5.Lista de Proveedores");
+      System.out.println("            Menu de compras");
+      System.out.println("1.Registrar Compras");
+      System.out.println("2.Buscar compras");
+      System.out.println("3.ver compras realizadas");
+      System.out.println("4.anular compra");
+      System.out.println("5.consultar detalle de compras");
       System.out.println("6.Historial de compras");
       System.out.println("7.Regresar al menu principal");
       System.out.println("=========================================");
@@ -304,19 +302,19 @@ public class Proyectofacturacion {
       
         switch(Smenu){
         case 1:
-        System.out.println("registrar Proveedores");
+        System.out.println("registrar compras");
         break;
         case 2:
-        System.out.println("Buscar Proveedor");
+        System.out.println("Buscar compras");
         break;
         case 3:
-        System.out.println("Modificar Proveedor");
+        System.out.println("ver compras realizadas");
         break;
         case 4:
-        System.out.println("Eliminar proveedores");
+        System.out.println("anular compra");
         break;
          case 5:
-        System.out.println("Lista de Proveedores");
+        System.out.println("consultar detalle de compras");
         break;
         case 6:
         System.out.println("Historial de compras");
@@ -333,137 +331,121 @@ public class Proyectofacturacion {
 
          case 7:
        do{
-      //Sub Menu Principal de Proveedores
+      //Sub Menu Principal de reportes
       System.out.println("=========================================");
-      System.out.println("            Menu de Proveedores");
-      System.out.println("1.Registrar Proveedor");
-      System.out.println("2.Buscar Proveedor");
-      System.out.println("3.Modificar Proveedor");
-      System.out.println("4.Eliminar Proveedor");
-      System.out.println("5.Lista de Proveedores");
-      System.out.println("6.Historial de compras");
-      System.out.println("7.Regresar al menu principal");
+      System.out.println("            Menu de reportes");
+      System.out.println("1.Reportes de venta");
+      System.out.println("2.reportes de producto");
+      System.out.println("3.reporte de clientes");
+      System.out.println("4.reporte de inventario");
+      System.out.println("5.reporte de compras");
+      System.out.println("6.Regresar al menu principal");
       System.out.println("=========================================");
       Smenu = Entrada.nextInt();
       System.out.println("=========================================");
       
         switch(Smenu){
         case 1:
-        System.out.println("registrar Proveedores");
+        System.out.println("Reportes de venta");
         break;
         case 2:
-        System.out.println("Buscar Proveedor");
+        System.out.println("reportes de producto");
         break;
         case 3:
-        System.out.println("Modificar Proveedor");
+        System.out.println("reporte de clientes");
         break;
         case 4:
-        System.out.println("Eliminar proveedores");
+        System.out.println("reporte de inventario");
         break;
          case 5:
-        System.out.println("Lista de Proveedores");
+        System.out.println("reporte de compras");
         break;
         case 6:
-        System.out.println("Historial de compras");
-        break;
-        case 7:
         System.out.println("Regresar al menu principal");
         break;
         default:
         System.out.println("opcion invalida");
         break;
         }//fin del submenu
-        }while(Smenu !=7 );
+        }while(Smenu !=6);
         break;
 
          case 8:
        do{
-      //Sub Menu Principal de Proveedores
+      //Sub Menu Principal de usuario
       System.out.println("=========================================");
       System.out.println("            Menu de Proveedores");
-      System.out.println("1.Registrar Proveedor");
-      System.out.println("2.Buscar Proveedor");
-      System.out.println("3.Modificar Proveedor");
-      System.out.println("4.Eliminar Proveedor");
-      System.out.println("5.Lista de Proveedores");
-      System.out.println("6.Historial de compras");
-      System.out.println("7.Regresar al menu principal");
+      System.out.println("1.Registrar usuario");
+      System.out.println("2.Buscar usuario");
+      System.out.println("3.Modificar usuario");
+      System.out.println("4.Eliminar usuario");
+      System.out.println("5.Lista de usuarios");
+      System.out.println("6.Regresar al menu principal");
       System.out.println("=========================================");
       Smenu = Entrada.nextInt();
       System.out.println("=========================================");
       
         switch(Smenu){
         case 1:
-        System.out.println("registrar Proveedores");
+        System.out.println("registrar usuario");
         break;
         case 2:
-        System.out.println("Buscar Proveedor");
+        System.out.println("Buscar usuario");
         break;
         case 3:
-        System.out.println("Modificar Proveedor");
+        System.out.println("Modificar usuario");
         break;
         case 4:
-        System.out.println("Eliminar proveedores");
+        System.out.println("Eliminar usuario");
         break;
          case 5:
-        System.out.println("Lista de Proveedores");
+        System.out.println("Lista de usuario");
         break;
         case 6:
-        System.out.println("Historial de compras");
-        break;
-        case 7:
         System.out.println("Regresar al menu principal");
         break;
         default:
         System.out.println("opcion invalida");
         break;
         }//fin del submenu
-        }while(Smenu !=7 );
+        }while(Smenu !=6 );
         break;
 
          case 9:
        do{
-      //Sub Menu Principal de Proveedores
+      //Sub Menu Principal de configuracion
       System.out.println("=========================================");
       System.out.println("            Menu de Proveedores");
-      System.out.println("1.Registrar Proveedor");
-      System.out.println("2.Buscar Proveedor");
-      System.out.println("3.Modificar Proveedor");
-      System.out.println("4.Eliminar Proveedor");
-      System.out.println("5.Lista de Proveedores");
-      System.out.println("6.Historial de compras");
-      System.out.println("7.Regresar al menu principal");
+      System.out.println("1.Datos de la empresa");
+      System.out.println("2.Configurar impuesto");
+      System.out.println("3.configurar descuento");
+      System.out.println("4.configurar sistema");
+      System.out.println("5.Regresar al menu principal");
       System.out.println("=========================================");
       Smenu = Entrada.nextInt();
       System.out.println("=========================================");
       
         switch(Smenu){
         case 1:
-        System.out.println("registrar Proveedores");
+        System.out.println("datos de la empresa");
         break;
         case 2:
-        System.out.println("Buscar Proveedor");
+        System.out.println("configurar impuesto");
         break;
         case 3:
-        System.out.println("Modificar Proveedor");
+        System.out.println("configurar descuento");
         break;
         case 4:
-        System.out.println("Eliminar proveedores");
+        System.out.println("configurar sistema");
         break;
          case 5:
-        System.out.println("Lista de Proveedores");
-        break;
-        case 6:
-        System.out.println("Historial de compras");
-        break;
-        case 7:
         System.out.println("Regresar al menu principal");
         break;
         default:
         System.out.println("opcion invalida");
         break;
         }//fin del submenu
-        }while(Smenu !=7 );
+        }while(Smenu !=5 );
         break;
         
         case 0:
