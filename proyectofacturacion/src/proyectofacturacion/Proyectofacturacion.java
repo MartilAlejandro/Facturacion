@@ -374,7 +374,7 @@ public class Proyectofacturacion {
        do{
       //Sub Menu Principal de usuario
       System.out.println("=========================================");
-      System.out.println("            Menu de Proveedores");
+      System.out.println("            Menu de usuario");
       System.out.println("1.Registrar usuario");
       System.out.println("2.Buscar usuario");
       System.out.println("3.Modificar usuario");
@@ -415,7 +415,7 @@ public class Proyectofacturacion {
        do{
       //Sub Menu Principal de configuracion
       System.out.println("=========================================");
-      System.out.println("            Menu de Proveedores");
+      System.out.println("            Menu de configuracion");
       System.out.println("1.Datos de la empresa");
       System.out.println("2.Configurar impuesto");
       System.out.println("3.configurar descuento");
