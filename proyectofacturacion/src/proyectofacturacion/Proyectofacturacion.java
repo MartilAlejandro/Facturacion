@@ -22,7 +22,9 @@ public class Proyectofacturacion {
         // TODO code application logic here
         
    Scanner Entrada = new Scanner(System.in);
-      
+   Producto[] productos = new Producto[10];
+   
+      int cantidadProductos = 0;
       int Menu =0;
       int Smenu =0;
      
@@ -163,26 +165,254 @@ public class Proyectofacturacion {
       
         switch(Smenu){
         case 1:
-        System.out.println("Producto");
-        break;
-        case 2:
-        System.out.println("buscar producto");
-        break;
-        case 3:
-        System.out.println("modificar producto");
-        break;
+
+    if (cantidadProductos >= 10) {
+
+        System.out.println("No se pueden registrar más de 10 productos.");
+
+    } else {
+
+        System.out.println("REGISTRAR PRODUCTO");
+
+        System.out.print("Ingrese código: ");
+        String codigo = Entrada.next();
+
+        System.out.print("Ingrese nombre: ");
+        String nombre = Entrada.next();
+
+        System.out.print("Ingrese categoría: ");
+        String categoria = Entrada.next();
+
+        System.out.print("Ingrese precio: ");
+        double precio = Entrada.nextDouble();
+
+        System.out.print("Ingrese existencia: ");
+        int existencia = Entrada.nextInt();
+
+         productos[cantidadProductos] =
+                new Producto(codigo, nombre, categoria, precio, existencia);
+
+
+
+        cantidadProductos++;
+
+        System.out.println("Producto registrado correctamente.");
+    }
+
+    break;
+       case 2:
+
+    System.out.println("BUSCAR PRODUCTO");
+
+    System.out.print("Ingrese el código del producto: ");
+    String codigoBuscar = Entrada.next();
+
+    boolean encontrado = false;
+
+    for (int i = 0; i < cantidadProductos; i++) {
+
+        if (productos[i].codigo.equals(codigoBuscar)) {
+
+            System.out.println("Producto encontrado");
+            System.out.println("Código: " + productos[i].codigo);
+            System.out.println("Nombre: " + productos[i].nombre);
+            System.out.println("Categoría: " + productos[i].categoria);
+            System.out.println("Precio: " + productos[i].precio);
+            System.out.println("Existencia: " + productos[i].existencia);
+
+            encontrado = true;
+            break;
+        }
+    }
+
+    if (!encontrado) {
+        System.out.println("Producto no encontrado.");
+    }
+
+    break;
+       case 3:
+
+    System.out.println("MODIFICAR PRODUCTO");
+
+    System.out.print("Ingrese el código del producto: ");
+    String codigoModificar = Entrada.next();
+
+    boolean encontradoModificar = false;
+
+    for (int i = 0; i < cantidadProductos; i++) {
+
+        if (productos[i].codigo.equals(codigoModificar)) {
+
+            System.out.println("Producto encontrado.");
+            System.out.println("Datos actuales:");
+            System.out.println("Código: " + productos[i].codigo);
+            System.out.println("Nombre: " + productos[i].nombre);
+            System.out.println("Categoría: " + productos[i].categoria);
+            System.out.println("Precio: " + productos[i].precio);
+            System.out.println("Existencia: " + productos[i].existencia);
+
+            System.out.println("--------------------------------");
+
+            System.out.print("Ingrese nuevo nombre: ");
+            productos[i].nombre = Entrada.next();
+
+            System.out.print("Ingrese nueva categoría: ");
+            productos[i].categoria = Entrada.next();
+
+            System.out.print("Ingrese nuevo precio: ");
+            productos[i].precio = Entrada.nextDouble();
+
+            System.out.print("Ingrese nueva existencia: ");
+            productos[i].existencia = Entrada.nextInt();
+
+            System.out.println("Producto modificado correctamente.");
+
+            encontradoModificar = true;
+            break;
+        }
+    }
+
+    if (!encontradoModificar) {
+        System.out.println("Producto no encontrado.");
+    }
+
+    break;
         case 4:
-        System.out.println("eliminar producto");
-        break;
-         case 5:
-        System.out.println("Lista de producto");
-        break;
+
+    System.out.println("ELIMINAR PRODUCTO");
+
+    System.out.print("Ingrese el código del producto: ");
+    String codigoEliminar = Entrada.next();
+
+    boolean encontradoEliminar = false;
+
+    for (int i = 0; i < cantidadProductos; i++) {
+
+        if (productos[i].codigo.equals(codigoEliminar)) {
+
+            System.out.println("Producto encontrado.");
+            System.out.println("Código: " + productos[i].codigo);
+            System.out.println("Nombre: " + productos[i].nombre);
+            System.out.println("Categoría: " + productos[i].categoria);
+            System.out.println("Precio: " + productos[i].precio);
+            System.out.println("Existencia: " + productos[i].existencia);
+
+            System.out.print("¿Está seguro de eliminarlo? (1=Sí / 2=No): ");
+            int confirmar = Entrada.nextInt();
+
+            if (confirmar == 1) {
+
+                // Mover los productos siguientes una posición hacia atrás
+                for (int j = i; j < cantidadProductos - 1; j++) {
+                    productos[j] = productos[j + 1];
+                }
+
+                // Limpiar la última posición
+                productos[cantidadProductos - 1] = null;
+
+                cantidadProductos--;
+
+                System.out.println("Producto eliminado correctamente.");
+
+            } else {
+
+                System.out.println("Eliminación cancelada.");
+            }
+
+            encontradoEliminar = true;
+            break;
+        }
+    }
+
+    if (!encontradoEliminar) {
+        System.out.println("Producto no encontrado.");
+    }
+
+    break;
+        case 5:
+
+    System.out.println("LISTA DE PRODUCTOS");
+
+    if (cantidadProductos == 0) {
+
+        System.out.println("No hay productos registrados.");
+
+    } else {
+
+        for (int i = 0; i < cantidadProductos; i++) {
+
+            System.out.println("--------------------------------");
+            System.out.println("Producto #" + (i + 1));
+            System.out.println("Código: " + productos[i].codigo);
+            System.out.println("Nombre: " + productos[i].nombre);
+            System.out.println("Categoría: " + productos[i].categoria);
+            System.out.println("Precio: " + productos[i].precio);
+            System.out.println("Existencia: " + productos[i].existencia);
+        }
+
+        System.out.println("--------------------------------");
+    }
+
+    break;
         case 6:
-        System.out.println("categoria de productos");
-        break;
+
+    System.out.println("CATEGORIAS DE PRODUCTOS");
+
+    if (cantidadProductos == 0) {
+
+        System.out.println("No hay productos registrados.");
+
+    } else {
+
+        System.out.println("Categorías registradas:");
+
+        for (int i = 0; i < cantidadProductos; i++) {
+
+            boolean repetida = false;
+
+            for (int j = 0; j < i; j++) {
+
+                if (productos[i].categoria.equalsIgnoreCase(productos[j].categoria)) {
+                    repetida = true;
+                    break;
+                }
+            }
+
+            if (!repetida) {
+                System.out.println("- " + productos[i].categoria);
+            }
+        }
+    }
+
+    break;
         case 7:
-        System.out.println("Precio de productos");
-        break;
+
+    System.out.println("CONSULTAR PRECIO");
+
+    System.out.print("Ingrese el código del producto: ");
+    String codigoPrecio = Entrada.next();
+
+    boolean encontradoPrecio = false;
+
+    for (int i = 0; i < cantidadProductos; i++) {
+
+        if (productos[i].codigo.equals(codigoPrecio)) {
+
+            System.out.println("Producto encontrado.");
+            System.out.println("Código: " + productos[i].codigo);
+            System.out.println("Nombre: " + productos[i].nombre);
+            System.out.println("Precio: " + productos[i].precio);
+
+            encontradoPrecio = true;
+            break;
+        }
+    }
+
+    if (!encontradoPrecio) {
+        System.out.println("Producto no encontrado.");
+    }
+
+    break;
         case 8:
         System.out.println("Regresar al menu principal");
         break;
