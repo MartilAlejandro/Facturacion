@@ -193,7 +193,6 @@ public class Proyectofacturacion {
                 new Producto(codigo, nombre, categoria, precio, existencia);
 
 
-
         cantidadProductos++;
 
         System.out.println("Producto registrado correctamente.");
