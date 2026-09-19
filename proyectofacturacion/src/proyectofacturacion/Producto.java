@@ -10,7 +10,7 @@ package proyectofacturacion;
  */
 public class Producto {
     //Variables - Atributos
-    public String nombre; 
+    public String nombreProd; 
     public int codigo;
     public char categoria;
     public boolean impuesto;
@@ -21,7 +21,7 @@ public class Producto {
     
     // Constructor
     public Producto(){
-        this.nombre = "Chicharron";
+        this.nombreProd = "Chicharron";
         this.precio = 20;
         this.cantidad = 3;
         this.codigo = 345879;
@@ -34,8 +34,8 @@ public class Producto {
         this.peso = 1;
     }// fin constructor 1 
     
-    public Producto (String nombre,double precio, int cantidad, int codigo, char categoria, double peso){
-        this.nombre = nombre;
+    public Producto (String nombreProd,double precio, int cantidad, int codigo, char categoria, double peso){
+        this.nombreProd = nombreProd;
         this.precio = precio;
         this.cantidad = cantidad;
         this.codigo = codigo;
