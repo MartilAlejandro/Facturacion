@@ -54,7 +54,7 @@ public int getEdad() {
         if (memberType == 'B'|| memberType == 'P'){
             this.memberType = memberType;
     } else {
-            System.out.println("Solo se puede escoger P o B");
+            System.out.println("Su membresia debe ser Personal o Business");
             } 
     }// fin setmemberType
     public char getmemberType(){
