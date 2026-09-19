@@ -23,10 +23,13 @@ public class Proyectofacturacion {
         
    Scanner Entrada = new Scanner(System.in);
    
+      int cantidadClientes = 0;
       int cantidadProductos = 0;
       int Menu =0;
       int Smenu =0;
-     
+      
+     Cliente[] clientes = new Cliente[10];
+     cantidadClientes = ArchivoClientes.cargarClientes(clientes);
      Producto[] productos = new Producto[10];
      cantidadProductos = ArchivoProductos.cargarProductos(productos);
    
@@ -505,24 +508,277 @@ public class Proyectofacturacion {
       System.out.println("=========================================");
       
         switch(Smenu){
-        case 1:
-        System.out.println("Clientes");
-        break;
+            
+            case 1:
+
+    if (cantidadClientes < 10) {
+
+        System.out.println("          REGISTRAR CLIENTE");
+        System.out.println("=========================================");
+
+        System.out.print("Ingrese el nombre del cliente: ");
+        String nombreCliente = Entrada.next();
+
+        System.out.print("Ingrese el Member ID: ");
+        String memberID = Entrada.next();
+
+        System.out.print("Ingrese el tipo de miembro (P/B): ");
+        char memberType = Entrada.next().charAt(0);
+
+        System.out.print("Ingrese el RTN: ");
+        String RTN = Entrada.next();
+
+        System.out.print("Ingrese la edad: ");
+        int Edad = Entrada.nextInt();
+
+        clientes[cantidadClientes] = new Cliente(nombreCliente,memberID,memberType,RTN,Edad);
+        
+        ArchivoClientes.guardarCliente(clientes[cantidadClientes]);
+
+        cantidadClientes++;
+
+        System.out.println("=========================================");
+        System.out.println("Cliente registrado correctamente.");
+        System.out.println("=========================================");
+
+    } else {
+
+        System.out.println("=========================================");
+        System.out.println("Ya se registraron los 10 clientes.");
+        System.out.println("=========================================");
+    }
+
+    break;
+        
         case 2:
-        System.out.println("Registrar Cliente");
-        break;
+
+    System.out.println("           BUSCAR CLIENTE");
+    System.out.println("=========================================");
+
+    if (cantidadClientes == 0) {
+
+        System.out.println("No hay clientes registrados.");
+
+    } else {
+
+        System.out.print("Ingrese el Member ID del cliente: ");
+        String memberIDBuscar = Entrada.next();
+
+        boolean encontrado = false;
+
+        for (int i = 0; i < cantidadClientes; i++) {
+
+            if (clientes[i].memberID.equals(memberIDBuscar)) {
+
+                System.out.println("=========================================");
+                System.out.println("          CLIENTE ENCONTRADO");
+                System.out.println("=========================================");
+
+                System.out.println("Nombre: " + clientes[i].nombreCliente);
+                System.out.println("Member ID: " + clientes[i].memberID);
+                System.out.println("Tipo de miembro: " + clientes[i].getmemberType());
+                System.out.println("RTN: " + clientes[i].RTN);
+                System.out.println("Edad: " + clientes[i].getEdad());
+
+                System.out.println("=========================================");
+
+                encontrado = true;
+
+                break;
+            }
+        }
+
+        if (!encontrado) {
+
+            System.out.println("Cliente no encontrado.");
+
+        }
+    }
+
+    break;
+    
         case 3:
-        System.out.println("Buscar Cliente");
-        break;
-        case 4:
-        System.out.println("Modificar cliente");
-        break;
+
+    System.out.println("         MODIFICAR CLIENTE");
+    System.out.println("=========================================");
+
+    if (cantidadClientes == 0) {
+
+        System.out.println("No hay clientes registrados.");
+
+    } else {
+
+        System.out.print("Ingrese el Member ID del cliente: ");
+        String memberIDModificar = Entrada.next();
+
+        boolean encontrado = false;
+
+        for (int i = 0; i < cantidadClientes; i++) {
+
+            if (clientes[i].memberID.equals(memberIDModificar)) {
+
+                System.out.println("=========================================");
+                System.out.println("Cliente encontrado.");
+                System.out.println("=========================================");
+
+                System.out.print("Ingrese el nuevo nombre: ");
+                clientes[i].nombreCliente = Entrada.next();
+
+                System.out.print("Ingrese el nuevo tipo de miembro (P/B): ");
+                char memberType = Entrada.next().charAt(0);
+                clientes[i].setmemberType(memberType);
+
+                System.out.print("Ingrese el nuevo RTN: ");
+                clientes[i].RTN = Entrada.next();
+
+                System.out.print("Ingrese la nueva edad: ");
+                int Edad = Entrada.nextInt();
+                clientes[i].setEdad(Edad);
+                
+                ArchivoClientes.guardarTodos(clientes, cantidadClientes);
+
+                System.out.println("=========================================");
+                System.out.println("Cliente modificado correctamente.");
+                System.out.println("=========================================");
+
+                encontrado = true;
+
+                break;
+            }
+        }
+
+        if (!encontrado) {
+
+            System.out.println("Cliente no encontrado.");
+
+        }
+    }
+
+    break;
+    
+        
+       case 4:
+
+    System.out.println("          ELIMINAR CLIENTE");
+    System.out.println("=========================================");
+
+    if (cantidadClientes == 0) {
+
+        System.out.println("No hay clientes registrados.");
+
+    } else {
+
+        System.out.print("Ingrese el Member ID del cliente: ");
+        String memberIDEliminar = Entrada.next();
+
+        boolean encontrado = false;
+
+        for (int i = 0; i < cantidadClientes; i++) {
+
+            if (clientes[i].memberID.equals(memberIDEliminar)) {
+
+                // Mover los clientes hacia la izquierda
+                for (int j = i; j < cantidadClientes - 1; j++) {
+
+                    clientes[j] = clientes[j + 1];
+                }
+
+                // Dejar vacía la última posición
+                clientes[cantidadClientes - 1] = null;
+
+                cantidadClientes--;
+                
+                ArchivoClientes.guardarTodos(clientes, cantidadClientes);
+
+                encontrado = true;
+
+                System.out.println("=========================================");
+                System.out.println("Cliente eliminado correctamente.");
+                System.out.println("=========================================");
+
+                break;
+            }
+        }
+
+        if (!encontrado) {
+
+            System.out.println("Cliente no encontrado.");
+
+        }
+    }
+
+    break;
+    
          case 5:
-        System.out.println("Lista de clientes");
-        break;
+
+    System.out.println("           LISTA DE CLIENTES");
+    System.out.println("=========================================");
+
+    if (cantidadClientes == 0) {
+
+        System.out.println("No hay clientes registrados.");
+
+    } else {
+
+        for (int i = 0; i < cantidadClientes; i++) {
+
+            System.out.println("Cliente #" + (i + 1));
+            System.out.println("Nombre: " + clientes[i].nombreCliente);
+            System.out.println("Member ID: " + clientes[i].memberID);
+            System.out.println("Tipo de miembro: " + clientes[i].getmemberType());
+            System.out.println("RTN: " + clientes[i].RTN);
+            System.out.println("Edad: " + clientes[i].getEdad());
+
+            System.out.println("=========================================");
+        }
+    }
+
+    break;
         case 6:
-        System.out.println("Historial de compras");
-        break;
+
+    System.out.println("        HISTORIAL DE COMPRAS");
+    System.out.println("=========================================");
+
+    if (cantidadClientes == 0) {
+
+        System.out.println("No hay clientes registrados.");
+
+    } else {
+
+        System.out.print("Ingrese el Member ID del cliente: ");
+        String memberIDHistorial = Entrada.next();
+
+        boolean encontrado = false;
+
+        for (int i = 0; i < cantidadClientes; i++) {
+
+            if (clientes[i].memberID.equals(memberIDHistorial)) {
+
+                System.out.println("=========================================");
+                System.out.println("Cliente: " + clientes[i].nombreCliente);
+                System.out.println("Member ID: " + clientes[i].memberID);
+                System.out.println("=========================================");
+
+                System.out.println("Historial de compras");
+                System.out.println("-----------------------------------------");
+                System.out.println("No hay compras registradas.");
+                System.out.println("=========================================");
+
+                encontrado = true;
+
+                break;
+            }
+        }
+
+        if (!encontrado) {
+
+            System.out.println("Cliente no encontrado.");
+
+        }
+    }
+
+    break;
+    
         case 7:
         System.out.println("Regresar al menu principal");
         break;
