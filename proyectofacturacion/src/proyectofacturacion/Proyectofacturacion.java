@@ -22,7 +22,9 @@ public class Proyectofacturacion {
         // TODO code application logic here
         
    Scanner Entrada = new Scanner(System.in);
-      
+   
+   
+      int cantidadProductos = 0;
       int Menu =0;
       int Smenu =0;
      
@@ -162,37 +164,7 @@ public class Proyectofacturacion {
       System.out.println("=========================================");
       
         switch(Smenu){
-        case 1:
-        System.out.println("Producto");
-        break;
-        case 2:
-        System.out.println("buscar producto");
-        break;
-        case 3:
-        System.out.println("modificar producto");
-        break;
-        case 4:
-        System.out.println("eliminar producto");
-        break;
-         case 5:
-        System.out.println("Lista de producto");
-        break;
-        case 6:
-        System.out.println("categoria de productos");
-        break;
-        case 7:
-        System.out.println("Precio de productos");
-        break;
-        case 8:
-        System.out.println("Regresar al menu principal");
-        break;
-        default:
-        System.out.println("opcion invalida");
-        break;
-        }//fin del submenu
-        }while(Smenu !=8 );
-        break;
-
+       
         case 4:
        do{
       //Sub Menu Principal de Clientes
@@ -374,7 +346,7 @@ public class Proyectofacturacion {
        do{
       //Sub Menu Principal de usuario
       System.out.println("=========================================");
-      System.out.println("            Menu de usuario");
+      System.out.println("            Menu de Proveedores");
       System.out.println("1.Registrar usuario");
       System.out.println("2.Buscar usuario");
       System.out.println("3.Modificar usuario");
@@ -415,7 +387,7 @@ public class Proyectofacturacion {
        do{
       //Sub Menu Principal de configuracion
       System.out.println("=========================================");
-      System.out.println("            Menu de configuracion");
+      System.out.println("            Menu de Proveedores");
       System.out.println("1.Datos de la empresa");
       System.out.println("2.Configurar impuesto");
       System.out.println("3.configurar descuento");

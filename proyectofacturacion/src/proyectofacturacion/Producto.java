@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package proyectofacturacion;
 
 /**
@@ -9,82 +5,105 @@ package proyectofacturacion;
  * @author rasta
  */
 public class Producto {
-    //Variables - Atributos
-    public String nombreProd; 
-    public int codigo;
-    public char categoria;
-    public boolean impuesto;
-    
+
+    // Variables - Atributos
+    private String nombreProd;
+    private int codigo;
+    private char categoria;
+    private boolean impuesto;
     private double precio;
     private int cantidad;
     private double peso;
-    
+
     // Constructor
-    public Producto(){
-        this.nombreProd = "Chicharron";
-        this.precio = 20;
-        this.cantidad = 3;
-        this.codigo = 345879;
-        this.categoria = 'L';
-        if (categoria == 'I') {
-    this.impuesto = true;
-} else {
-    this.impuesto = false;
-}
-        this.peso = 1;
-    }// fin constructor 1 
-    
-    public Producto (String nombreProd,double precio, int cantidad, int codigo, char categoria, double peso){
+    public Producto() {
+        this("Chicharron", 20, 3, 345879, 'L', 1);
+    }
+
+    public Producto(String nombreProd, double precio, int cantidad, int codigo, char categoria, double peso) {
         this.nombreProd = nombreProd;
         this.precio = precio;
         this.cantidad = cantidad;
         this.codigo = codigo;
         this.categoria = categoria;
-        if (categoria == 'I') {
-        this.impuesto = true;
-        } else {
-        this.impuesto = false;
-        }
+        this.impuesto = categoria == 'I';
         this.peso = peso;
-        }//fin constructor 2 
-    
-    //Funciones - Metodos
-    
+    }
+
+    public void mostrarProducto() {
+        System.out.println("=================================");
+        System.out.println("Código: " + codigo);
+        System.out.println("Nombre: " + nombreProd);
+        System.out.println("Categoría: " + categoria);
+        System.out.println("Precio: L. " + precio);
+        System.out.println("Existencia: " + cantidad);
+        System.out.println("=================================");
+    }
+
+    // Funciones - Metodos
     public void setPrecio(double precio) {
-    if (precio >= 0) {
-        this.precio = precio;
-    } else {
-        System.out.println("Error: el precio no puede ser negativo.");
+        if (precio >= 0) {
+            this.precio = precio;
+        } else {
+            System.out.println("Error: el precio no puede ser negativo.");
+        }
     }
-}// fin de set precio
 
-public double getPrecio() {
-    return this.precio;
-}// fin de getprecio
-
-public void setCantidad(int cantidad) {
-    if (cantidad >= 0) {
-        this.cantidad = cantidad;
-    } else {
-        System.out.println("Error: la cantidad no puede ser negativa.");
+    public double getPrecio() {
+        return this.precio;
     }
-}/// fin de setCantidad
 
-public int getCantidad() {
-    return this.cantidad;
-}// fin getCantidad
-
-public void setPeso(double peso) {
-    if (peso >= 0) {
-        this.peso = peso;
-    } else {
-        System.out.println("Error: el peso no puede ser negativo.");
+    public void setCantidad(int cantidad) {
+        if (cantidad >= 0) {
+            this.cantidad = cantidad;
+        } else {
+            System.out.println("Error: la cantidad no puede ser negativa.");
+        }
     }
-}// fin de set peso
 
-public double getPeso() {
-    return this.peso;
-}// fin de get peso 
+    public int getCantidad() {
+        return this.cantidad;
+    }
 
-    
-}// Fin class producto
+    public void setPeso(double peso) {
+        if (peso >= 0) {
+            this.peso = peso;
+        } else {
+            System.out.println("Error: el peso no puede ser negativo.");
+        }
+    }
+
+    public double getPeso() {
+        return this.peso;
+    }
+
+    public String getNombreProd() {
+        return nombreProd;
+    }
+
+    public void setNombreProd(String nombreProd) {
+        this.nombreProd = nombreProd;
+    }
+
+    public int getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
+    }
+
+    public char getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(char categoria) {
+        this.categoria = categoria;
+        this.impuesto = categoria == 'I';
+    }
+
+    public boolean isImpuesto() {
+        return impuesto;
+    }
+}
+
