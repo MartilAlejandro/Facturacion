@@ -32,9 +32,9 @@ public class Producto {
 
     public void mostrarProducto() {
         System.out.println("=================================");
-        System.out.println("Código: " + codigo);
+        System.out.println("Codigo: " + codigo);
         System.out.println("Nombre: " + nombreProd);
-        System.out.println("Categoría: " + categoria);
+        System.out.println("Categoria: " + categoria);
         System.out.println("Precio: L. " + precio);
         System.out.println("Existencia: " + cantidad);
         System.out.println("=================================");

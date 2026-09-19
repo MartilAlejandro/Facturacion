@@ -71,14 +71,7 @@ public class ArchivoProductos {
                 char categoria = datos[4].charAt(0);
                 double peso = Double.parseDouble(datos[5]);
 
-                productos[posicion] = new Producto(
-                        nombre,
-                        precio,
-                        cantidad,
-                        codigo,
-                        categoria,
-                        peso
-                );
+                productos[posicion] = new Producto(nombre,precio,cantidad,codigo,categoria,peso);
 
                 posicion++;
             }
