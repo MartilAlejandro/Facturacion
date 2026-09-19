@@ -23,12 +23,13 @@ public class Proyectofacturacion {
         
    Scanner Entrada = new Scanner(System.in);
    
-   
       int cantidadProductos = 0;
       int Menu =0;
       int Smenu =0;
      
-      
+     Producto[] productos = new Producto[10];
+     cantidadProductos = ArchivoProductos.cargarProductos(productos);
+   
 
       
       
@@ -146,26 +147,348 @@ public class Proyectofacturacion {
         }while(Smenu !=7 );
         break;
 
-         case 3:
-       do{
-      //Sub Menu Principal de Productos
-      System.out.println("=========================================");
-      System.out.println("             Menu de Producto");
-      System.out.println("1.Registrar Productos");
-      System.out.println("2.Buscar Productos");
-      System.out.println("3.Modificar Productos");
-      System.out.println("4.Eliminar Productos");
-      System.out.println("5.Lista de Productos");
-      System.out.println("6.Categorias de producto");
-      System.out.println("7.Precio");
-      System.out.println("8.Regresar al menu principal");
-      System.out.println("=========================================");
-      Smenu = Entrada.nextInt();
-      System.out.println("=========================================");
       
-        switch(Smenu){
+       case 3:
+        do {
+        // Sub Menu Principal de Productos
+        System.out.println("=========================================");
+        System.out.println("             MENU DE PRODUCTOS");
+        System.out.println("=========================================");
+        System.out.println("1. Registrar Producto");
+        System.out.println("2. Buscar Producto");
+        System.out.println("3. Modificar Producto");
+        System.out.println("4. Eliminar Producto");
+        System.out.println("5. Lista de Productos");
+        System.out.println("6. Buscar por Categoria");
+        System.out.println("7. Consultar Precio");
+        System.out.println("8. Regresar al Menu Principal");
+        System.out.println("=========================================");
+
+        Smenu = Entrada.nextInt();
+
+        System.out.println("=========================================");
+
+        switch (Smenu) {
+
+           
+    
+    case 1:
+
+    if (cantidadProductos < 10) {
+
+        System.out.println("          REGISTRAR PRODUCTO");
+        System.out.println("=========================================");
+
+        System.out.print("Ingrese el nombre del producto: ");
+        String nombreProd = Entrada.next();
+
+        System.out.print("Ingrese el precio: ");
+        double precio = Entrada.nextDouble();
+
+        System.out.print("Ingrese la cantidad Existencia: ");
+        int cantidad = Entrada.nextInt();
+
+        System.out.print("Ingrese el codigo: ");
+        int codigo = Entrada.nextInt();
+
+        System.out.print("Ingrese la categoria (I/E): ");
+        char categoria = Entrada.next().charAt(0);
+
+        System.out.print("Ingrese el peso: ");
+        double peso = Entrada.nextDouble();
+
+        productos[cantidadProductos] = new Producto( nombreProd,precio,cantidad,codigo,categoria,peso);
+        
+        ArchivoProductos.guardarProducto(productos[cantidadProductos]);
+
+        cantidadProductos++;
+
+        System.out.println("=========================================");
+        System.out.println("Producto registrado correctamente.");
+        System.out.println("=========================================");
+
+    } else {
+
+        System.out.println("=========================================");
+        System.out.println("Ya se registraron los 10 productos.");
+        System.out.println("No se pueden registrar mas productos.");
+        System.out.println("=========================================");
+    }
+
+    break;
+
+
+            
+
+    case 2:
+
+    System.out.println("            BUSCAR PRODUCTO");
+    System.out.println("=========================================");
+
+    if (cantidadProductos == 0) {
+
+        System.out.println("No hay productos registrados.");
+
+    } else {
+
+        System.out.print("Ingrese el codigo del producto: ");
+        int codigoBuscar = Entrada.nextInt();
+
+        boolean encontrado = false;
+
+        for (int i = 0; i < cantidadProductos; i++) {
+
+            if (productos[i].getCodigo() == codigoBuscar) {
+
+                System.out.println("=========================================");
+                System.out.println("          PRODUCTO ENCONTRADO");
+                System.out.println("=========================================");
+
+                productos[i].mostrarProducto();
+
+                System.out.println("Peso: " + productos[i].getPeso());
+
+                encontrado = true;
+
+                break;
+            }
+        }
+
+        if (!encontrado) {
+
+            System.out.println("Producto no encontrado.");
+
+        }
+    }
+
+    break;
+    
+    case 3:
+
+    System.out.println("          MODIFICAR PRODUCTO");
+    System.out.println("=========================================");
+
+    if (cantidadProductos == 0) {
+
+        System.out.println("No hay productos registrados.");
+
+    } else {
+
+        System.out.print("Ingrese el codigo del producto: ");
+        int codigoModificar = Entrada.nextInt();
+
+        boolean encontrado = false;
+
+        for (int i = 0; i < cantidadProductos; i++) {
+
+            if (productos[i].getCodigo() == codigoModificar) {
+
+                System.out.println("Producto encontrado.");
+                System.out.println("=========================================");
+
+                System.out.print("Ingrese el nuevo nombre: ");
+                productos[i].setNombreProd(Entrada.next());
+
+                System.out.print("Ingrese el nuevo precio: ");
+                productos[i].setPrecio(Entrada.nextDouble());
+
+                System.out.print("Ingrese la nueva cantidad: ");
+                productos[i].setCantidad(Entrada.nextInt());
+
+                System.out.print("Ingrese la nueva categoria: ");
+                productos[i].setCategoria(Entrada.next().charAt(0));
+
+                System.out.print("Ingrese el nuevo peso: ");
+                productos[i].setPeso(Entrada.nextDouble());
+                
+                ArchivoProductos.guardarTodos(productos, cantidadProductos);
+
+                System.out.println("=========================================");
+                System.out.println("Producto modificado correctamente.");
+                System.out.println("=========================================");
+
+                encontrado = true;
+
+                break;
+            }
+        }
+
+        if (!encontrado) {
+
+            System.out.println("Producto no encontrado.");
+
+        }
+    }
+
+    break;
+
+            case 4:
+
+    System.out.println("           ELIMINAR PRODUCTO");
+    System.out.println("=========================================");
+
+    if (cantidadProductos == 0) {
+
+        System.out.println("No hay productos registrados.");
+
+    } else {
+
+        System.out.print("Ingrese el codigo del producto: ");
+        int codigoEliminar = Entrada.nextInt();
+
+        boolean encontrado = false;
+
+        for (int i = 0; i < cantidadProductos; i++) {
+
+            if (productos[i].getCodigo() == codigoEliminar) {
+
+                // Mover los productos hacia la izquierda
+                for (int j = i; j < cantidadProductos - 1; j++) {
+
+                    productos[j] = productos[j + 1];
+                }
+
+                // Dejar vacía la última posición
+                productos[cantidadProductos - 1] = null;
+
+                cantidadProductos--;
+                
+                ArchivoProductos.guardarTodos(productos, cantidadProductos);
+
+                encontrado = true;
+
+                System.out.println("=========================================");
+                System.out.println("Producto eliminado correctamente.");
+                System.out.println("=========================================");
+
+                break;
+            }
+        }
+
+        if (!encontrado) {
+
+            System.out.println("Producto no encontrado.");
+
+        }
+    }
+
+    break;
+
+            case 5:
+
+    System.out.println("           LISTA DE PRODUCTOS");
+    System.out.println("=========================================");
+
+    if (cantidadProductos == 0) {
+
+        System.out.println("No hay productos registrados.");
+
+    } else {
+
+        for (int i = 0; i < cantidadProductos; i++) {
+
+            System.out.println("Producto #" + (i + 1));
+
+            productos[i].mostrarProducto();
+
+            System.out.println("Peso: " + productos[i].getPeso());
+            System.out.println();
+        }
+    }
+
+    break;
+
+            case 6:
+
+    System.out.println("        BUSCAR POR CATEGORIA");
+    System.out.println("=========================================");
+
+    if (cantidadProductos == 0) {
+
+        System.out.println("No hay productos registrados.");
+
+    } else {
+
+        System.out.print("Ingrese la categoria: ");
+        char categoriaBuscar = Entrada.next().charAt(0);
+
+        boolean encontrado = false;
+
+        for (int i = 0; i < cantidadProductos; i++) {
+
+            if (productos[i].getCategoria() == categoriaBuscar) {
+
+                productos[i].mostrarProducto();
+
+                System.out.println("Peso: " + productos[i].getPeso());
+
+                encontrado = true;
+            }
+        }
+
+        if (!encontrado) {
+
+            System.out.println("No hay productos en esa categoria.");
+
+        }
+    }
+
+    break;
+
+           case 7:
+
+    System.out.println("           CONSULTAR PRECIO");
+    System.out.println("=========================================");
+
+    if (cantidadProductos == 0) {
+
+        System.out.println("No hay productos registrados.");
+
+    } else {
+
+        System.out.print("Ingrese el codigo del producto: ");
+        int codigoBuscar = Entrada.nextInt();
+
+        boolean encontrado = false;
+
+        for (int i = 0; i < cantidadProductos; i++) {
+
+            if (productos[i].getCodigo() == codigoBuscar) {
+
+                System.out.println("=========================================");
+                System.out.println("Producto: " + productos[i].getNombreProd());
+                System.out.println("Precio: L. " + productos[i].getPrecio());
+                System.out.println("=========================================");
+
+                encontrado = true;
+
+                break;
+            }
+        }
+
+        if (!encontrado) {
+
+            System.out.println("Producto no encontrado.");
+
+        }
+    }
+
+    break;
+
+            case 8:
+                System.out.println("Regresando al Menu Principal...");
+                break;
+
+            default:
+                System.out.println("Opcion no valida");
+        }
+
+    } while (Smenu != 8);
+
+    break;
        
-        case 4:
+       
+       case 4:
        do{
       //Sub Menu Principal de Clientes
       System.out.println("=========================================");
