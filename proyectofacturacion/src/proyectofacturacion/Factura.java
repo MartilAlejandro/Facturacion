@@ -9,7 +9,7 @@ import java.util.ArrayList;
  *
  * @author rasta
  */
-public class Factura {
+public class Factura{
     //Variables - atributos
     public String numeroFactura;
     public String fecha;
