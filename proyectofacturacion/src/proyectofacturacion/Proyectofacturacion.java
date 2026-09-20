@@ -4,7 +4,7 @@
  */
 package proyectofacturacion;
 
-import java.util.Scanner;
+import java.util.Scanner; // Clase para leer datos que el usuario escribe por teclado
 
 
 /**
@@ -13,33 +13,58 @@ import java.util.Scanner;
  */
 
 
+/*
+ * ============================================================================
+ * DESCRIPCION GENERAL DEL PROGRAMA
+ * ============================================================================
+ * Sistema de facturacion por consola (texto). Muestra un menu principal con
+ * varios submenus (Facturacion, Inventarios, Productos, Clientes, Proveedores,
+ * Compras, Reportes y Configuracion).
+ *
+ * - Los datos se guardan en arreglos en memoria (maximo 10 elementos cada uno).
+ * - Los datos tambien se guardan en archivos mediante las clases
+ *   ArchivoProductos, ArchivoClientes, ArchivoProveedores y ArchivoCompras,
+ *   y se cargan al iniciar el programa.
+ * - Las clases Producto, Cliente, Proveedor y Compra representan cada entidad.
+ * - Algunos submenus (Facturacion, Reportes, Configuracion) todavia solo
+ *   imprimen un mensaje: estan pendientes de implementar.
+ * ============================================================================
+ */
 public class Proyectofacturacion {
 
     /**
      * @param args the command line arguments
      */
+    // Metodo principal: aqui empieza a ejecutarse el programa
     public static void main(String[] args) {
         // TODO code application logic here
         
+   // Objeto Scanner para leer lo que el usuario escribe en la consola
    Scanner Entrada = new Scanner(System.in);
    
       
+      // Contadores: llevan la cuenta de cuantos elementos hay registrados en cada arreglo
       int cantidadCompras = 0;
       int cantidadProveedores = 0;
       int cantidadClientes = 0;
       int cantidadProductos = 0;
-      int Menu =0;
-      int Smenu =0;
+      int Menu =0;  // Guarda la opcion elegida en el menu principal
+      int Smenu =0; // Guarda la opcion elegida en los submenus
       
+     // Arreglo de compras (capacidad 10). Se cargan las compras guardadas en archivo
+     // y el metodo devuelve cuantas se cargaron.
      Compra[] compras = new Compra[10];
      cantidadCompras = ArchivoCompras.cargarCompras(compras);
       
+     // Arreglo de proveedores (capacidad 10), cargado desde archivo
      Proveedor[] proveedores = new Proveedor[10];
      cantidadProveedores = ArchivoProveedores.cargarProveedores(proveedores);
       
+     // Arreglo de clientes (capacidad 10), cargado desde archivo
      Cliente[] clientes = new Cliente[10];
      cantidadClientes = ArchivoClientes.cargarClientes(clientes);
      
+     // Arreglo de productos (capacidad 10), cargado desde archivo
      Producto[] productos = new Producto[10];
      cantidadProductos = ArchivoProductos.cargarProductos(productos);
    
@@ -53,6 +78,7 @@ public class Proyectofacturacion {
 
     
     
+      // Ciclo del menu principal: se repite hasta que el usuario elija 0 (Salir)
       do{
       //Menu Principal del sistema de facturacion 
       System.out.println("=========================================");
@@ -67,9 +93,14 @@ public class Proyectofacturacion {
       System.out.println("8.Configuracion");
       System.out.println("0.Salir");
       System.out.println("=========================================");
-      Menu = Entrada.nextInt();
+      Menu = Entrada.nextInt(); // Lee la opcion del menu principal
     
+      // Segun la opcion elegida se entra a un submenu diferente
       switch(Menu){
+
+    
+        
+        // OPCION 1: MENU DE FACTURACION (aun sin implementar, solo imprime texto)
         case 1:
        do{
       //Sub Menu Principal del sistema de facturacion 
@@ -83,37 +114,41 @@ public class Proyectofacturacion {
       System.out.println("6.Devoluciones");
       System.out.println("7.Regresar al menu principal");
       System.out.println("=========================================");
-      Smenu = Entrada.nextInt();
+      Smenu = Entrada.nextInt(); // Lee la opcion del submenu
       System.out.println("=========================================");
         switch(Smenu){
         case 1:
         System.out.println("Nueva Factura");
         break;
         case 2:
-        System.out.println("Buscar factura");
+        System.out.println("Buscar factura"); 
         break;
         case 3:
-        System.out.println("Anular factura");
+        System.out.println("Anular factura"); 
         break;
         case 4:
-        System.out.println("facturas del dia");
+        System.out.println("facturas del dia"); 
         break;
          case 5:
-        System.out.println("facturas por fechas");
+        System.out.println("facturas por fechas"); 
         break;
         case 6:
-        System.out.println("devoluciones");
+        System.out.println("devoluciones"); 
         break;
         case 7:
-        System.out.println("Regresar al menu principal");
+        System.out.println("Regresar al menu principal"); // Sale del submenu
         break;
         default:
-        System.out.println("opcion invalida");
+        System.out.println("opcion invalida"); // Cualquier otro numero
         break;
         }//fin del submenu
-        }while(Smenu !=7 );
+        }while(Smenu !=7 ); // Repite el submenu hasta que elija 7
         break;
 
+        
+        // OPCION 2: MENU DE INVENTARIOS
+        // Permite ver el inventario, dar entradas/salidas, ajustar existencias,
+        // ver productos con bajo stock y ver el historial de movimientos.
         case 2:
        do{
       //Sub Menu Principal del Inventario
@@ -131,18 +166,21 @@ public class Proyectofacturacion {
       System.out.println("=========================================");
       
         switch(Smenu){
+        //VER INVENTARIO: muestra todos los productos con sus datos
         case 1:
 
     System.out.println("=========================================");
     System.out.println("             VER INVENTARIO");
     System.out.println("=========================================");
 
+    // Si no hay productos, avisa; si hay, los recorre y los imprime
     if (cantidadProductos == 0) {
 
         System.out.println("No hay productos registrados.");
 
     } else {
 
+        // Recorre el arreglo desde la posicion 0 hasta el ultimo producto registrado
         for (int i = 0; i < cantidadProductos; i++) {
 
             System.out.println("Producto #" + (i + 1));
@@ -169,12 +207,14 @@ public class Proyectofacturacion {
     System.out.println("=========================================");
 
     break;
+        //ENTRADA DE PRODUCTO: suma unidades a la existencia de un producto
         case 2:
 
     System.out.println("=========================================");
     System.out.println("          ENTRADA DE PRODUCTO");
     System.out.println("=========================================");
 
+    // Si no hay productos no se puede hacer una entrada
     if (cantidadProductos == 0) {
 
         System.out.println("No hay productos registrados.");
@@ -185,14 +225,14 @@ public class Proyectofacturacion {
     System.out.print("Ingrese el codigo del producto: ");
     int codigoEntrada = Entrada.nextInt();
 
-    int indiceEntrada = -1;
+    int indiceEntrada = -1; // -1 significa no encontrado
 
     // Buscar el producto
     for (int i = 0; i < cantidadProductos; i++) {
 
         if (productos[i].getCodigo() == codigoEntrada) {
 
-            indiceEntrada = i;
+            indiceEntrada = i; // Guarda la posicion donde se encontro
 
             break;
         }
@@ -226,7 +266,7 @@ public class Proyectofacturacion {
             existenciaActual + cantidadEntrada
     );
 
-    // Guardar cambios
+    // Guardar cambios en el archivo de productos
     ArchivoProductos.guardarTodos(
             productos,
             cantidadProductos
@@ -244,6 +284,7 @@ public class Proyectofacturacion {
 
     break;
     
+        //SALIDA DE PRODUCTO: resta unidades a la existencia de un producto
         case 3:
 
     System.out.println("=========================================");
@@ -298,7 +339,7 @@ public class Proyectofacturacion {
         break;
     }
 
-    // Verificar existencia suficiente
+    // Verificar existencia suficiente (no se puede retirar mas de lo que hay)
     if (cantidadSalida > productos[indiceSalida].getCantidad()) {
 
         System.out.println("No hay suficiente existencia.");
@@ -329,6 +370,7 @@ public class Proyectofacturacion {
 
     break;
     
+        //AJUSTAR EXISTENCIA: reemplaza la existencia por un valor nuevo
         case 4:
 
     System.out.println("=========================================");
@@ -375,7 +417,7 @@ public class Proyectofacturacion {
     System.out.print("Ingrese la nueva existencia: ");
     int nuevaExistencia = Entrada.nextInt();
 
-    // Validar existencia
+    // Validar existencia (no puede ser negativa)
     if (nuevaExistencia < 0) {
 
         System.out.println("La existencia no puede ser negativa.");
@@ -402,6 +444,7 @@ public class Proyectofacturacion {
 
     break;
     
+        //PRODUCTOS CON BAJO STOCK: lista los que tienen 5 unidades o menos
         case 5:
 
     System.out.println("=========================================");
@@ -415,10 +458,11 @@ public class Proyectofacturacion {
         break;
     }
 
-    boolean hayBajoStock = false;
+    boolean hayBajoStock = false; // Bandera: indica si se encontro al menos uno
 
     for (int i = 0; i < cantidadProductos; i++) {
 
+        // Se considera "bajo stock" cuando la existencia es 5 o menos
         if (productos[i].getCantidad() <= 5) {
 
             System.out.println("Codigo: "
@@ -447,6 +491,7 @@ public class Proyectofacturacion {
 
     break;
     
+        //HISTORIAL DE MOVIMIENTOS: usa las compras como "entradas" de inventario
         case 6:
 
     System.out.println("=========================================");
@@ -499,6 +544,10 @@ public class Proyectofacturacion {
         break;
 
       
+       
+       // OPCION 3: MENU DE PRODUCTOS
+       // CRUD de productos: registrar, buscar, modificar, eliminar, listar,
+       // buscar por categoria y consultar precio.
        case 3:
         do {
         // Sub Menu Principal de Productos
@@ -522,8 +571,10 @@ public class Proyectofacturacion {
         switch (Smenu) {
 
            
+    //REGISTRAR PRODUCTO: pide los datos y crea un nuevo Producto
     case 1:
 
+    // Solo se puede registrar si el arreglo aun tiene espacio (maximo 10)
     if (cantidadProductos < 10) {
 
         System.out.println("          REGISTRAR PRODUCTO");
@@ -542,16 +593,18 @@ public class Proyectofacturacion {
         int codigo = Entrada.nextInt();
 
         System.out.print("Ingrese la categoria (I/E): ");
-        char categoria = Entrada.next().charAt(0);
+        char categoria = Entrada.next().charAt(0); // Toma solo la primera letra
 
         System.out.print("Ingrese el peso: ");
         double peso = Entrada.nextDouble();
 
+        // Crea el objeto Producto y lo guarda en la siguiente posicion libre del arreglo
         productos[cantidadProductos] = new Producto( nombreProd,precio,cantidad,codigo,categoria,peso);
         
+        // Guarda (agrega) el nuevo producto en el archivo
         ArchivoProductos.guardarProducto(productos[cantidadProductos]);
 
-        cantidadProductos++;
+        cantidadProductos++; // Ahora hay un producto mas
 
         System.out.println("=========================================");
         System.out.println("Producto registrado correctamente.");
@@ -570,6 +623,7 @@ public class Proyectofacturacion {
 
             
 
+    //BUSCAR PRODUCTO: lo busca por codigo y muestra sus datos
     case 2:
 
     System.out.println("            BUSCAR PRODUCTO");
@@ -584,7 +638,7 @@ public class Proyectofacturacion {
         System.out.print("Ingrese el codigo del producto: ");
         int codigoBuscar = Entrada.nextInt();
 
-        boolean encontrado = false;
+        boolean encontrado = false; // Bandera de busqueda
 
         for (int i = 0; i < cantidadProductos; i++) {
 
@@ -594,7 +648,7 @@ public class Proyectofacturacion {
                 System.out.println("          PRODUCTO ENCONTRADO");
                 System.out.println("=========================================");
 
-                productos[i].mostrarProducto();
+                productos[i].mostrarProducto(); // Metodo de la clase Producto que imprime sus datos
 
                 System.out.println("Peso: " + productos[i].getPeso());
 
@@ -613,6 +667,7 @@ public class Proyectofacturacion {
 
     break;
     
+    //MODIFICAR PRODUCTO: busca por codigo y reemplaza sus datos
     case 3:
 
     System.out.println("          MODIFICAR PRODUCTO");
@@ -636,6 +691,7 @@ public class Proyectofacturacion {
                 System.out.println("Producto encontrado.");
                 System.out.println("=========================================");
 
+                // Pide los nuevos datos y los asigna con los metodos "set"
                 System.out.print("Ingrese el nuevo nombre: ");
                 productos[i].setNombreProd(Entrada.next());
 
@@ -651,6 +707,7 @@ public class Proyectofacturacion {
                 System.out.print("Ingrese el nuevo peso: ");
                 productos[i].setPeso(Entrada.nextDouble());
                 
+                // Reescribe todo el archivo con los datos actualizados
                 ArchivoProductos.guardarTodos(productos, cantidadProductos);
 
                 System.out.println("=========================================");
@@ -672,6 +729,7 @@ public class Proyectofacturacion {
 
     break;
 
+            //ELIMINAR PRODUCTO: lo quita del arreglo y del archivo
             case 4:
 
     System.out.println("           ELIMINAR PRODUCTO");
@@ -692,7 +750,7 @@ public class Proyectofacturacion {
 
             if (productos[i].getCodigo() == codigoEliminar) {
 
-                // Mover los productos hacia la izquierda
+                // Mover los productos hacia la izquierda (tapa el hueco que deja el eliminado)
                 for (int j = i; j < cantidadProductos - 1; j++) {
 
                     productos[j] = productos[j + 1];
@@ -701,8 +759,9 @@ public class Proyectofacturacion {
                 // Dejar vacia la ultima posicion
                 productos[cantidadProductos - 1] = null;
 
-                cantidadProductos--;
+                cantidadProductos--; // Hay un producto menos
                 
+                // Reescribe el archivo sin el producto eliminado
                 ArchivoProductos.guardarTodos(productos, cantidadProductos);
 
                 encontrado = true;
@@ -724,6 +783,7 @@ public class Proyectofacturacion {
 
     break;
 
+            //LISTA DE PRODUCTOS: muestra todos los productos registrados
             case 5:
 
     System.out.println("           LISTA DE PRODUCTOS");
@@ -748,6 +808,7 @@ public class Proyectofacturacion {
 
     break;
 
+            //BUSCAR POR CATEGORIA: muestra todos los productos de una categoria (I/E)
             case 6:
 
     System.out.println("        BUSCAR POR CATEGORIA");
@@ -764,6 +825,7 @@ public class Proyectofacturacion {
 
         boolean encontrado = false;
 
+        // No usa break: debe mostrar TODOS los productos de esa categoria
         for (int i = 0; i < cantidadProductos; i++) {
 
             if (productos[i].getCategoria() == categoriaBuscar) {
@@ -785,6 +847,7 @@ public class Proyectofacturacion {
 
     break;
 
+           //CONSULTAR PRECIO: muestra solo el nombre y precio de un producto
            case 7:
 
     System.out.println("           CONSULTAR PRECIO");
@@ -833,11 +896,15 @@ public class Proyectofacturacion {
                 System.out.println("Opcion no valida");
         }
 
-    } while (Smenu != 8);
+    } while (Smenu != 8); // El submenu de productos termina con la opcion 8
 
     break;
        
        
+       // 
+       // OPCION 4: MENU DE CLIENTES
+       // CRUD de clientes: registrar, buscar, modificar, eliminar, listar
+       // e historial de compras (por ahora sin datos reales).
        case 4:
        do{
       //Sub Menu Principal de Clientes
@@ -856,8 +923,10 @@ public class Proyectofacturacion {
       
         switch(Smenu){
             
+            //REGISTRAR CLIENTE
             case 1:
 
+    // Solo si hay espacio en el arreglo (maximo 10 clientes)
     if (cantidadClientes < 10) {
 
         System.out.println("          REGISTRAR CLIENTE");
@@ -867,19 +936,21 @@ public class Proyectofacturacion {
         String nombreCliente = Entrada.next();
 
         System.out.print("Ingrese el Member ID: ");
-        String memberID = Entrada.next();
+        String memberID = Entrada.next(); // Identificador unico del cliente
 
         System.out.print("Ingrese el tipo de miembro (P/B): ");
         char memberType = Entrada.next().charAt(0);
 
-        System.out.print("Ingrese el RTN: ");
+        System.out.print("Ingrese el RTN: "); // RTN: Registro Tributario Nacional (Honduras)
         String RTN = Entrada.next();
 
         System.out.print("Ingrese la edad: ");
         int Edad = Entrada.nextInt();
 
+        // Crea el cliente y lo guarda en la siguiente posicion libre
         clientes[cantidadClientes] = new Cliente(nombreCliente,memberID,memberType,RTN,Edad);
         
+        // Lo agrega al archivo de clientes
         ArchivoClientes.guardarCliente(clientes[cantidadClientes]);
 
         cantidadClientes++;
@@ -897,6 +968,7 @@ public class Proyectofacturacion {
 
     break;
         
+        //BUSCAR CLIENTE: por Member ID
         case 2:
 
     System.out.println("           BUSCAR CLIENTE");
@@ -915,6 +987,7 @@ public class Proyectofacturacion {
 
         for (int i = 0; i < cantidadClientes; i++) {
 
+            // equals se usa para comparar textos (String)
             if (clientes[i].memberID.equals(memberIDBuscar)) {
 
                 System.out.println("=========================================");
@@ -944,6 +1017,7 @@ public class Proyectofacturacion {
 
     break;
     
+        //MODIFICAR CLIENTE: cambia nombre, tipo de miembro, RTN y edad
         case 3:
 
     System.out.println("         MODIFICAR CLIENTE");
@@ -982,6 +1056,7 @@ public class Proyectofacturacion {
                 int Edad = Entrada.nextInt();
                 clientes[i].setEdad(Edad);
                 
+                // Reescribe el archivo completo con los cambios
                 ArchivoClientes.guardarTodos(clientes, cantidadClientes);
 
                 System.out.println("=========================================");
@@ -1004,6 +1079,7 @@ public class Proyectofacturacion {
     break;
     
         
+       //ELIMINAR CLIENTE
        case 4:
 
     System.out.println("          ELIMINAR CLIENTE");
@@ -1035,6 +1111,7 @@ public class Proyectofacturacion {
 
                 cantidadClientes--;
                 
+                // Actualiza el archivo sin el cliente eliminado
                 ArchivoClientes.guardarTodos(clientes, cantidadClientes);
 
                 encontrado = true;
@@ -1056,6 +1133,7 @@ public class Proyectofacturacion {
 
     break;
     
+         //LISTAR CLIENTES: muestra todos los clientes
          case 5:
 
     System.out.println("           LISTA DE CLIENTES");
@@ -1081,6 +1159,7 @@ public class Proyectofacturacion {
     }
 
     break;
+        //HISTORIAL DE COMPRAS DEL CLIENTE: aun es un mensaje fijo (sin facturas)
         case 6:
 
     System.out.println("        HISTORIAL DE COMPRAS");
@@ -1108,7 +1187,7 @@ public class Proyectofacturacion {
 
                 System.out.println("Historial de compras");
                 System.out.println("-----------------------------------------");
-                System.out.println("No hay compras registradas.");
+                System.out.println("No hay compras registradas."); // Pendiente: enlazar con facturas
                 System.out.println("=========================================");
 
                 encontrado = true;
@@ -1136,6 +1215,10 @@ public class Proyectofacturacion {
         }while(Smenu !=7 );
         break;
 
+         
+         // OPCION 5: MENU DE PROVEEDORES
+         // CRUD de proveedores: registrar, buscar, modificar, eliminar, listar
+         // e historial (por ahora sin datos reales).
          case 5:
        do{
       //Sub Menu Principal de Proveedores
@@ -1153,8 +1236,10 @@ public class Proyectofacturacion {
       System.out.println("=========================================");
       
         switch(Smenu){
+        //REGISTRAR PROVEEDOR
         case 1:
             
+    // Solo si hay espacio (maximo 10 proveedores)
     if (cantidadProveedores < 10) {
 
         System.out.println("         REGISTRAR PROVEEDOR");
@@ -1164,7 +1249,7 @@ public class Proyectofacturacion {
         String nombreProveedor = Entrada.next();
 
         System.out.print("Ingrese el codigo del proveedor: ");
-        String codigoProveedor = Entrada.next();
+        String codigoProveedor = Entrada.next(); // Identificador unico del proveedor
 
         System.out.print("Ingrese el RTN: ");
         String RTN = Entrada.next();
@@ -1175,8 +1260,10 @@ public class Proyectofacturacion {
         System.out.print("Ingrese el producto que suministra: ");
         String producto = Entrada.next();
 
+        // Crea el proveedor y lo guarda en el arreglo
         proveedores[cantidadProveedores] = new Proveedor(nombreProveedor,codigoProveedor,RTN,telefono,producto);
         
+        // Lo agrega al archivo de proveedores
         ArchivoProveedores.guardarProveedor(proveedores[cantidadProveedores]);
 
         cantidadProveedores++;
@@ -1194,6 +1281,7 @@ public class Proyectofacturacion {
 
     break;
     
+        //BUSCAR PROVEEDOR: por codigo
         case 2:
 
     System.out.println("          BUSCAR PROVEEDOR");
@@ -1218,7 +1306,7 @@ public class Proyectofacturacion {
                 System.out.println("        PROVEEDOR ENCONTRADO");
                 System.out.println("=========================================");
 
-                proveedores[i].mostrarProveedor();
+                proveedores[i].mostrarProveedor(); // Imprime los datos del proveedor
 
                 encontrado = true;
 
@@ -1235,6 +1323,7 @@ public class Proyectofacturacion {
 
     break;
     
+        //MODIFICAR PROVEEDOR: cambia nombre, RTN, telefono y producto
         case 3:
 
     System.out.println("         MODIFICAR PROVEEDOR");
@@ -1271,6 +1360,7 @@ public class Proyectofacturacion {
                 System.out.print("Ingrese el nuevo producto: ");
                 proveedores[i].producto = Entrada.next();
                 
+                // Reescribe el archivo con los datos actualizados
                 ArchivoProveedores.guardarTodos(proveedores, cantidadProveedores);
 
                 System.out.println("=========================================");
@@ -1292,6 +1382,7 @@ public class Proyectofacturacion {
 
     break;
     
+        //ELIMINAR PROVEEDOR
         case 4:
 
     System.out.println("          ELIMINAR PROVEEDOR");
@@ -1323,6 +1414,7 @@ public class Proyectofacturacion {
 
                 cantidadProveedores--;
                 
+                // Actualiza el archivo sin el proveedor eliminado
                 ArchivoProveedores.guardarTodos(proveedores, cantidadProveedores);
 
                 encontrado = true;
@@ -1344,6 +1436,7 @@ public class Proyectofacturacion {
 
     break;
     
+        //LISTA DE PROVEEDORES
         case 5:
 
     System.out.println("          LISTA DE PROVEEDORES");
@@ -1367,6 +1460,7 @@ public class Proyectofacturacion {
 
     break;
     
+        //HISTORIAL DE PROVEEDOR: aun es un mensaje fijo (sin compras enlazadas)
         case 6:
 
     System.out.println("        HISTORIAL DE PROVEEDORES");
@@ -1395,7 +1489,7 @@ public class Proyectofacturacion {
 
                 System.out.println("Historial de compras");
                 System.out.println("-----------------------------------------");
-                System.out.println("No hay compras registradas.");
+                System.out.println("No hay compras registradas."); // Pendiente: filtrar compras del proveedor
                 System.out.println("=========================================");
 
                 encontrado = true;
@@ -1424,6 +1518,10 @@ public class Proyectofacturacion {
         break;
 
 
+         
+         // OPCION 6: MENU DE COMPRAS
+         // Registra compras a proveedores (aumentando la existencia del producto),
+         // las busca, las lista, las anula (restando la existencia) y muestra detalles.
          case 6:
        do{
       //Sub Menu Principal de compras
@@ -1441,8 +1539,10 @@ public class Proyectofacturacion {
       System.out.println("=========================================");
       
         switch(Smenu){
+       //REGISTRAR COMPRA: valida proveedor y producto, guarda la compra y suma al inventario
        case 1:
 
+    // Limite de 10 compras en el arreglo
     if (cantidadCompras >= 10) {
         System.out.println("No se pueden registrar mas compras.");
         break;
@@ -1455,7 +1555,7 @@ public class Proyectofacturacion {
     System.out.print("Ingrese codigo de compra: ");
     String codigoCompra = Entrada.next();
 
-    // Buscar proveedor
+    // Buscar proveedor (la compra debe pertenecer a un proveedor existente)
     System.out.print("Ingrese codigo del proveedor: ");
     String codigoProveedor = Entrada.next();
 
@@ -1474,7 +1574,7 @@ public class Proyectofacturacion {
         break;
     }
 
-    // Buscar producto
+    // Buscar producto (debe existir en el inventario)
     System.out.print("Ingrese codigo del producto: ");
     int codigoProducto = Entrada.nextInt();
 
@@ -1511,12 +1611,13 @@ public class Proyectofacturacion {
         break;
     }
 
-    // Registrar la compra
+    // Registrar la compra (el total se calcula dentro de la clase Compra)
     compras[cantidadCompras] = new Compra(codigoCompra,codigoProveedor,codigoProducto,cantidad,precio);
     
+    // Guarda la compra en el archivo de compras
     ArchivoCompras.guardarCompra(compras[cantidadCompras]);
 
-    // Aumentar existencia del producto
+    // Aumentar existencia del producto (la mercaderia comprada entra al inventario)
     int existenciaActual = productos[indiceProducto].getCantidad();
 
     productos[indiceProducto].setCantidad(existenciaActual + cantidad);
@@ -1539,6 +1640,7 @@ public class Proyectofacturacion {
 
     break;
     
+        //BUSCAR COMPRA: por codigo de compra
         case 2:
 
     System.out.println("=========================================");
@@ -1563,7 +1665,7 @@ public class Proyectofacturacion {
             System.out.println("Compra encontrada");
             System.out.println("=========================================");
 
-            compras[i].mostrarCompra();
+            compras[i].mostrarCompra(); // Imprime los datos de la compra
 
             encontrada = true;
             break;
@@ -1576,6 +1678,7 @@ public class Proyectofacturacion {
 
     break;
     
+        //VER COMPRAS REALIZADAS: lista todas las compras
         case 3:
 
     System.out.println("=========================================");
@@ -1596,6 +1699,7 @@ public class Proyectofacturacion {
     }
 
     break;
+    //ANULAR COMPRA: elimina la compra y descuenta lo comprado del inventario
     case 4:
 
     System.out.println("=========================================");
@@ -1655,6 +1759,7 @@ public class Proyectofacturacion {
             compras[indiceCompra].cantidad;
 
     // Verificar que haya suficiente existencia
+    // (si ya se vendio/retiro parte de lo comprado, no se puede anular)
     if (existenciaAnular < cantidadComprada) {
 
         System.out.println("No se puede anular la compra.");
@@ -1670,7 +1775,7 @@ public class Proyectofacturacion {
             existenciaAnular - cantidadComprada
     );
 
-    // Eliminar la compra del arreglo
+    // Eliminar la compra del arreglo (mueve las siguientes una posicion a la izquierda)
     for (int i = indiceCompra; i < cantidadCompras - 1; i++) {
 
         compras[i] = compras[i + 1];
@@ -1682,6 +1787,7 @@ public class Proyectofacturacion {
     // Disminuir la cantidad de compras
     cantidadCompras--;
     
+   // Reescribe el archivo de compras sin la compra anulada
    ArchivoCompras.guardarTodas(compras, cantidadCompras);
 
     // Guardar el inventario actualizado
@@ -1703,6 +1809,7 @@ public class Proyectofacturacion {
 
     break;
     
+    //DETALLE DE COMPRA: muestra la compra junto con el nombre del proveedor y del producto
     case 5:
 
     System.out.println("=========================================");
@@ -1739,7 +1846,7 @@ public class Proyectofacturacion {
     // Mostrar los datos de la compra
     compras[indiceDetalle].mostrarCompra();
 
-    // Buscar el proveedor
+    // Buscar el proveedor de esa compra
     int indiceProveedorDetalle = -1;
 
     for (int i = 0; i < cantidadProveedores; i++) {
@@ -1759,7 +1866,7 @@ public class Proyectofacturacion {
                 + proveedores[indiceProveedorDetalle].nombreProveedor);
     }
 
-    // Buscar el producto
+    // Buscar el producto de esa compra
     int indiceProductoDetalle = -1;
 
     for (int i = 0; i < cantidadProductos; i++) {
@@ -1782,6 +1889,7 @@ public class Proyectofacturacion {
     System.out.println("=========================================");
 
     break;
+        //HISTORIAL DE COMPRAS: lista todas las compras y su total
         case 6:
 
     System.out.println("=========================================");
@@ -1818,6 +1926,8 @@ public class Proyectofacturacion {
         }while(Smenu !=7 );
         break;
 
+         
+         
          case 7:
        do{
       //Sub Menu Principal de reportes
@@ -1835,19 +1945,19 @@ public class Proyectofacturacion {
       
         switch(Smenu){
         case 1:
-        System.out.println("Reportes de venta");
+        System.out.println("Reportes de venta"); 
         break;
         case 2:
-        System.out.println("reportes de producto");
+        System.out.println("reportes de producto"); 
         break;
         case 3:
-        System.out.println("reporte de clientes");
+        System.out.println("reporte de clientes"); 
         break;
         case 4:
-        System.out.println("reporte de inventario");
+        System.out.println("reporte de inventario"); 
         break;
          case 5:
-        System.out.println("reporte de compras");
+        System.out.println("reporte de compras"); 
         break;
         case 6:
         System.out.println("Regresar al menu principal");
@@ -1856,10 +1966,12 @@ public class Proyectofacturacion {
         System.out.println("opcion invalida");
         break;
         }//fin del submenu
-        }while(Smenu !=6);
+        }while(Smenu !=6); // Este submenu termina con la opcion 6
         break;
 
 
+        
+         
          case 8:
        do{
       //Sub Menu Principal de configuracion
@@ -1879,13 +1991,13 @@ public class Proyectofacturacion {
         System.out.println("datos de la empresa");
         break;
         case 2:
-        System.out.println("configurar impuesto");
+        System.out.println("configurar impuesto"); 
         break;
         case 3:
-        System.out.println("configurar descuento");
+        System.out.println("configurar descuento"); 
         break;
         case 4:
-        System.out.println("configurar sistema");
+        System.out.println("configurar sistema"); 
         break;
          case 5:
         System.out.println("Regresar al menu principal");
@@ -1894,14 +2006,15 @@ public class Proyectofacturacion {
         System.out.println("opcion invalida");
         break;
         }//fin del submenu
-        }while(Smenu !=5 );
+        }while(Smenu !=5 ); // Este submenu termina con la opcion 5
         break;
         
+        // ---- 0: SALIR del sistema (el ciclo principal termina porque Menu == 0) ----
         case 0:
         System.out.println("saliendo del sistema");
         break;
         default:
-        System.out.println("opcion invalida");
+        System.out.println("opcion invalida"); // Opcion del menu principal no valida
         break;
 
       }//fin del menu
@@ -1909,7 +2022,7 @@ public class Proyectofacturacion {
       
         
 
-      }while(Menu !=0);
+      }while(Menu !=0); // Repite el menu principal hasta que el usuario elija 0
 
             
   }//fin main

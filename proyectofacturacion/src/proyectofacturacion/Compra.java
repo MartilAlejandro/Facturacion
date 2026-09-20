@@ -10,6 +10,7 @@ package proyectofacturacion;
  */
 public class Compra {
 
+    // Datos de la compra
     public String codigoCompra;
     public String codigoProveedor;
     public int codigoProducto;
@@ -17,6 +18,7 @@ public class Compra {
     public double precio;
     public double total;
 
+    // Constructor para registrar una compra
     public Compra(String codigoCompra, String codigoProveedor,int codigoProducto, int cantidad, double precio) {
 
         this.codigoCompra = codigoCompra;
@@ -27,6 +29,7 @@ public class Compra {
         this.total = cantidad * precio;
     }
 
+    // Método para mostrar los datos de la compra
     public void mostrarCompra() {
         System.out.println("=================================");
         System.out.println("Codigo de compra: " + codigoCompra);

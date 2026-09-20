@@ -16,7 +16,7 @@ import java.util.Scanner;
  */
 public class ArchivoCompras {
 
-    // Guardar una compra nueva
+    // Método para guardar una compra en el archivo
     public static void guardarCompra(Compra compra) {
 
         try {
@@ -42,7 +42,7 @@ public class ArchivoCompras {
         }
     }
 
-    // Cargar las compras cuando inicia el programa
+    // Método para cargar las compras guardadas en el archivo
     public static int cargarCompras(Compra[] compras) {
 
         try {
@@ -97,7 +97,7 @@ public class ArchivoCompras {
         }
     }
 
-    // Guardar nuevamente todas las compras
+    // Método para guardar nuevamente todas las compras
     public static void guardarTodas(
             Compra[] compras,
             int cantidadCompras) {
