@@ -48,8 +48,7 @@ public class Proyectofacturacion {
       int cantidadProveedores = 0;
       int cantidadClientes = 0;
       int cantidadProductos = 0;
-      int Menu =0;  // Guarda la opcion elegida en el menu principal
-      int Smenu =0; // Guarda la opcion elegida en los submenus
+      int Menu =0;  
       
      // Arreglo de compras (capacidad 10). Se cargan las compras guardadas en archivo
      // y el metodo devuelve cuantas se cargaron.
