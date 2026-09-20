@@ -10,12 +10,14 @@ package proyectofacturacion;
  */
 public class Proveedor {
 
+    // Datos del proveedor
     public String nombreProveedor;
     public String codigoProveedor;
     public String RTN;
     public String telefono;
     public String producto;
 
+    // Constructor con datos predeterminados
     public Proveedor() {
         this.nombreProveedor = "Proveedor General";
         this.codigoProveedor = "001";
@@ -24,6 +26,7 @@ public class Proveedor {
         this.producto = "Producto General";
     }
 
+    // Constructor para registrar un proveedor con sus datos
     public Proveedor(String nombreProveedor, String codigoProveedor,String RTN, String telefono, String producto) {
 
         this.nombreProveedor = nombreProveedor;
@@ -33,6 +36,7 @@ public class Proveedor {
         this.producto = producto;
     }
 
+    // Método para mostrar los datos del proveedor
     public void mostrarProveedor() {
 
         System.out.println("=================================");
