@@ -10,7 +10,7 @@ public class Producto {
     private String nombreProd;
     private int codigo;
     private char categoria;
-    boolean impuesto;
+    private boolean impuesto;
     private double precio;
     private int cantidad;
     private double peso;
