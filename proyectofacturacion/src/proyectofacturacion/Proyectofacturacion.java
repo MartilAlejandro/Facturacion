@@ -23,13 +23,18 @@ public class Proyectofacturacion {
         
    Scanner Entrada = new Scanner(System.in);
    
+      int cantidadProveedores = 0;
       int cantidadClientes = 0;
       int cantidadProductos = 0;
       int Menu =0;
       int Smenu =0;
       
+     Proveedor[] proveedores = new Proveedor[10];
+     cantidadProveedores = ArchivoProveedores.cargarProveedores(proveedores);
+      
      Cliente[] clientes = new Cliente[10];
      cantidadClientes = ArchivoClientes.cargarClientes(clientes);
+     
      Producto[] productos = new Producto[10];
      cantidadProductos = ArchivoProductos.cargarProductos(productos);
    
@@ -807,23 +812,265 @@ public class Proyectofacturacion {
       
         switch(Smenu){
         case 1:
-        System.out.println("registrar Proveedores");
-        break;
+            
+    if (cantidadProveedores < 10) {
+
+        System.out.println("         REGISTRAR PROVEEDOR");
+        System.out.println("=========================================");
+
+        System.out.print("Ingrese el nombre del proveedor: ");
+        String nombreProveedor = Entrada.next();
+
+        System.out.print("Ingrese el codigo del proveedor: ");
+        String codigoProveedor = Entrada.next();
+
+        System.out.print("Ingrese el RTN: ");
+        String RTN = Entrada.next();
+
+        System.out.print("Ingrese el telefono: ");
+        String telefono = Entrada.next();
+
+        System.out.print("Ingrese el producto que suministra: ");
+        String producto = Entrada.next();
+
+        proveedores[cantidadProveedores] = new Proveedor(nombreProveedor,codigoProveedor,RTN,telefono,producto);
+        
+        ArchivoProveedores.guardarProveedor(proveedores[cantidadProveedores]);
+
+        cantidadProveedores++;
+
+        System.out.println("=========================================");
+        System.out.println("Proveedor registrado correctamente.");
+        System.out.println("=========================================");
+
+    } else {
+
+        System.out.println("=========================================");
+        System.out.println("Ya se registraron los 10 proveedores.");
+        System.out.println("=========================================");
+    }
+
+    break;
+    
         case 2:
-        System.out.println("Buscar Proveedor");
-        break;
+
+    System.out.println("          BUSCAR PROVEEDOR");
+    System.out.println("=========================================");
+
+    if (cantidadProveedores == 0) {
+
+        System.out.println("No hay proveedores registrados.");
+
+    } else {
+
+        System.out.print("Ingrese el codigo del proveedor: ");
+        String codigoBuscar = Entrada.next();
+
+        boolean encontrado = false;
+
+        for (int i = 0; i < cantidadProveedores; i++) {
+
+            if (proveedores[i].codigoProveedor.equals(codigoBuscar)) {
+
+                System.out.println("=========================================");
+                System.out.println("        PROVEEDOR ENCONTRADO");
+                System.out.println("=========================================");
+
+                proveedores[i].mostrarProveedor();
+
+                encontrado = true;
+
+                break;
+            }
+        }
+
+        if (!encontrado) {
+
+            System.out.println("Proveedor no encontrado.");
+
+        }
+    }
+
+    break;
+    
         case 3:
-        System.out.println("Modificar Proveedor");
-        break;
+
+    System.out.println("         MODIFICAR PROVEEDOR");
+    System.out.println("=========================================");
+
+    if (cantidadProveedores == 0) {
+
+        System.out.println("No hay proveedores registrados.");
+
+    } else {
+
+        System.out.print("Ingrese el codigo del proveedor: ");
+        String codigoModificar = Entrada.next();
+
+        boolean encontrado = false;
+
+        for (int i = 0; i < cantidadProveedores; i++) {
+
+            if (proveedores[i].codigoProveedor.equals(codigoModificar)) {
+
+                System.out.println("=========================================");
+                System.out.println("Proveedor encontrado.");
+                System.out.println("=========================================");
+
+                System.out.print("Ingrese el nuevo nombre: ");
+                proveedores[i].nombreProveedor = Entrada.next();
+
+                System.out.print("Ingrese el nuevo RTN: ");
+                proveedores[i].RTN = Entrada.next();
+
+                System.out.print("Ingrese el nuevo telefono: ");
+                proveedores[i].telefono = Entrada.next();
+
+                System.out.print("Ingrese el nuevo producto: ");
+                proveedores[i].producto = Entrada.next();
+                
+                ArchivoProveedores.guardarTodos(proveedores, cantidadProveedores);
+
+                System.out.println("=========================================");
+                System.out.println("Proveedor modificado correctamente.");
+                System.out.println("=========================================");
+
+                encontrado = true;
+
+                break;
+            }
+        }
+
+        if (!encontrado) {
+
+            System.out.println("Proveedor no encontrado.");
+
+        }
+    }
+
+    break;
+    
         case 4:
-        System.out.println("Eliminar proveedores");
-        break;
-         case 5:
-        System.out.println("Lista de Proveedores");
-        break;
+
+    System.out.println("          ELIMINAR PROVEEDOR");
+    System.out.println("=========================================");
+
+    if (cantidadProveedores == 0) {
+
+        System.out.println("No hay proveedores registrados.");
+
+    } else {
+
+        System.out.print("Ingrese el codigo del proveedor: ");
+        String codigoEliminar = Entrada.next();
+
+        boolean encontrado = false;
+
+        for (int i = 0; i < cantidadProveedores; i++) {
+
+            if (proveedores[i].codigoProveedor.equals(codigoEliminar)) {
+
+                // Mover los proveedores hacia la izquierda
+                for (int j = i; j < cantidadProveedores - 1; j++) {
+
+                    proveedores[j] = proveedores[j + 1];
+                }
+
+                // Dejar vacía la última posición
+                proveedores[cantidadProveedores - 1] = null;
+
+                cantidadProveedores--;
+                
+                ArchivoProveedores.guardarTodos(proveedores, cantidadProveedores);
+
+                encontrado = true;
+
+                System.out.println("=========================================");
+                System.out.println("Proveedor eliminado correctamente.");
+                System.out.println("=========================================");
+
+                break;
+            }
+        }
+
+        if (!encontrado) {
+
+            System.out.println("Proveedor no encontrado.");
+
+        }
+    }
+
+    break;
+    
+        case 5:
+
+    System.out.println("          LISTA DE PROVEEDORES");
+    System.out.println("=========================================");
+
+    if (cantidadProveedores == 0) {
+
+        System.out.println("No hay proveedores registrados.");
+
+    } else {
+
+        for (int i = 0; i < cantidadProveedores; i++) {
+
+            System.out.println("Proveedor #" + (i + 1));
+
+            proveedores[i].mostrarProveedor();
+
+            System.out.println();
+        }
+    }
+
+    break;
+    
         case 6:
-        System.out.println("Historial de compras");
-        break;
+
+    System.out.println("        HISTORIAL DE COMPRAS");
+    System.out.println("=========================================");
+
+    if (cantidadProveedores == 0) {
+
+        System.out.println("No hay proveedores registrados.");
+
+    } else {
+
+        System.out.print("Ingrese el codigo del proveedor: ");
+        String codigoHistorial = Entrada.next();
+
+        boolean encontrado = false;
+
+        for (int i = 0; i < cantidadProveedores; i++) {
+
+            if (proveedores[i].codigoProveedor.equals(codigoHistorial)) {
+
+                System.out.println("=========================================");
+                System.out.println("Proveedor: " + proveedores[i].nombreProveedor);
+                System.out.println("Codigo: " + proveedores[i].codigoProveedor);
+                System.out.println("Producto: " + proveedores[i].producto);
+                System.out.println("=========================================");
+
+                System.out.println("Historial de compras");
+                System.out.println("-----------------------------------------");
+                System.out.println("No hay compras registradas.");
+                System.out.println("=========================================");
+
+                encontrado = true;
+
+                break;
+            }
+        }
+
+        if (!encontrado) {
+
+            System.out.println("Proveedor no encontrado.");
+
+        }
+    }
+
+    break;
+    
         case 7:
         System.out.println("Regresar al menu principal");
         break;
