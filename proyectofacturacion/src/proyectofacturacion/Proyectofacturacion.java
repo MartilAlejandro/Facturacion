@@ -55,8 +55,6 @@ public class Proyectofacturacion {
             System.out.println("5.Proveedores");
             System.out.println("6.Compras");
             System.out.println("7.Reportes");
-            System.out.println("8.Usuario");
-            System.out.println("9.Configuracion");
             System.out.println("0.Salir");
             System.out.println("=========================================");
             Menu = Entrada.nextInt();
@@ -330,1893 +328,2069 @@ public class Proyectofacturacion {
                         }
                     } while (Smenu != 7);
                     break;
-        // ====================================================================
-        // OPCION 2: MENU DE INVENTARIOS
-        // Permite ver el inventario, dar entradas/salidas, ajustar existencias,
-        // ver productos con bajo stock y ver el historial de movimientos.
-        // ====================================================================
-        case 2:
-       do{
-      //Sub Menu Principal del Inventario
-      System.out.println("=========================================");
-      System.out.println("           Menu de Inventarios");
-      System.out.println("1.Ver Inventario");
-      System.out.println("2.Entrada de Producto");
-      System.out.println("3.Salida de producto");
-      System.out.println("4.Ajustar existencia");
-      System.out.println("5.Productos con bajo Stock");
-      System.out.println("6.Historial de movimientos");
-      System.out.println("7.Regresar al menu principal");
-      System.out.println("=========================================");
-      Smenu = Entrada.nextInt();
-      System.out.println("=========================================");
-      
-        switch(Smenu){
-        // ---- 2.1 VER INVENTARIO: muestra todos los productos con sus datos ----
-        case 1:
-
-    System.out.println("=========================================");
-    System.out.println("             VER INVENTARIO");
-    System.out.println("=========================================");
-
-    // Si no hay productos, avisa; si hay, los recorre y los imprime
-    if (cantidadProductos == 0) {
-
-        System.out.println("No hay productos registrados.");
-
-    } else {
-
-        // Recorre el arreglo desde la posicion 0 hasta el ultimo producto registrado
-        for (int i = 0; i < cantidadProductos; i++) {
-
-            System.out.println("Producto #" + (i + 1));
-            System.out.println("Codigo: "
-                    + productos[i].getCodigo());
-            System.out.println("Nombre: "
-                    + productos[i].getNombreProd());
-            System.out.println("Categoria: "
-                    + productos[i].getCategoria());
-            System.out.println("Precio: L. "
-                    + productos[i].getPrecio());
-            System.out.println("Existencia: "
-                    + productos[i].getCantidad());
-            System.out.println("Peso: "
-                    + productos[i].getPeso());
-
-            System.out.println("-----------------------------------------");
-        }
-
-        System.out.println("Total de productos: "
-                + cantidadProductos);
-    }
-
-    System.out.println("=========================================");
-
-    break;
-        // ---- 2.2 ENTRADA DE PRODUCTO: suma unidades a la existencia de un producto ----
-        case 2:
-
-    System.out.println("=========================================");
-    System.out.println("          ENTRADA DE PRODUCTO");
-    System.out.println("=========================================");
-
-    // Si no hay productos no se puede hacer una entrada
-    if (cantidadProductos == 0) {
+                // ====================================================================
+                // OPCION 2: MENU DE INVENTARIOS
+                // Permite ver el inventario, dar entradas/salidas, ajustar existencias,
+                // ver productos con bajo stock y ver el historial de movimientos.
+                // ====================================================================
+                case 2:
+                    do {
+                        //Sub Menu Principal del Inventario
+                        System.out.println("=========================================");
+                        System.out.println("           Menu de Inventarios");
+                        System.out.println("1.Ver Inventario");
+                        System.out.println("2.Entrada de Producto");
+                        System.out.println("3.Salida de producto");
+                        System.out.println("4.Ajustar existencia");
+                        System.out.println("5.Productos con bajo Stock");
+                        System.out.println("6.Historial de movimientos");
+                        System.out.println("7.Regresar al menu principal");
+                        System.out.println("=========================================");
+                        Smenu = Entrada.nextInt();
+                        System.out.println("=========================================");
 
-        System.out.println("No hay productos registrados.");
+                        switch (Smenu) {
+                            // ---- 2.1 VER INVENTARIO: muestra todos los productos con sus datos ----
+                            case 1:
 
-        break;
-    }
+                                System.out.println("=========================================");
+                                System.out.println("             VER INVENTARIO");
+                                System.out.println("=========================================");
 
-    System.out.print("Ingrese el codigo del producto: ");
-    int codigoEntrada = Entrada.nextInt();
+                                // Si no hay productos, avisa; si hay, los recorre y los imprime
+                                if (cantidadProductos == 0) {
+
+                                    System.out.println("No hay productos registrados.");
+
+                                } else {
+
+                                    // Recorre el arreglo desde la posicion 0 hasta el ultimo producto registrado
+                                    for (int i = 0; i < cantidadProductos; i++) {
+
+                                        System.out.println("Producto #" + (i + 1));
+                                        System.out.println("Codigo: "
+                                                + productos[i].getCodigo());
+                                        System.out.println("Nombre: "
+                                                + productos[i].getNombreProd());
+                                        System.out.println("Categoria: "
+                                                + productos[i].getCategoria());
+                                        System.out.println("Precio: L. "
+                                                + productos[i].getPrecio());
+                                        System.out.println("Existencia: "
+                                                + productos[i].getCantidad());
+                                        System.out.println("Peso: "
+                                                + productos[i].getPeso());
 
-    int indiceEntrada = -1; // -1 significa "no encontrado"
+                                        System.out.println("-----------------------------------------");
+                                    }
 
-    // Buscar el producto
-    for (int i = 0; i < cantidadProductos; i++) {
+                                    System.out.println("Total de productos: "
+                                            + cantidadProductos);
+                                }
 
-        if (productos[i].getCodigo() == codigoEntrada) {
+                                System.out.println("=========================================");
 
-            indiceEntrada = i; // Guarda la posicion donde se encontro
+                                break;
+                            // ---- 2.2 ENTRADA DE PRODUCTO: suma unidades a la existencia de un producto ----
+                            case 2:
 
-            break;
-        }
-    }
+                                System.out.println("=========================================");
+                                System.out.println("          ENTRADA DE PRODUCTO");
+                                System.out.println("=========================================");
 
-    // Verificar si existe
-    if (indiceEntrada == -1) {
+                                // Si no hay productos no se puede hacer una entrada
+                                if (cantidadProductos == 0) {
 
-        System.out.println("Producto no encontrado.");
+                                    System.out.println("No hay productos registrados.");
 
-        break;
-    }
+                                    break;
+                                }
 
-    System.out.print("Ingrese la cantidad que desea agregar: ");
-    int cantidadEntrada = Entrada.nextInt();
+                                System.out.print("Ingrese el codigo del producto: ");
+                                int codigoEntrada = Entrada.nextInt();
 
-    // Validar cantidad
-    if (cantidadEntrada <= 0) {
+                                int indiceEntrada = -1; // -1 significa "no encontrado"
 
-        System.out.println("La cantidad debe ser mayor que 0.");
+                                // Buscar el producto
+                                for (int i = 0; i < cantidadProductos; i++) {
 
-        break;
-    }
+                                    if (productos[i].getCodigo() == codigoEntrada) {
 
-    // Obtener existencia actual
-    int existenciaActual =
-            productos[indiceEntrada].getCantidad();
+                                        indiceEntrada = i; // Guarda la posicion donde se encontro
 
-    // Aumentar existencia
-    productos[indiceEntrada].setCantidad(
-            existenciaActual + cantidadEntrada
-    );
+                                        break;
+                                    }
+                                }
 
-    // Guardar cambios en el archivo de productos
-    ArchivoProductos.guardarTodos(
-            productos,
-            cantidadProductos
-    );
+                                // Verificar si existe
+                                if (indiceEntrada == -1) {
 
-    System.out.println("=========================================");
-    System.out.println("Entrada registrada correctamente.");
-    System.out.println("Producto: "
-            + productos[indiceEntrada].getNombreProd());
-    System.out.println("Cantidad agregada: "
-            + cantidadEntrada);
-    System.out.println("Nueva existencia: "
-            + productos[indiceEntrada].getCantidad());
-    System.out.println("=========================================");
+                                    System.out.println("Producto no encontrado.");
 
-    break;
-    
-        // ---- 2.3 SALIDA DE PRODUCTO: resta unidades a la existencia de un producto ----
-        case 3:
+                                    break;
+                                }
 
-    System.out.println("=========================================");
-    System.out.println("           SALIDA DE PRODUCTO");
-    System.out.println("=========================================");
+                                System.out.print("Ingrese la cantidad que desea agregar: ");
+                                int cantidadEntrada = Entrada.nextInt();
 
-    if (cantidadProductos == 0) {
+                                // Validar cantidad
+                                if (cantidadEntrada <= 0) {
 
-        System.out.println("No hay productos registrados.");
+                                    System.out.println("La cantidad debe ser mayor que 0.");
 
-        break;
-    }
+                                    break;
+                                }
 
-    System.out.print("Ingrese el codigo del producto: ");
-    int codigoSalida = Entrada.nextInt();
+                                // Obtener existencia actual
+                                int existenciaActual
+                                        = productos[indiceEntrada].getCantidad();
 
-    int indiceSalida = -1;
+                                // Aumentar existencia
+                                productos[indiceEntrada].setCantidad(
+                                        existenciaActual + cantidadEntrada
+                                );
 
-    // Buscar el producto
-    for (int i = 0; i < cantidadProductos; i++) {
+                                // Guardar cambios en el archivo de productos
+                                ArchivoProductos.guardarTodos(
+                                        productos,
+                                        cantidadProductos
+                                );
 
-        if (productos[i].getCodigo() == codigoSalida) {
+                                System.out.println("=========================================");
+                                System.out.println("Entrada registrada correctamente.");
+                                System.out.println("Producto: "
+                                        + productos[indiceEntrada].getNombreProd());
+                                System.out.println("Cantidad agregada: "
+                                        + cantidadEntrada);
+                                System.out.println("Nueva existencia: "
+                                        + productos[indiceEntrada].getCantidad());
+                                System.out.println("=========================================");
 
-            indiceSalida = i;
+                                break;
 
-            break;
-        }
-    }
+                            // ---- 2.3 SALIDA DE PRODUCTO: resta unidades a la existencia de un producto ----
+                            case 3:
 
-    // Verificar si existe
-    if (indiceSalida == -1) {
+                                System.out.println("=========================================");
+                                System.out.println("           SALIDA DE PRODUCTO");
+                                System.out.println("=========================================");
 
-        System.out.println("Producto no encontrado.");
+                                if (cantidadProductos == 0) {
 
-        break;
-    }
+                                    System.out.println("No hay productos registrados.");
 
-    System.out.println("Producto: "
-            + productos[indiceSalida].getNombreProd());
+                                    break;
+                                }
 
-    System.out.println("Existencia actual: "
-            + productos[indiceSalida].getCantidad());
+                                System.out.print("Ingrese el codigo del producto: ");
+                                int codigoSalida = Entrada.nextInt();
 
-    System.out.print("Ingrese la cantidad que desea retirar: ");
-    int cantidadSalida = Entrada.nextInt();
+                                int indiceSalida = -1;
 
-    // Validar cantidad
-    if (cantidadSalida <= 0) {
+                                // Buscar el producto
+                                for (int i = 0; i < cantidadProductos; i++) {
 
-        System.out.println("La cantidad debe ser mayor que 0.");
+                                    if (productos[i].getCodigo() == codigoSalida) {
 
-        break;
-    }
+                                        indiceSalida = i;
 
-    // Verificar existencia suficiente (no se puede retirar mas de lo que hay)
-    if (cantidadSalida > productos[indiceSalida].getCantidad()) {
+                                        break;
+                                    }
+                                }
 
-        System.out.println("No hay suficiente existencia.");
+                                // Verificar si existe
+                                if (indiceSalida == -1) {
 
-        break;
-    }
+                                    System.out.println("Producto no encontrado.");
 
-    // Restar existencia
-    int existenciaActual1 =productos[indiceSalida].getCantidad();
+                                    break;
+                                }
 
-    productos[indiceSalida].setCantidad(existenciaActual1 - cantidadSalida);
+                                System.out.println("Producto: "
+                                        + productos[indiceSalida].getNombreProd());
 
-    // Guardar cambios
-    ArchivoProductos.guardarTodos(
-            productos,
-            cantidadProductos
-    );
+                                System.out.println("Existencia actual: "
+                                        + productos[indiceSalida].getCantidad());
 
-    System.out.println("=========================================");
-    System.out.println("Salida registrada correctamente.");
-    System.out.println("Producto: "
-            + productos[indiceSalida].getNombreProd());
-    System.out.println("Cantidad retirada: "
-            + cantidadSalida);
-    System.out.println("Nueva existencia: "
-            + productos[indiceSalida].getCantidad());
-    System.out.println("=========================================");
+                                System.out.print("Ingrese la cantidad que desea retirar: ");
+                                int cantidadSalida = Entrada.nextInt();
 
-    break;
-    
-        // ---- 2.4 AJUSTAR EXISTENCIA: reemplaza la existencia por un valor nuevo ----
-        case 4:
+                                // Validar cantidad
+                                if (cantidadSalida <= 0) {
 
-    System.out.println("=========================================");
-    System.out.println("           AJUSTAR EXISTENCIA");
-    System.out.println("=========================================");
+                                    System.out.println("La cantidad debe ser mayor que 0.");
 
-    if (cantidadProductos == 0) {
+                                    break;
+                                }
 
-        System.out.println("No hay productos registrados.");
+                                // Verificar existencia suficiente (no se puede retirar mas de lo que hay)
+                                if (cantidadSalida > productos[indiceSalida].getCantidad()) {
 
-        break;
-    }
+                                    System.out.println("No hay suficiente existencia.");
 
-    System.out.print("Ingrese el codigo del producto: ");
-    int codigoAjustar = Entrada.nextInt();
+                                    break;
+                                }
 
-    int indiceAjustar = -1;
+                                // Restar existencia
+                                int existenciaActual1 = productos[indiceSalida].getCantidad();
 
-    // Buscar el producto
-    for (int i = 0; i < cantidadProductos; i++) {
+                                productos[indiceSalida].setCantidad(existenciaActual1 - cantidadSalida);
 
-        if (productos[i].getCodigo() == codigoAjustar) {
+                                // Guardar cambios
+                                ArchivoProductos.guardarTodos(
+                                        productos,
+                                        cantidadProductos
+                                );
 
-            indiceAjustar = i;
+                                System.out.println("=========================================");
+                                System.out.println("Salida registrada correctamente.");
+                                System.out.println("Producto: "
+                                        + productos[indiceSalida].getNombreProd());
+                                System.out.println("Cantidad retirada: "
+                                        + cantidadSalida);
+                                System.out.println("Nueva existencia: "
+                                        + productos[indiceSalida].getCantidad());
+                                System.out.println("=========================================");
 
-            break;
-        }
-    }
+                                break;
 
-    // Verificar si existe
-    if (indiceAjustar == -1) {
+                            // ---- 2.4 AJUSTAR EXISTENCIA: reemplaza la existencia por un valor nuevo ----
+                            case 4:
 
-        System.out.println("Producto no encontrado.");
+                                System.out.println("=========================================");
+                                System.out.println("           AJUSTAR EXISTENCIA");
+                                System.out.println("=========================================");
 
-        break;
-    }
+                                if (cantidadProductos == 0) {
 
-    System.out.println("Producto: "
-            + productos[indiceAjustar].getNombreProd());
+                                    System.out.println("No hay productos registrados.");
 
-    System.out.println("Existencia actual: "
-            + productos[indiceAjustar].getCantidad());
+                                    break;
+                                }
 
-    System.out.print("Ingrese la nueva existencia: ");
-    int nuevaExistencia = Entrada.nextInt();
+                                System.out.print("Ingrese el codigo del producto: ");
+                                int codigoAjustar = Entrada.nextInt();
 
-    // Validar existencia (no puede ser negativa)
-    if (nuevaExistencia < 0) {
+                                int indiceAjustar = -1;
 
-        System.out.println("La existencia no puede ser negativa.");
+                                // Buscar el producto
+                                for (int i = 0; i < cantidadProductos; i++) {
 
-        break;
-    }
+                                    if (productos[i].getCodigo() == codigoAjustar) {
 
-    // Ajustar existencia
-    productos[indiceAjustar].setCantidad(nuevaExistencia);
+                                        indiceAjustar = i;
 
-    // Guardar cambios
-    ArchivoProductos.guardarTodos(
-            productos,
-            cantidadProductos
-    );
+                                        break;
+                                    }
+                                }
 
-    System.out.println("=========================================");
-    System.out.println("Existencia ajustada correctamente.");
-    System.out.println("Producto: "
-            + productos[indiceAjustar].getNombreProd());
-    System.out.println("Nueva existencia: "
-            + productos[indiceAjustar].getCantidad());
-    System.out.println("=========================================");
+                                // Verificar si existe
+                                if (indiceAjustar == -1) {
 
-    break;
-    
-        // ---- 2.5 PRODUCTOS CON BAJO STOCK: lista los que tienen 5 unidades o menos ----
-        case 5:
+                                    System.out.println("Producto no encontrado.");
 
-    System.out.println("=========================================");
-    System.out.println("        PRODUCTOS CON BAJO STOCK");
-    System.out.println("=========================================");
+                                    break;
+                                }
 
-    if (cantidadProductos == 0) {
+                                System.out.println("Producto: "
+                                        + productos[indiceAjustar].getNombreProd());
 
-        System.out.println("No hay productos registrados.");
+                                System.out.println("Existencia actual: "
+                                        + productos[indiceAjustar].getCantidad());
 
-        break;
-    }
+                                System.out.print("Ingrese la nueva existencia: ");
+                                int nuevaExistencia = Entrada.nextInt();
 
-    boolean hayBajoStock = false; // Bandera: indica si se encontro al menos uno
+                                // Validar existencia (no puede ser negativa)
+                                if (nuevaExistencia < 0) {
 
-    for (int i = 0; i < cantidadProductos; i++) {
+                                    System.out.println("La existencia no puede ser negativa.");
 
-        // Se considera "bajo stock" cuando la existencia es 5 o menos
-        if (productos[i].getCantidad() <= 5) {
+                                    break;
+                                }
 
-            System.out.println("Codigo: "
-                    + productos[i].getCodigo());
-            System.out.println("Nombre: "
-                    + productos[i].getNombreProd());
-            System.out.println("Categoria: "
-                    + productos[i].getCategoria());
-            System.out.println("Precio: L. "
-                    + productos[i].getPrecio());
-            System.out.println("Existencia: "
-                    + productos[i].getCantidad());
+                                // Ajustar existencia
+                                productos[indiceAjustar].setCantidad(nuevaExistencia);
 
-            System.out.println("-----------------------------------------");
+                                // Guardar cambios
+                                ArchivoProductos.guardarTodos(
+                                        productos,
+                                        cantidadProductos
+                                );
 
-            hayBajoStock = true;
-        }
-    }
+                                System.out.println("=========================================");
+                                System.out.println("Existencia ajustada correctamente.");
+                                System.out.println("Producto: "
+                                        + productos[indiceAjustar].getNombreProd());
+                                System.out.println("Nueva existencia: "
+                                        + productos[indiceAjustar].getCantidad());
+                                System.out.println("=========================================");
 
-    if (!hayBajoStock) {
+                                break;
 
-        System.out.println("No hay productos con bajo stock.");
-    }
+                            // ---- 2.5 PRODUCTOS CON BAJO STOCK: lista los que tienen 5 unidades o menos ----
+                            case 5:
 
-    System.out.println("=========================================");
+                                System.out.println("=========================================");
+                                System.out.println("        PRODUCTOS CON BAJO STOCK");
+                                System.out.println("=========================================");
 
-    break;
-    
-        // ---- 2.6 HISTORIAL DE MOVIMIENTOS: usa las compras como "entradas" de inventario ----
-        case 6:
+                                if (cantidadProductos == 0) {
 
-    System.out.println("=========================================");
-    System.out.println("       HISTORIAL DE MOVIMIENTOS");
-    System.out.println("=========================================");
+                                    System.out.println("No hay productos registrados.");
 
-    if (cantidadCompras == 0) {
+                                    break;
+                                }
 
-        System.out.println("No hay movimientos registrados.");
+                                boolean hayBajoStock = false; // Bandera: indica si se encontro al menos uno
 
-        break;
-    }
+                                for (int i = 0; i < cantidadProductos; i++) {
 
-    for (int i = 0; i < cantidadCompras; i++) {
+                                    // Se considera "bajo stock" cuando la existencia es 5 o menos
+                                    if (productos[i].getCantidad() <= 5) {
 
-        System.out.println("Movimiento #" + (i + 1));
+                                        System.out.println("Codigo: "
+                                                + productos[i].getCodigo());
+                                        System.out.println("Nombre: "
+                                                + productos[i].getNombreProd());
+                                        System.out.println("Categoria: "
+                                                + productos[i].getCategoria());
+                                        System.out.println("Precio: L. "
+                                                + productos[i].getPrecio());
+                                        System.out.println("Existencia: "
+                                                + productos[i].getCantidad());
 
-        System.out.println("Tipo: Entrada");
-        System.out.println("Codigo de compra: "
-                + compras[i].codigoCompra);
-        System.out.println("Codigo de proveedor: "
-                + compras[i].codigoProveedor);
-        System.out.println("Codigo de producto: "
-                + compras[i].codigoProducto);
-        System.out.println("Cantidad: "
-                + compras[i].cantidad);
-        System.out.println("Precio: L. "
-                + compras[i].precio);
-        System.out.println("Total: L. "
-                + compras[i].total);
+                                        System.out.println("-----------------------------------------");
 
-        System.out.println("-----------------------------------------");
-    }
+                                        hayBajoStock = true;
+                                    }
+                                }
 
-    System.out.println("Total de movimientos: "
-            + cantidadCompras);
+                                if (!hayBajoStock) {
 
-    System.out.println("=========================================");
+                                    System.out.println("No hay productos con bajo stock.");
+                                }
 
-    break;
-    
-        case 7:
-        System.out.println("Regresar al menu principal");
-        break;
-        default:
-        System.out.println("opcion invalida");
-        break;
-        }//fin del submenu
-        }while(Smenu !=7 );
-        break;
+                                System.out.println("=========================================");
 
-      
-       // ====================================================================
-       // OPCION 3: MENU DE PRODUCTOS
-       // CRUD de productos: registrar, buscar, modificar, eliminar, listar,
-       // buscar por categoria y consultar precio.
-       // ====================================================================
-       case 3:
-        do {
-        // Sub Menu Principal de Productos
-        System.out.println("=========================================");
-        System.out.println("             MENU DE PRODUCTOS");
-        System.out.println("=========================================");
-        System.out.println("1. Registrar Producto");
-        System.out.println("2. Buscar Producto");
-        System.out.println("3. Modificar Producto");
-        System.out.println("4. Eliminar Producto");
-        System.out.println("5. Lista de Productos");
-        System.out.println("6. Buscar por Categoria");
-        System.out.println("7. Consultar Precio");
-        System.out.println("8. Regresar al Menu Principal");
-        System.out.println("=========================================");
+                                break;
 
-        Smenu = Entrada.nextInt();
+                            // ---- 2.6 HISTORIAL DE MOVIMIENTOS: usa las compras como "entradas" de inventario ----
+                            case 6:
 
-        System.out.println("=========================================");
+                                System.out.println("=========================================");
+                                System.out.println("       HISTORIAL DE MOVIMIENTOS");
+                                System.out.println("=========================================");
 
-        switch (Smenu) {
+                                if (cantidadCompras == 0) {
 
-           
-    // ---- 3.1 REGISTRAR PRODUCTO: pide los datos y crea un nuevo Producto ----
-    case 1:
+                                    System.out.println("No hay movimientos registrados.");
 
-    // Solo se puede registrar si el arreglo aun tiene espacio (maximo 10)
-    if (cantidadProductos < 10) {
+                                    break;
+                                }
 
-        System.out.println("          REGISTRAR PRODUCTO");
-        System.out.println("=========================================");
+                                for (int i = 0; i < cantidadCompras; i++) {
 
-        System.out.print("Ingrese el nombre del producto: ");
-        String nombreProd = Entrada.next();
+                                    System.out.println("Movimiento #" + (i + 1));
 
-        System.out.print("Ingrese el precio: ");
-        double precio = Entrada.nextDouble();
+                                    System.out.println("Tipo: Entrada");
+                                    System.out.println("Codigo de compra: "
+                                            + compras[i].codigoCompra);
+                                    System.out.println("Codigo de proveedor: "
+                                            + compras[i].codigoProveedor);
+                                    System.out.println("Codigo de producto: "
+                                            + compras[i].codigoProducto);
+                                    System.out.println("Cantidad: "
+                                            + compras[i].cantidad);
+                                    System.out.println("Precio: L. "
+                                            + compras[i].precio);
+                                    System.out.println("Total: L. "
+                                            + compras[i].total);
 
-        System.out.print("Ingrese la cantidad Existencia: ");
-        int cantidad = Entrada.nextInt();
+                                    System.out.println("-----------------------------------------");
+                                }
 
-        System.out.print("Ingrese el codigo: ");
-        int codigo = Entrada.nextInt();
+                                System.out.println("Total de movimientos: "
+                                        + cantidadCompras);
 
-        System.out.print("Ingrese la categoria (I/E): ");
-        char categoria = Entrada.next().charAt(0); // Toma solo la primera letra
+                                System.out.println("=========================================");
 
-        System.out.print("Ingrese el peso: ");
-        double peso = Entrada.nextDouble();
+                                break;
 
-        // Crea el objeto Producto y lo guarda en la siguiente posicion libre del arreglo
-        productos[cantidadProductos] = new Producto( nombreProd,precio,cantidad,codigo,categoria,peso);
-        
-        // Guarda (agrega) el nuevo producto en el archivo
-        ArchivoProductos.guardarProducto(productos[cantidadProductos]);
+                            case 7:
+                                System.out.println("Regresar al menu principal");
+                                break;
+                            default:
+                                System.out.println("opcion invalida");
+                                break;
+                        }//fin del submenu
+                    } while (Smenu != 7);
+                    break;
 
-        cantidadProductos++; // Ahora hay un producto mas
+                // ====================================================================
+                // OPCION 3: MENU DE PRODUCTOS
+                // CRUD de productos: registrar, buscar, modificar, eliminar, listar,
+                // buscar por categoria y consultar precio.
+                // ====================================================================
+                case 3:
+                    do {
+                        // Sub Menu Principal de Productos
+                        System.out.println("=========================================");
+                        System.out.println("             MENU DE PRODUCTOS");
+                        System.out.println("=========================================");
+                        System.out.println("1. Registrar Producto");
+                        System.out.println("2. Buscar Producto");
+                        System.out.println("3. Modificar Producto");
+                        System.out.println("4. Eliminar Producto");
+                        System.out.println("5. Lista de Productos");
+                        System.out.println("6. Buscar por Categoria");
+                        System.out.println("7. Consultar Precio");
+                        System.out.println("8. Regresar al Menu Principal");
+                        System.out.println("=========================================");
 
-        System.out.println("=========================================");
-        System.out.println("Producto registrado correctamente.");
-        System.out.println("=========================================");
+                        Smenu = Entrada.nextInt();
 
-    } else {
+                        System.out.println("=========================================");
 
-        System.out.println("=========================================");
-        System.out.println("Ya se registraron los 10 productos.");
-        System.out.println("No se pueden registrar mas productos.");
-        System.out.println("=========================================");
-    }
+                        switch (Smenu) {
 
-    break;
+                            // ---- 3.1 REGISTRAR PRODUCTO: pide los datos y crea un nuevo Producto ----
+                            case 1:
 
+                                // Solo se puede registrar si el arreglo aun tiene espacio (maximo 10)
+                                if (cantidadProductos < 10) {
 
-            
+                                    System.out.println("          REGISTRAR PRODUCTO");
+                                    System.out.println("=========================================");
 
-    // ---- 3.2 BUSCAR PRODUCTO: lo busca por codigo y muestra sus datos ----
-    case 2:
+                                    System.out.print("Ingrese el nombre del producto: ");
+                                    String nombreProd = Entrada.next();
 
-    System.out.println("            BUSCAR PRODUCTO");
-    System.out.println("=========================================");
+                                    System.out.print("Ingrese el precio: ");
+                                    double precio = Entrada.nextDouble();
 
-    if (cantidadProductos == 0) {
+                                    System.out.print("Ingrese la cantidad Existencia: ");
+                                    int cantidad = Entrada.nextInt();
 
-        System.out.println("No hay productos registrados.");
+                                    System.out.print("Ingrese el codigo: ");
+                                    int codigo = Entrada.nextInt();
 
-    } else {
+                                    System.out.print("Ingrese la categoria (I/E): ");
+                                    char categoria = Entrada.next().charAt(0); // Toma solo la primera letra
 
-        System.out.print("Ingrese el codigo del producto: ");
-        int codigoBuscar = Entrada.nextInt();
+                                    System.out.print("Ingrese el peso: ");
+                                    double peso = Entrada.nextDouble();
 
-        boolean encontrado = false; // Bandera de busqueda
+                                    // Crea el objeto Producto y lo guarda en la siguiente posicion libre del arreglo
+                                    productos[cantidadProductos] = new Producto(nombreProd, precio, cantidad, codigo, categoria, peso);
 
-        for (int i = 0; i < cantidadProductos; i++) {
+                                    // Guarda (agrega) el nuevo producto en el archivo
+                                    ArchivoProductos.guardarProducto(productos[cantidadProductos]);
 
-            if (productos[i].getCodigo() == codigoBuscar) {
+                                    cantidadProductos++; // Ahora hay un producto mas
 
-                System.out.println("=========================================");
-                System.out.println("          PRODUCTO ENCONTRADO");
-                System.out.println("=========================================");
+                                    System.out.println("=========================================");
+                                    System.out.println("Producto registrado correctamente.");
+                                    System.out.println("=========================================");
 
-                productos[i].mostrarProducto(); // Metodo de la clase Producto que imprime sus datos
+                                } else {
 
-                System.out.println("Peso: " + productos[i].getPeso());
+                                    System.out.println("=========================================");
+                                    System.out.println("Ya se registraron los 10 productos.");
+                                    System.out.println("No se pueden registrar mas productos.");
+                                    System.out.println("=========================================");
+                                }
 
-                encontrado = true;
+                                break;
 
-                break;
-            }
-        }
+                            // ---- 3.2 BUSCAR PRODUCTO: lo busca por codigo y muestra sus datos ----
+                            case 2:
 
-        if (!encontrado) {
+                                System.out.println("            BUSCAR PRODUCTO");
+                                System.out.println("=========================================");
 
-            System.out.println("Producto no encontrado.");
+                                if (cantidadProductos == 0) {
 
-        }
-    }
+                                    System.out.println("No hay productos registrados.");
 
-    break;
-    
-    // ---- 3.3 MODIFICAR PRODUCTO: busca por codigo y reemplaza sus datos ----
-    case 3:
+                                } else {
 
-    System.out.println("          MODIFICAR PRODUCTO");
-    System.out.println("=========================================");
+                                    System.out.print("Ingrese el codigo del producto: ");
+                                    int codigoBuscar = Entrada.nextInt();
 
-    if (cantidadProductos == 0) {
+                                    boolean encontrado = false; // Bandera de busqueda
 
-        System.out.println("No hay productos registrados.");
+                                    for (int i = 0; i < cantidadProductos; i++) {
 
-    } else {
+                                        if (productos[i].getCodigo() == codigoBuscar) {
 
-        System.out.print("Ingrese el codigo del producto: ");
-        int codigoModificar = Entrada.nextInt();
+                                            System.out.println("=========================================");
+                                            System.out.println("          PRODUCTO ENCONTRADO");
+                                            System.out.println("=========================================");
 
-        boolean encontrado = false;
+                                            productos[i].mostrarProducto(); // Metodo de la clase Producto que imprime sus datos
 
-        for (int i = 0; i < cantidadProductos; i++) {
+                                            System.out.println("Peso: " + productos[i].getPeso());
 
-            if (productos[i].getCodigo() == codigoModificar) {
+                                            encontrado = true;
 
-                System.out.println("Producto encontrado.");
-                System.out.println("=========================================");
+                                            break;
+                                        }
+                                    }
 
-                // Pide los nuevos datos y los asigna con los metodos "set"
-                System.out.print("Ingrese el nuevo nombre: ");
-                productos[i].setNombreProd(Entrada.next());
+                                    if (!encontrado) {
 
-                System.out.print("Ingrese el nuevo precio: ");
-                productos[i].setPrecio(Entrada.nextDouble());
+                                        System.out.println("Producto no encontrado.");
 
-                System.out.print("Ingrese la nueva cantidad: ");
-                productos[i].setCantidad(Entrada.nextInt());
+                                    }
+                                }
 
-                System.out.print("Ingrese la nueva categoria: ");
-                productos[i].setCategoria(Entrada.next().charAt(0));
+                                break;
 
-                System.out.print("Ingrese el nuevo peso: ");
-                productos[i].setPeso(Entrada.nextDouble());
-                
-                // Reescribe todo el archivo con los datos actualizados
-                ArchivoProductos.guardarTodos(productos, cantidadProductos);
+                            // ---- 3.3 MODIFICAR PRODUCTO: busca por codigo y reemplaza sus datos ----
+                            case 3:
 
-                System.out.println("=========================================");
-                System.out.println("Producto modificado correctamente.");
-                System.out.println("=========================================");
+                                System.out.println("          MODIFICAR PRODUCTO");
+                                System.out.println("=========================================");
 
-                encontrado = true;
+                                if (cantidadProductos == 0) {
 
-                break;
-            }
-        }
+                                    System.out.println("No hay productos registrados.");
 
-        if (!encontrado) {
+                                } else {
 
-            System.out.println("Producto no encontrado.");
+                                    System.out.print("Ingrese el codigo del producto: ");
+                                    int codigoModificar = Entrada.nextInt();
 
-        }
-    }
+                                    boolean encontrado = false;
 
-    break;
+                                    for (int i = 0; i < cantidadProductos; i++) {
 
-            // ---- 3.4 ELIMINAR PRODUCTO: lo quita del arreglo y del archivo ----
-            case 4:
+                                        if (productos[i].getCodigo() == codigoModificar) {
 
-    System.out.println("           ELIMINAR PRODUCTO");
-    System.out.println("=========================================");
+                                            System.out.println("Producto encontrado.");
+                                            System.out.println("=========================================");
 
-    if (cantidadProductos == 0) {
+                                            // Pide los nuevos datos y los asigna con los metodos "set"
+                                            System.out.print("Ingrese el nuevo nombre: ");
+                                            productos[i].setNombreProd(Entrada.next());
 
-        System.out.println("No hay productos registrados.");
+                                            System.out.print("Ingrese el nuevo precio: ");
+                                            productos[i].setPrecio(Entrada.nextDouble());
 
-    } else {
+                                            System.out.print("Ingrese la nueva cantidad: ");
+                                            productos[i].setCantidad(Entrada.nextInt());
 
-        System.out.print("Ingrese el codigo del producto: ");
-        int codigoEliminar = Entrada.nextInt();
+                                            System.out.print("Ingrese la nueva categoria: ");
+                                            productos[i].setCategoria(Entrada.next().charAt(0));
 
-        boolean encontrado = false;
+                                            System.out.print("Ingrese el nuevo peso: ");
+                                            productos[i].setPeso(Entrada.nextDouble());
 
-        for (int i = 0; i < cantidadProductos; i++) {
+                                            // Reescribe todo el archivo con los datos actualizados
+                                            ArchivoProductos.guardarTodos(productos, cantidadProductos);
 
-            if (productos[i].getCodigo() == codigoEliminar) {
+                                            System.out.println("=========================================");
+                                            System.out.println("Producto modificado correctamente.");
+                                            System.out.println("=========================================");
 
-                // Mover los productos hacia la izquierda (tapa el hueco que deja el eliminado)
-                for (int j = i; j < cantidadProductos - 1; j++) {
+                                            encontrado = true;
 
-                    productos[j] = productos[j + 1];
-                }
+                                            break;
+                                        }
+                                    }
 
-                // Dejar vacia la ultima posicion
-                productos[cantidadProductos - 1] = null;
+                                    if (!encontrado) {
 
-                cantidadProductos--; // Hay un producto menos
-                
-                // Reescribe el archivo sin el producto eliminado
-                ArchivoProductos.guardarTodos(productos, cantidadProductos);
+                                        System.out.println("Producto no encontrado.");
 
-                encontrado = true;
+                                    }
+                                }
 
-                System.out.println("=========================================");
-                System.out.println("Producto eliminado correctamente.");
-                System.out.println("=========================================");
+                                break;
 
-                break;
-            }
-        }
+                            // ---- 3.4 ELIMINAR PRODUCTO: lo quita del arreglo y del archivo ----
+                            case 4:
 
-        if (!encontrado) {
+                                System.out.println("           ELIMINAR PRODUCTO");
+                                System.out.println("=========================================");
 
-            System.out.println("Producto no encontrado.");
+                                if (cantidadProductos == 0) {
 
-        }
-    }
+                                    System.out.println("No hay productos registrados.");
 
-    break;
+                                } else {
 
-            // ---- 3.5 LISTA DE PRODUCTOS: muestra todos los productos registrados ----
-            case 5:
+                                    System.out.print("Ingrese el codigo del producto: ");
+                                    int codigoEliminar = Entrada.nextInt();
 
-    System.out.println("           LISTA DE PRODUCTOS");
-    System.out.println("=========================================");
+                                    boolean encontrado = false;
 
-    if (cantidadProductos == 0) {
+                                    for (int i = 0; i < cantidadProductos; i++) {
 
-        System.out.println("No hay productos registrados.");
+                                        if (productos[i].getCodigo() == codigoEliminar) {
 
-    } else {
+                                            // Mover los productos hacia la izquierda (tapa el hueco que deja el eliminado)
+                                            for (int j = i; j < cantidadProductos - 1; j++) {
 
-        for (int i = 0; i < cantidadProductos; i++) {
+                                                productos[j] = productos[j + 1];
+                                            }
 
-            System.out.println("Producto #" + (i + 1));
+                                            // Dejar vacia la ultima posicion
+                                            productos[cantidadProductos - 1] = null;
 
-            productos[i].mostrarProducto();
+                                            cantidadProductos--; // Hay un producto menos
 
-            System.out.println("Peso: " + productos[i].getPeso());
-            System.out.println();
-        }
-    }
+                                            // Reescribe el archivo sin el producto eliminado
+                                            ArchivoProductos.guardarTodos(productos, cantidadProductos);
 
-    break;
+                                            encontrado = true;
 
-            // ---- 3.6 BUSCAR POR CATEGORIA: muestra todos los productos de una categoria (I/E) ----
-            case 6:
+                                            System.out.println("=========================================");
+                                            System.out.println("Producto eliminado correctamente.");
+                                            System.out.println("=========================================");
 
-    System.out.println("        BUSCAR POR CATEGORIA");
-    System.out.println("=========================================");
+                                            break;
+                                        }
+                                    }
 
-    if (cantidadProductos == 0) {
+                                    if (!encontrado) {
 
-        System.out.println("No hay productos registrados.");
+                                        System.out.println("Producto no encontrado.");
 
-    } else {
+                                    }
+                                }
 
-        System.out.print("Ingrese la categoria: ");
-        char categoriaBuscar = Entrada.next().charAt(0);
+                                break;
 
-        boolean encontrado = false;
+                            // ---- 3.5 LISTA DE PRODUCTOS: muestra todos los productos registrados ----
+                            case 5:
 
-        // No usa break: debe mostrar TODOS los productos de esa categoria
-        for (int i = 0; i < cantidadProductos; i++) {
+                                System.out.println("           LISTA DE PRODUCTOS");
+                                System.out.println("=========================================");
 
-            if (productos[i].getCategoria() == categoriaBuscar) {
+                                if (cantidadProductos == 0) {
 
-                productos[i].mostrarProducto();
+                                    System.out.println("No hay productos registrados.");
 
-                System.out.println("Peso: " + productos[i].getPeso());
+                                } else {
 
-                encontrado = true;
-            }
-        }
+                                    for (int i = 0; i < cantidadProductos; i++) {
 
-        if (!encontrado) {
+                                        System.out.println("Producto #" + (i + 1));
 
-            System.out.println("No hay productos en esa categoria.");
+                                        productos[i].mostrarProducto();
 
-        }
-    }
+                                        System.out.println("Peso: " + productos[i].getPeso());
+                                        System.out.println();
+                                    }
+                                }
 
-    break;
+                                break;
 
-           // ---- 3.7 CONSULTAR PRECIO: muestra solo el nombre y precio de un producto ----
-           case 7:
+                            // ---- 3.6 BUSCAR POR CATEGORIA: muestra todos los productos de una categoria (I/E) ----
+                            case 6:
 
-    System.out.println("           CONSULTAR PRECIO");
-    System.out.println("=========================================");
+                                System.out.println("        BUSCAR POR CATEGORIA");
+                                System.out.println("=========================================");
 
-    if (cantidadProductos == 0) {
+                                if (cantidadProductos == 0) {
 
-        System.out.println("No hay productos registrados.");
+                                    System.out.println("No hay productos registrados.");
 
-    } else {
+                                } else {
 
-        System.out.print("Ingrese el codigo del producto: ");
-        int codigoBuscar = Entrada.nextInt();
+                                    System.out.print("Ingrese la categoria: ");
+                                    char categoriaBuscar = Entrada.next().charAt(0);
 
-        boolean encontrado = false;
+                                    boolean encontrado = false;
 
-        for (int i = 0; i < cantidadProductos; i++) {
+                                    // No usa break: debe mostrar TODOS los productos de esa categoria
+                                    for (int i = 0; i < cantidadProductos; i++) {
 
-            if (productos[i].getCodigo() == codigoBuscar) {
+                                        if (productos[i].getCategoria() == categoriaBuscar) {
 
-                System.out.println("=========================================");
-                System.out.println("Producto: " + productos[i].getNombreProd());
-                System.out.println("Precio: L. " + productos[i].getPrecio());
-                System.out.println("=========================================");
+                                            productos[i].mostrarProducto();
 
-                encontrado = true;
+                                            System.out.println("Peso: " + productos[i].getPeso());
 
-                break;
-            }
-        }
+                                            encontrado = true;
+                                        }
+                                    }
 
-        if (!encontrado) {
+                                    if (!encontrado) {
 
-            System.out.println("Producto no encontrado.");
+                                        System.out.println("No hay productos en esa categoria.");
 
-        }
-    }
+                                    }
+                                }
 
-    break;
+                                break;
 
-            case 8:
-                System.out.println("Regresando al Menu Principal...");
-                break;
+                            // ---- 3.7 CONSULTAR PRECIO: muestra solo el nombre y precio de un producto ----
+                            case 7:
 
-            default:
-                System.out.println("Opcion no valida");
-        }
+                                System.out.println("           CONSULTAR PRECIO");
+                                System.out.println("=========================================");
 
-    } while (Smenu != 8); // El submenu de productos termina con la opcion 8
+                                if (cantidadProductos == 0) {
 
-    break;
-       
-       
-       // ====================================================================
-       // OPCION 4: MENU DE CLIENTES
-       // CRUD de clientes: registrar, buscar, modificar, eliminar, listar
-       // e historial de compras (por ahora sin datos reales).
-       // ====================================================================
-       case 4:
-       do{
-      //Sub Menu Principal de Clientes
-      System.out.println("=========================================");
-      System.out.println("             Menu de Cliente");
-      System.out.println("1.Registrar cliente");
-      System.out.println("2.Buscar cliente");
-      System.out.println("3.Modificar cliente");
-      System.out.println("4.Eliminar cliente");
-      System.out.println("5.Listar clientes");
-      System.out.println("6.Historial de clientes");
-      System.out.println("7.Regresar al menu principal");
-      System.out.println("=========================================");
-      Smenu = Entrada.nextInt();
-      System.out.println("=========================================");
-      
-        switch(Smenu){
-            
-            // ---- 4.1 REGISTRAR CLIENTE ----
-            case 1:
+                                    System.out.println("No hay productos registrados.");
 
-    // Solo si hay espacio en el arreglo (maximo 10 clientes)
-    if (cantidadClientes < 10) {
+                                } else {
 
-        System.out.println("          REGISTRAR CLIENTE");
-        System.out.println("=========================================");
+                                    System.out.print("Ingrese el codigo del producto: ");
+                                    int codigoBuscar = Entrada.nextInt();
 
-        System.out.print("Ingrese el nombre del cliente: ");
-        String nombreCliente = Entrada.next();
+                                    boolean encontrado = false;
 
-        System.out.print("Ingrese el Member ID: ");
-        String memberID = Entrada.next(); // Identificador unico del cliente
+                                    for (int i = 0; i < cantidadProductos; i++) {
 
-        System.out.print("Ingrese el tipo de miembro (P/B): ");
-        char memberType = Entrada.next().charAt(0);
+                                        if (productos[i].getCodigo() == codigoBuscar) {
 
-        System.out.print("Ingrese el RTN: "); // RTN: Registro Tributario Nacional (Honduras)
-        String RTN = Entrada.next();
+                                            System.out.println("=========================================");
+                                            System.out.println("Producto: " + productos[i].getNombreProd());
+                                            System.out.println("Precio: L. " + productos[i].getPrecio());
+                                            System.out.println("=========================================");
 
-        System.out.print("Ingrese la edad: ");
-        int Edad = Entrada.nextInt();
+                                            encontrado = true;
 
-        // Crea el cliente y lo guarda en la siguiente posicion libre
-        clientes[cantidadClientes] = new Cliente(nombreCliente,memberID,memberType,RTN,Edad);
-        
-        // Lo agrega al archivo de clientes
-        ArchivoClientes.guardarCliente(clientes[cantidadClientes]);
+                                            break;
+                                        }
+                                    }
 
-        cantidadClientes++;
+                                    if (!encontrado) {
 
-        System.out.println("=========================================");
-        System.out.println("Cliente registrado correctamente.");
-        System.out.println("=========================================");
+                                        System.out.println("Producto no encontrado.");
 
-    } else {
+                                    }
+                                }
 
-        System.out.println("=========================================");
-        System.out.println("Ya se registraron los 10 clientes.");
-        System.out.println("=========================================");
-    }
+                                break;
 
-    break;
-        
-        // ---- 4.2 BUSCAR CLIENTE: por Member ID ----
-        case 2:
+                            case 8:
+                                System.out.println("Regresando al Menu Principal...");
+                                break;
 
-    System.out.println("           BUSCAR CLIENTE");
-    System.out.println("=========================================");
+                            default:
+                                System.out.println("Opcion no valida");
+                        }
 
-    if (cantidadClientes == 0) {
+                    } while (Smenu != 8); // El submenu de productos termina con la opcion 8
 
-        System.out.println("No hay clientes registrados.");
+                    break;
 
-    } else {
+                // ====================================================================
+                // OPCION 4: MENU DE CLIENTES
+                // CRUD de clientes: registrar, buscar, modificar, eliminar, listar
+                // e historial de compras (por ahora sin datos reales).
+                // ====================================================================
+                case 4:
+                    do {
+                        //Sub Menu Principal de Clientes
+                        System.out.println("=========================================");
+                        System.out.println("             Menu de Cliente");
+                        System.out.println("1.Registrar cliente");
+                        System.out.println("2.Buscar cliente");
+                        System.out.println("3.Modificar cliente");
+                        System.out.println("4.Eliminar cliente");
+                        System.out.println("5.Listar clientes");
+                        System.out.println("6.Historial de clientes");
+                        System.out.println("7.Regresar al menu principal");
+                        System.out.println("=========================================");
+                        Smenu = Entrada.nextInt();
+                        System.out.println("=========================================");
 
-        System.out.print("Ingrese el Member ID del cliente: ");
-        String memberIDBuscar = Entrada.next();
+                        switch (Smenu) {
 
-        boolean encontrado = false;
+                            // ---- 4.1 REGISTRAR CLIENTE ----
+                            case 1:
 
-        for (int i = 0; i < cantidadClientes; i++) {
+                                // Solo si hay espacio en el arreglo (maximo 10 clientes)
+                                if (cantidadClientes < 10) {
 
-            // equals se usa para comparar textos (String)
-            if (clientes[i].memberID.equals(memberIDBuscar)) {
+                                    System.out.println("          REGISTRAR CLIENTE");
+                                    System.out.println("=========================================");
 
-                System.out.println("=========================================");
-                System.out.println("          CLIENTE ENCONTRADO");
-                System.out.println("=========================================");
+                                    System.out.print("Ingrese el nombre del cliente: ");
+                                    String nombreCliente = Entrada.next();
 
-                System.out.println("Nombre: " + clientes[i].nombreCliente);
-                System.out.println("Member ID: " + clientes[i].memberID);
-                System.out.println("Tipo de miembro: " + clientes[i].getmemberType());
-                System.out.println("RTN: " + clientes[i].RTN);
-                System.out.println("Edad: " + clientes[i].getEdad());
+                                    System.out.print("Ingrese el Member ID: ");
+                                    String memberID = Entrada.next(); // Identificador unico del cliente
 
-                System.out.println("=========================================");
+                                    System.out.print("Ingrese el tipo de miembro (P/B): ");
+                                    char memberType = Entrada.next().charAt(0);
 
-                encontrado = true;
+                                    System.out.print("Ingrese el RTN: "); // RTN: Registro Tributario Nacional (Honduras)
+                                    String RTN = Entrada.next();
 
-                break;
-            }
-        }
+                                    System.out.print("Ingrese la edad: ");
+                                    int Edad = Entrada.nextInt();
 
-        if (!encontrado) {
+                                    // Crea el cliente y lo guarda en la siguiente posicion libre
+                                    clientes[cantidadClientes] = new Cliente(nombreCliente, memberID, memberType, RTN, Edad);
 
-            System.out.println("Cliente no encontrado.");
+                                    // Lo agrega al archivo de clientes
+                                    ArchivoClientes.guardarCliente(clientes[cantidadClientes]);
 
-        }
-    }
+                                    cantidadClientes++;
 
-    break;
-    
-        // ---- 4.3 MODIFICAR CLIENTE: cambia nombre, tipo de miembro, RTN y edad ----
-        case 3:
+                                    System.out.println("=========================================");
+                                    System.out.println("Cliente registrado correctamente.");
+                                    System.out.println("=========================================");
 
-    System.out.println("         MODIFICAR CLIENTE");
-    System.out.println("=========================================");
+                                } else {
 
-    if (cantidadClientes == 0) {
+                                    System.out.println("=========================================");
+                                    System.out.println("Ya se registraron los 10 clientes.");
+                                    System.out.println("=========================================");
+                                }
 
-        System.out.println("No hay clientes registrados.");
+                                break;
 
-    } else {
+                            // ---- 4.2 BUSCAR CLIENTE: por Member ID ----
+                            case 2:
 
-        System.out.print("Ingrese el Member ID del cliente: ");
-        String memberIDModificar = Entrada.next();
+                                System.out.println("           BUSCAR CLIENTE");
+                                System.out.println("=========================================");
 
-        boolean encontrado = false;
+                                if (cantidadClientes == 0) {
 
-        for (int i = 0; i < cantidadClientes; i++) {
+                                    System.out.println("No hay clientes registrados.");
 
-            if (clientes[i].memberID.equals(memberIDModificar)) {
+                                } else {
 
-                System.out.println("=========================================");
-                System.out.println("Cliente encontrado.");
-                System.out.println("=========================================");
+                                    System.out.print("Ingrese el Member ID del cliente: ");
+                                    String memberIDBuscar = Entrada.next();
 
-                System.out.print("Ingrese el nuevo nombre: ");
-                clientes[i].nombreCliente = Entrada.next();
+                                    boolean encontrado = false;
 
-                System.out.print("Ingrese el nuevo tipo de miembro (P/B): ");
-                char memberType = Entrada.next().charAt(0);
-                clientes[i].setmemberType(memberType);
+                                    for (int i = 0; i < cantidadClientes; i++) {
 
-                System.out.print("Ingrese el nuevo RTN: ");
-                clientes[i].RTN = Entrada.next();
+                                        // equals se usa para comparar textos (String)
+                                        if (clientes[i].memberID.equals(memberIDBuscar)) {
 
-                System.out.print("Ingrese la nueva edad: ");
-                int Edad = Entrada.nextInt();
-                clientes[i].setEdad(Edad);
-                
-                // Reescribe el archivo completo con los cambios
-                ArchivoClientes.guardarTodos(clientes, cantidadClientes);
+                                            System.out.println("=========================================");
+                                            System.out.println("          CLIENTE ENCONTRADO");
+                                            System.out.println("=========================================");
 
-                System.out.println("=========================================");
-                System.out.println("Cliente modificado correctamente.");
-                System.out.println("=========================================");
+                                            System.out.println("Nombre: " + clientes[i].nombreCliente);
+                                            System.out.println("Member ID: " + clientes[i].memberID);
+                                            System.out.println("Tipo de miembro: " + clientes[i].getmemberType());
+                                            System.out.println("RTN: " + clientes[i].RTN);
+                                            System.out.println("Edad: " + clientes[i].getEdad());
 
-                encontrado = true;
+                                            System.out.println("=========================================");
 
-                break;
-            }
-        }
+                                            encontrado = true;
 
-        if (!encontrado) {
+                                            break;
+                                        }
+                                    }
 
-            System.out.println("Cliente no encontrado.");
+                                    if (!encontrado) {
 
-        }
-    }
+                                        System.out.println("Cliente no encontrado.");
 
-    break;
-    
-        
-       // ---- 4.4 ELIMINAR CLIENTE ----
-       case 4:
+                                    }
+                                }
 
-    System.out.println("          ELIMINAR CLIENTE");
-    System.out.println("=========================================");
+                                break;
 
-    if (cantidadClientes == 0) {
+                            // ---- 4.3 MODIFICAR CLIENTE: cambia nombre, tipo de miembro, RTN y edad ----
+                            case 3:
 
-        System.out.println("No hay clientes registrados.");
+                                System.out.println("         MODIFICAR CLIENTE");
+                                System.out.println("=========================================");
 
-    } else {
+                                if (cantidadClientes == 0) {
 
-        System.out.print("Ingrese el Member ID del cliente: ");
-        String memberIDEliminar = Entrada.next();
+                                    System.out.println("No hay clientes registrados.");
 
-        boolean encontrado = false;
+                                } else {
 
-        for (int i = 0; i < cantidadClientes; i++) {
+                                    System.out.print("Ingrese el Member ID del cliente: ");
+                                    String memberIDModificar = Entrada.next();
 
-            if (clientes[i].memberID.equals(memberIDEliminar)) {
+                                    boolean encontrado = false;
 
-                // Mover los clientes hacia la izquierda
-                for (int j = i; j < cantidadClientes - 1; j++) {
+                                    for (int i = 0; i < cantidadClientes; i++) {
 
-                    clientes[j] = clientes[j + 1];
-                }
+                                        if (clientes[i].memberID.equals(memberIDModificar)) {
 
-                // Dejar vacia la ultima posicion
-                clientes[cantidadClientes - 1] = null;
+                                            System.out.println("=========================================");
+                                            System.out.println("Cliente encontrado.");
+                                            System.out.println("=========================================");
 
-                cantidadClientes--;
-                
-                // Actualiza el archivo sin el cliente eliminado
-                ArchivoClientes.guardarTodos(clientes, cantidadClientes);
+                                            System.out.print("Ingrese el nuevo nombre: ");
+                                            clientes[i].nombreCliente = Entrada.next();
 
-                encontrado = true;
+                                            System.out.print("Ingrese el nuevo tipo de miembro (P/B): ");
+                                            char memberType = Entrada.next().charAt(0);
+                                            clientes[i].setmemberType(memberType);
 
-                System.out.println("=========================================");
-                System.out.println("Cliente eliminado correctamente.");
-                System.out.println("=========================================");
+                                            System.out.print("Ingrese el nuevo RTN: ");
+                                            clientes[i].RTN = Entrada.next();
 
-                break;
-            }
-        }
+                                            System.out.print("Ingrese la nueva edad: ");
+                                            int Edad = Entrada.nextInt();
+                                            clientes[i].setEdad(Edad);
 
-        if (!encontrado) {
+                                            // Reescribe el archivo completo con los cambios
+                                            ArchivoClientes.guardarTodos(clientes, cantidadClientes);
 
-            System.out.println("Cliente no encontrado.");
+                                            System.out.println("=========================================");
+                                            System.out.println("Cliente modificado correctamente.");
+                                            System.out.println("=========================================");
 
-        }
-    }
+                                            encontrado = true;
 
-    break;
-    
-         // ---- 4.5 LISTAR CLIENTES: muestra todos los clientes ----
-         case 5:
+                                            break;
+                                        }
+                                    }
 
-    System.out.println("           LISTA DE CLIENTES");
-    System.out.println("=========================================");
+                                    if (!encontrado) {
 
-    if (cantidadClientes == 0) {
+                                        System.out.println("Cliente no encontrado.");
 
-        System.out.println("No hay clientes registrados.");
+                                    }
+                                }
 
-    } else {
+                                break;
 
-        for (int i = 0; i < cantidadClientes; i++) {
+                            // ---- 4.4 ELIMINAR CLIENTE ----
+                            case 4:
 
-            System.out.println("Cliente #" + (i + 1));
-            System.out.println("Nombre: " + clientes[i].nombreCliente);
-            System.out.println("Member ID: " + clientes[i].memberID);
-            System.out.println("Tipo de miembro: " + clientes[i].getmemberType());
-            System.out.println("RTN: " + clientes[i].RTN);
-            System.out.println("Edad: " + clientes[i].getEdad());
+                                System.out.println("          ELIMINAR CLIENTE");
+                                System.out.println("=========================================");
 
-            System.out.println("=========================================");
-        }
-    }
+                                if (cantidadClientes == 0) {
 
-    break;
-        // ---- 4.6 HISTORIAL DE COMPRAS DEL CLIENTE: aun es un mensaje fijo (sin facturas) ----
-        case 6:
+                                    System.out.println("No hay clientes registrados.");
 
-    System.out.println("        HISTORIAL DE COMPRAS");
-    System.out.println("=========================================");
+                                } else {
 
-    if (cantidadClientes == 0) {
+                                    System.out.print("Ingrese el Member ID del cliente: ");
+                                    String memberIDEliminar = Entrada.next();
 
-        System.out.println("No hay clientes registrados.");
+                                    boolean encontrado = false;
 
-    } else {
+                                    for (int i = 0; i < cantidadClientes; i++) {
 
-        System.out.print("Ingrese el Member ID del cliente: ");
-        String memberIDHistorial = Entrada.next();
+                                        if (clientes[i].memberID.equals(memberIDEliminar)) {
 
-        boolean encontrado = false;
+                                            // Mover los clientes hacia la izquierda
+                                            for (int j = i; j < cantidadClientes - 1; j++) {
 
-        for (int i = 0; i < cantidadClientes; i++) {
+                                                clientes[j] = clientes[j + 1];
+                                            }
 
-            if (clientes[i].memberID.equals(memberIDHistorial)) {
+                                            // Dejar vacia la ultima posicion
+                                            clientes[cantidadClientes - 1] = null;
 
-                System.out.println("=========================================");
-                System.out.println("Cliente: " + clientes[i].nombreCliente);
-                System.out.println("Member ID: " + clientes[i].memberID);
-                System.out.println("=========================================");
+                                            cantidadClientes--;
 
-                System.out.println("Historial de compras");
-                System.out.println("-----------------------------------------");
-                System.out.println("No hay compras registradas."); // Pendiente: enlazar con facturas
-                System.out.println("=========================================");
+                                            // Actualiza el archivo sin el cliente eliminado
+                                            ArchivoClientes.guardarTodos(clientes, cantidadClientes);
 
-                encontrado = true;
+                                            encontrado = true;
 
-                break;
-            }
-        }
+                                            System.out.println("=========================================");
+                                            System.out.println("Cliente eliminado correctamente.");
+                                            System.out.println("=========================================");
 
-        if (!encontrado) {
+                                            break;
+                                        }
+                                    }
 
-            System.out.println("Cliente no encontrado.");
+                                    if (!encontrado) {
 
-        }
-    }
+                                        System.out.println("Cliente no encontrado.");
 
-    break;
-    
-        case 7:
-        System.out.println("Regresar al menu principal");
-        break;
-        default:
-        System.out.println("opcion invalida");
-        break;
-        }//fin del submenu
-        }while(Smenu !=7 );
-        break;
+                                    }
+                                }
 
-         // ====================================================================
-         // OPCION 5: MENU DE PROVEEDORES
-         // CRUD de proveedores: registrar, buscar, modificar, eliminar, listar
-         // e historial (por ahora sin datos reales).
-         // ====================================================================
-         case 5:
-       do{
-      //Sub Menu Principal de Proveedores
-      System.out.println("=========================================");
-      System.out.println("            Menu de Proveedores");
-      System.out.println("1.Registrar Proveedor");
-      System.out.println("2.Buscar Proveedor");
-      System.out.println("3.Modificar Proveedor");
-      System.out.println("4.Eliminar Proveedor");
-      System.out.println("5.Lista de Proveedores");
-      System.out.println("6.Historial de Proveedores");
-      System.out.println("7.Regresar al menu principal");
-      System.out.println("=========================================");
-      Smenu = Entrada.nextInt();
-      System.out.println("=========================================");
-      
-        switch(Smenu){
-        // ---- 5.1 REGISTRAR PROVEEDOR ----
-        case 1:
-            
-    // Solo si hay espacio (maximo 10 proveedores)
-    if (cantidadProveedores < 10) {
+                                break;
 
-        System.out.println("         REGISTRAR PROVEEDOR");
-        System.out.println("=========================================");
+                            // ---- 4.5 LISTAR CLIENTES: muestra todos los clientes ----
+                            case 5:
 
-        System.out.print("Ingrese el nombre del proveedor: ");
-        String nombreProveedor = Entrada.next();
+                                System.out.println("           LISTA DE CLIENTES");
+                                System.out.println("=========================================");
 
-        System.out.print("Ingrese el codigo del proveedor: ");
-        String codigoProveedor = Entrada.next(); // Identificador unico del proveedor
+                                if (cantidadClientes == 0) {
 
-        System.out.print("Ingrese el RTN: ");
-        String RTN = Entrada.next();
+                                    System.out.println("No hay clientes registrados.");
 
-        System.out.print("Ingrese el telefono: ");
-        String telefono = Entrada.next();
+                                } else {
 
-        System.out.print("Ingrese el producto que suministra: ");
-        String producto = Entrada.next();
+                                    for (int i = 0; i < cantidadClientes; i++) {
 
-        // Crea el proveedor y lo guarda en el arreglo
-        proveedores[cantidadProveedores] = new Proveedor(nombreProveedor,codigoProveedor,RTN,telefono,producto);
-        
-        // Lo agrega al archivo de proveedores
-        ArchivoProveedores.guardarProveedor(proveedores[cantidadProveedores]);
+                                        System.out.println("Cliente #" + (i + 1));
+                                        System.out.println("Nombre: " + clientes[i].nombreCliente);
+                                        System.out.println("Member ID: " + clientes[i].memberID);
+                                        System.out.println("Tipo de miembro: " + clientes[i].getmemberType());
+                                        System.out.println("RTN: " + clientes[i].RTN);
+                                        System.out.println("Edad: " + clientes[i].getEdad());
 
-        cantidadProveedores++;
+                                        System.out.println("=========================================");
+                                    }
+                                }
 
-        System.out.println("=========================================");
-        System.out.println("Proveedor registrado correctamente.");
-        System.out.println("=========================================");
+                                break;
+                            // ---- 4.6 HISTORIAL DE COMPRAS DEL CLIENTE: aun es un mensaje fijo (sin facturas) ----
+                            case 6:
 
-    } else {
+                                System.out.println("        HISTORIAL DE COMPRAS");
+                                System.out.println("=========================================");
 
-        System.out.println("=========================================");
-        System.out.println("Ya se registraron los 10 proveedores.");
-        System.out.println("=========================================");
-    }
+                                if (cantidadClientes == 0) {
 
-    break;
-    
-        // ---- 5.2 BUSCAR PROVEEDOR: por codigo ----
-        case 2:
+                                    System.out.println("No hay clientes registrados.");
 
-    System.out.println("          BUSCAR PROVEEDOR");
-    System.out.println("=========================================");
+                                } else {
 
-    if (cantidadProveedores == 0) {
+                                    System.out.print("Ingrese el Member ID del cliente: ");
+                                    String memberIDHistorial = Entrada.next();
 
-        System.out.println("No hay proveedores registrados.");
+                                    boolean encontrado = false;
 
-    } else {
+                                    for (int i = 0; i < cantidadClientes; i++) {
 
-        System.out.print("Ingrese el codigo del proveedor: ");
-        String codigoBuscar = Entrada.next();
+                                        if (clientes[i].memberID.equals(memberIDHistorial)) {
 
-        boolean encontrado = false;
+                                            System.out.println("=========================================");
+                                            System.out.println("Cliente: " + clientes[i].nombreCliente);
+                                            System.out.println("Member ID: " + clientes[i].memberID);
+                                            System.out.println("=========================================");
 
-        for (int i = 0; i < cantidadProveedores; i++) {
+                                            System.out.println("Historial de compras");
+                                            System.out.println("-----------------------------------------");
+                                            System.out.println("No hay compras registradas."); // Pendiente: enlazar con facturas
+                                            System.out.println("=========================================");
 
-            if (proveedores[i].codigoProveedor.equals(codigoBuscar)) {
+                                            encontrado = true;
 
-                System.out.println("=========================================");
-                System.out.println("        PROVEEDOR ENCONTRADO");
-                System.out.println("=========================================");
+                                            break;
+                                        }
+                                    }
 
-                proveedores[i].mostrarProveedor(); // Imprime los datos del proveedor
+                                    if (!encontrado) {
 
-                encontrado = true;
+                                        System.out.println("Cliente no encontrado.");
 
-                break;
-            }
-        }
+                                    }
+                                }
 
-        if (!encontrado) {
+                                break;
 
-            System.out.println("Proveedor no encontrado.");
+                            case 7:
+                                System.out.println("Regresar al menu principal");
+                                break;
+                            default:
+                                System.out.println("opcion invalida");
+                                break;
+                        }//fin del submenu
+                    } while (Smenu != 7);
+                    break;
 
-        }
-    }
+                // ====================================================================
+                // OPCION 5: MENU DE PROVEEDORES
+                // CRUD de proveedores: registrar, buscar, modificar, eliminar, listar
+                // e historial (por ahora sin datos reales).
+                // ====================================================================
+                case 5:
+                    do {
+                        //Sub Menu Principal de Proveedores
+                        System.out.println("=========================================");
+                        System.out.println("            Menu de Proveedores");
+                        System.out.println("1.Registrar Proveedor");
+                        System.out.println("2.Buscar Proveedor");
+                        System.out.println("3.Modificar Proveedor");
+                        System.out.println("4.Eliminar Proveedor");
+                        System.out.println("5.Lista de Proveedores");
+                        System.out.println("6.Historial de Proveedores");
+                        System.out.println("7.Regresar al menu principal");
+                        System.out.println("=========================================");
+                        Smenu = Entrada.nextInt();
+                        System.out.println("=========================================");
 
-    break;
-    
-        // ---- 5.3 MODIFICAR PROVEEDOR: cambia nombre, RTN, telefono y producto ----
-        case 3:
+                        switch (Smenu) {
+                            // ---- 5.1 REGISTRAR PROVEEDOR ----
+                            case 1:
 
-    System.out.println("         MODIFICAR PROVEEDOR");
-    System.out.println("=========================================");
+                                // Solo si hay espacio (maximo 10 proveedores)
+                                if (cantidadProveedores < 10) {
 
-    if (cantidadProveedores == 0) {
+                                    System.out.println("         REGISTRAR PROVEEDOR");
+                                    System.out.println("=========================================");
 
-        System.out.println("No hay proveedores registrados.");
+                                    System.out.print("Ingrese el nombre del proveedor: ");
+                                    String nombreProveedor = Entrada.next();
 
-    } else {
+                                    System.out.print("Ingrese el codigo del proveedor: ");
+                                    String codigoProveedor = Entrada.next(); // Identificador unico del proveedor
 
-        System.out.print("Ingrese el codigo del proveedor: ");
-        String codigoModificar = Entrada.next();
+                                    System.out.print("Ingrese el RTN: ");
+                                    String RTN = Entrada.next();
 
-        boolean encontrado = false;
+                                    System.out.print("Ingrese el telefono: ");
+                                    String telefono = Entrada.next();
 
-        for (int i = 0; i < cantidadProveedores; i++) {
+                                    System.out.print("Ingrese el producto que suministra: ");
+                                    String producto = Entrada.next();
 
-            if (proveedores[i].codigoProveedor.equals(codigoModificar)) {
+                                    // Crea el proveedor y lo guarda en el arreglo
+                                    proveedores[cantidadProveedores] = new Proveedor(nombreProveedor, codigoProveedor, RTN, telefono, producto);
 
-                System.out.println("=========================================");
-                System.out.println("Proveedor encontrado.");
-                System.out.println("=========================================");
+                                    // Lo agrega al archivo de proveedores
+                                    ArchivoProveedores.guardarProveedor(proveedores[cantidadProveedores]);
 
-                System.out.print("Ingrese el nuevo nombre: ");
-                proveedores[i].nombreProveedor = Entrada.next();
+                                    cantidadProveedores++;
 
-                System.out.print("Ingrese el nuevo RTN: ");
-                proveedores[i].RTN = Entrada.next();
+                                    System.out.println("=========================================");
+                                    System.out.println("Proveedor registrado correctamente.");
+                                    System.out.println("=========================================");
 
-                System.out.print("Ingrese el nuevo telefono: ");
-                proveedores[i].telefono = Entrada.next();
+                                } else {
 
-                System.out.print("Ingrese el nuevo producto: ");
-                proveedores[i].producto = Entrada.next();
-                
-                // Reescribe el archivo con los datos actualizados
-                ArchivoProveedores.guardarTodos(proveedores, cantidadProveedores);
+                                    System.out.println("=========================================");
+                                    System.out.println("Ya se registraron los 10 proveedores.");
+                                    System.out.println("=========================================");
+                                }
 
-                System.out.println("=========================================");
-                System.out.println("Proveedor modificado correctamente.");
-                System.out.println("=========================================");
+                                break;
 
-                encontrado = true;
+                            // ---- 5.2 BUSCAR PROVEEDOR: por codigo ----
+                            case 2:
 
-                break;
-            }
-        }
+                                System.out.println("          BUSCAR PROVEEDOR");
+                                System.out.println("=========================================");
 
-        if (!encontrado) {
+                                if (cantidadProveedores == 0) {
 
-            System.out.println("Proveedor no encontrado.");
+                                    System.out.println("No hay proveedores registrados.");
 
-        }
-    }
+                                } else {
 
-    break;
-    
-        // ---- 5.4 ELIMINAR PROVEEDOR ----
-        case 4:
+                                    System.out.print("Ingrese el codigo del proveedor: ");
+                                    String codigoBuscar = Entrada.next();
 
-    System.out.println("          ELIMINAR PROVEEDOR");
-    System.out.println("=========================================");
+                                    boolean encontrado = false;
 
-    if (cantidadProveedores == 0) {
+                                    for (int i = 0; i < cantidadProveedores; i++) {
 
-        System.out.println("No hay proveedores registrados.");
+                                        if (proveedores[i].codigoProveedor.equals(codigoBuscar)) {
 
-    } else {
+                                            System.out.println("=========================================");
+                                            System.out.println("        PROVEEDOR ENCONTRADO");
+                                            System.out.println("=========================================");
 
-        System.out.print("Ingrese el codigo del proveedor: ");
-        String codigoEliminar = Entrada.next();
+                                            proveedores[i].mostrarProveedor(); // Imprime los datos del proveedor
 
-        boolean encontrado = false;
+                                            encontrado = true;
 
-        for (int i = 0; i < cantidadProveedores; i++) {
+                                            break;
+                                        }
+                                    }
 
-            if (proveedores[i].codigoProveedor.equals(codigoEliminar)) {
+                                    if (!encontrado) {
 
-                // Mover los proveedores hacia la izquierda
-                for (int j = i; j < cantidadProveedores - 1; j++) {
+                                        System.out.println("Proveedor no encontrado.");
 
-                    proveedores[j] = proveedores[j + 1];
-                }
+                                    }
+                                }
 
-                // Dejar vacia la ultima posicion
-                proveedores[cantidadProveedores - 1] = null;
+                                break;
 
-                cantidadProveedores--;
-                
-                // Actualiza el archivo sin el proveedor eliminado
-                ArchivoProveedores.guardarTodos(proveedores, cantidadProveedores);
+                            // ---- 5.3 MODIFICAR PROVEEDOR: cambia nombre, RTN, telefono y producto ----
+                            case 3:
 
-                encontrado = true;
+                                System.out.println("         MODIFICAR PROVEEDOR");
+                                System.out.println("=========================================");
 
-                System.out.println("=========================================");
-                System.out.println("Proveedor eliminado correctamente.");
-                System.out.println("=========================================");
+                                if (cantidadProveedores == 0) {
 
-                break;
-            }
-        }
+                                    System.out.println("No hay proveedores registrados.");
 
-        if (!encontrado) {
+                                } else {
 
-            System.out.println("Proveedor no encontrado.");
+                                    System.out.print("Ingrese el codigo del proveedor: ");
+                                    String codigoModificar = Entrada.next();
 
-        }
-    }
+                                    boolean encontrado = false;
 
-    break;
-    
-        // ---- 5.5 LISTA DE PROVEEDORES ----
-        case 5:
+                                    for (int i = 0; i < cantidadProveedores; i++) {
 
-    System.out.println("          LISTA DE PROVEEDORES");
-    System.out.println("=========================================");
+                                        if (proveedores[i].codigoProveedor.equals(codigoModificar)) {
 
-    if (cantidadProveedores == 0) {
+                                            System.out.println("=========================================");
+                                            System.out.println("Proveedor encontrado.");
+                                            System.out.println("=========================================");
 
-        System.out.println("No hay proveedores registrados.");
+                                            System.out.print("Ingrese el nuevo nombre: ");
+                                            proveedores[i].nombreProveedor = Entrada.next();
 
-    } else {
+                                            System.out.print("Ingrese el nuevo RTN: ");
+                                            proveedores[i].RTN = Entrada.next();
 
-        for (int i = 0; i < cantidadProveedores; i++) {
+                                            System.out.print("Ingrese el nuevo telefono: ");
+                                            proveedores[i].telefono = Entrada.next();
 
-            System.out.println("Proveedor #" + (i + 1));
+                                            System.out.print("Ingrese el nuevo producto: ");
+                                            proveedores[i].producto = Entrada.next();
 
-            proveedores[i].mostrarProveedor();
+                                            // Reescribe el archivo con los datos actualizados
+                                            ArchivoProveedores.guardarTodos(proveedores, cantidadProveedores);
 
-            System.out.println();
-        }
-    }
+                                            System.out.println("=========================================");
+                                            System.out.println("Proveedor modificado correctamente.");
+                                            System.out.println("=========================================");
 
-    break;
-    
-        // ---- 5.6 HISTORIAL DE PROVEEDOR: aun es un mensaje fijo (sin compras enlazadas) ----
-        case 6:
+                                            encontrado = true;
 
-    System.out.println("        HISTORIAL DE PROVEEDORES");
-    System.out.println("=========================================");
+                                            break;
+                                        }
+                                    }
 
-    if (cantidadProveedores == 0) {
+                                    if (!encontrado) {
 
-        System.out.println("No hay proveedores registrados.");
+                                        System.out.println("Proveedor no encontrado.");
 
-    } else {
+                                    }
+                                }
 
-        System.out.print("Ingrese el codigo del proveedor: ");
-        String codigoHistorial = Entrada.next();
+                                break;
 
-        boolean encontrado = false;
+                            // ---- 5.4 ELIMINAR PROVEEDOR ----
+                            case 4:
 
-        for (int i = 0; i < cantidadProveedores; i++) {
+                                System.out.println("          ELIMINAR PROVEEDOR");
+                                System.out.println("=========================================");
 
-            if (proveedores[i].codigoProveedor.equals(codigoHistorial)) {
+                                if (cantidadProveedores == 0) {
 
-                System.out.println("=========================================");
-                System.out.println("Proveedor: " + proveedores[i].nombreProveedor);
-                System.out.println("Codigo: " + proveedores[i].codigoProveedor);
-                System.out.println("Producto: " + proveedores[i].producto);
-                System.out.println("=========================================");
+                                    System.out.println("No hay proveedores registrados.");
 
-                System.out.println("Historial de compras");
-                System.out.println("-----------------------------------------");
-                System.out.println("No hay compras registradas."); // Pendiente: filtrar compras del proveedor
-                System.out.println("=========================================");
+                                } else {
 
-                encontrado = true;
+                                    System.out.print("Ingrese el codigo del proveedor: ");
+                                    String codigoEliminar = Entrada.next();
 
-                break;
-            }
-        }
+                                    boolean encontrado = false;
 
-        if (!encontrado) {
+                                    for (int i = 0; i < cantidadProveedores; i++) {
 
-            System.out.println("Proveedor no encontrado.");
+                                        if (proveedores[i].codigoProveedor.equals(codigoEliminar)) {
 
-        }
-    }
+                                            // Mover los proveedores hacia la izquierda
+                                            for (int j = i; j < cantidadProveedores - 1; j++) {
 
-    break;
-    
-        case 7:
-        System.out.println("Regresar al menu principal");
-        break;
-        default:
-        System.out.println("opcion invalida");
-        break;
-        }//fin del submenu
-        }while(Smenu !=7 );
-        break;
+                                                proveedores[j] = proveedores[j + 1];
+                                            }
 
+                                            // Dejar vacia la ultima posicion
+                                            proveedores[cantidadProveedores - 1] = null;
 
-         // ====================================================================
-         // OPCION 6: MENU DE COMPRAS
-         // Registra compras a proveedores (aumentando la existencia del producto),
-         // las busca, las lista, las anula (restando la existencia) y muestra detalles.
-         // ====================================================================
-         case 6:
-       do{
-      //Sub Menu Principal de compras
-      System.out.println("=========================================");
-      System.out.println("            Menu de compras");
-      System.out.println("1.Registrar Compras");
-      System.out.println("2.Buscar compras");
-      System.out.println("3.ver compras realizadas");
-      System.out.println("4.anular compra");
-      System.out.println("5.consultar detalle de compras");
-      System.out.println("6.Historial de compras");
-      System.out.println("7.Regresar al menu principal");
-      System.out.println("=========================================");
-      Smenu = Entrada.nextInt();
-      System.out.println("=========================================");
-      
-        switch(Smenu){
-       // ---- 6.1 REGISTRAR COMPRA: valida proveedor y producto, guarda la compra y suma al inventario ----
-       case 1:
+                                            cantidadProveedores--;
 
-    // Limite de 10 compras en el arreglo
-    if (cantidadCompras >= 10) {
-        System.out.println("No se pueden registrar mas compras.");
-        break;
-    }
+                                            // Actualiza el archivo sin el proveedor eliminado
+                                            ArchivoProveedores.guardarTodos(proveedores, cantidadProveedores);
 
-    System.out.println("=========================================");
-    System.out.println("          REGISTRAR COMPRA");
-    System.out.println("=========================================");
+                                            encontrado = true;
 
-    System.out.print("Ingrese codigo de compra: ");
-    String codigoCompra = Entrada.next();
+                                            System.out.println("=========================================");
+                                            System.out.println("Proveedor eliminado correctamente.");
+                                            System.out.println("=========================================");
 
-    // Buscar proveedor (la compra debe pertenecer a un proveedor existente)
-    System.out.print("Ingrese codigo del proveedor: ");
-    String codigoProveedor = Entrada.next();
+                                            break;
+                                        }
+                                    }
 
-    int indiceProveedor = -1;
+                                    if (!encontrado) {
 
-    for (int i = 0; i < cantidadProveedores; i++) {
+                                        System.out.println("Proveedor no encontrado.");
 
-        if (proveedores[i].codigoProveedor.equals(codigoProveedor)) {
-            indiceProveedor = i;
-            break;
-        }
-    }
+                                    }
+                                }
 
-    if (indiceProveedor == -1) {
-        System.out.println("Proveedor no encontrado.");
-        break;
-    }
+                                break;
 
-    // Buscar producto (debe existir en el inventario)
-    System.out.print("Ingrese codigo del producto: ");
-    int codigoProducto = Entrada.nextInt();
+                            // ---- 5.5 LISTA DE PROVEEDORES ----
+                            case 5:
 
-    int indiceProducto = -1;
+                                System.out.println("          LISTA DE PROVEEDORES");
+                                System.out.println("=========================================");
 
-    for (int i = 0; i < cantidadProductos; i++) {
+                                if (cantidadProveedores == 0) {
 
-        if (productos[i].getCodigo() == codigoProducto) {
-            indiceProducto = i;
-            break;
-        }
-    }
+                                    System.out.println("No hay proveedores registrados.");
 
-    if (indiceProducto == -1) {
-        System.out.println("Producto no encontrado.");
-        break;
-    }
+                                } else {
 
-    // Cantidad comprada
-    System.out.print("Ingrese cantidad comprada: ");
-    int cantidad = Entrada.nextInt();
+                                    for (int i = 0; i < cantidadProveedores; i++) {
 
-    if (cantidad <= 0) {
-        System.out.println("La cantidad debe ser mayor que 0.");
-        break;
-    }
+                                        System.out.println("Proveedor #" + (i + 1));
 
-    // Precio de compra
-    System.out.print("Ingrese precio de compra: L. ");
-    double precio = Entrada.nextDouble();
+                                        proveedores[i].mostrarProveedor();
 
-    if (precio < 0) {
-        System.out.println("El precio no puede ser negativo.");
-        break;
-    }
+                                        System.out.println();
+                                    }
+                                }
 
-    // Registrar la compra (el total se calcula dentro de la clase Compra)
-    compras[cantidadCompras] = new Compra(codigoCompra,codigoProveedor,codigoProducto,cantidad,precio);
-    
-    // Guarda la compra en el archivo de compras
-    ArchivoCompras.guardarCompra(compras[cantidadCompras]);
+                                break;
 
-    // Aumentar existencia del producto (la mercaderia comprada entra al inventario)
-    int existenciaActual = productos[indiceProducto].getCantidad();
+                            // ---- 5.6 HISTORIAL DE PROVEEDOR: aun es un mensaje fijo (sin compras enlazadas) ----
+                            case 6:
 
-    productos[indiceProducto].setCantidad(existenciaActual + cantidad);
+                                System.out.println("        HISTORIAL DE PROVEEDORES");
+                                System.out.println("=========================================");
 
-    cantidadCompras++;
+                                if (cantidadProveedores == 0) {
 
-    // Guardar cambios del inventario
-    ArchivoProductos.guardarTodos(productos, cantidadProductos);
+                                    System.out.println("No hay proveedores registrados.");
 
-    System.out.println("=========================================");
-    System.out.println("Compra registrada correctamente.");
-    System.out.println("Proveedor: " +
-                       proveedores[indiceProveedor].nombreProveedor);
-    System.out.println("Producto: " +
-                       productos[indiceProducto].getNombreProd());
-    System.out.println("Cantidad comprada: " + cantidad);
-    System.out.println("Nueva existencia: " +
-                       productos[indiceProducto].getCantidad());
-    System.out.println("=========================================");
+                                } else {
 
-    break;
-    
-        // ---- 6.2 BUSCAR COMPRA: por codigo de compra ----
-        case 2:
+                                    System.out.print("Ingrese el codigo del proveedor: ");
+                                    String codigoHistorial = Entrada.next();
 
-    System.out.println("=========================================");
-    System.out.println("            BUSCAR COMPRA");
-    System.out.println("=========================================");
+                                    boolean encontrado = false;
 
-    if (cantidadCompras == 0) {
-        System.out.println("No hay compras registradas.");
-        break;
-    }
+                                    for (int i = 0; i < cantidadProveedores; i++) {
 
-    System.out.print("Ingrese el codigo de la compra: ");
-    String codigoBuscar = Entrada.next();
+                                        if (proveedores[i].codigoProveedor.equals(codigoHistorial)) {
 
-    boolean encontrada = false;
+                                            System.out.println("=========================================");
+                                            System.out.println("Proveedor: " + proveedores[i].nombreProveedor);
+                                            System.out.println("Codigo: " + proveedores[i].codigoProveedor);
+                                            System.out.println("Producto: " + proveedores[i].producto);
+                                            System.out.println("=========================================");
 
-    for (int i = 0; i < cantidadCompras; i++) {
+                                            System.out.println("Historial de compras");
+                                            System.out.println("-----------------------------------------");
+                                            System.out.println("No hay compras registradas."); // Pendiente: filtrar compras del proveedor
+                                            System.out.println("=========================================");
 
-        if (compras[i].codigoCompra.equals(codigoBuscar)) {
+                                            encontrado = true;
 
-            System.out.println("=========================================");
-            System.out.println("Compra encontrada");
-            System.out.println("=========================================");
+                                            break;
+                                        }
+                                    }
 
-            compras[i].mostrarCompra(); // Imprime los datos de la compra
+                                    if (!encontrado) {
 
-            encontrada = true;
-            break;
-        }
-    }
+                                        System.out.println("Proveedor no encontrado.");
 
-    if (!encontrada) {
-        System.out.println("No se encontro ninguna compra con ese codigo.");
-    }
+                                    }
+                                }
 
-    break;
-    
-        // ---- 6.3 VER COMPRAS REALIZADAS: lista todas las compras ----
-        case 3:
+                                break;
 
-    System.out.println("=========================================");
-    System.out.println("         COMPRAS REALIZADAS");
-    System.out.println("=========================================");
+                            case 7:
+                                System.out.println("Regresar al menu principal");
+                                break;
+                            default:
+                                System.out.println("opcion invalida");
+                                break;
+                        }//fin del submenu
+                    } while (Smenu != 7);
+                    break;
 
-    if (cantidadCompras == 0) {
-        System.out.println("No hay compras registradas.");
-        break;
-    }
+                // ====================================================================
+                // OPCION 6: MENU DE COMPRAS
+                // Registra compras a proveedores (aumentando la existencia del producto),
+                // las busca, las lista, las anula (restando la existencia) y muestra detalles.
+                // ====================================================================
+                case 6:
+                    do {
+                        //Sub Menu Principal de compras
+                        System.out.println("=========================================");
+                        System.out.println("            Menu de compras");
+                        System.out.println("1.Registrar Compras");
+                        System.out.println("2.Buscar compras");
+                        System.out.println("3.ver compras realizadas");
+                        System.out.println("4.anular compra");
+                        System.out.println("5.consultar detalle de compras");
+                        System.out.println("6.Historial de compras");
+                        System.out.println("7.Regresar al menu principal");
+                        System.out.println("=========================================");
+                        Smenu = Entrada.nextInt();
+                        System.out.println("=========================================");
 
-    for (int i = 0; i < cantidadCompras; i++) {
+                        switch (Smenu) {
+                            // ---- 6.1 REGISTRAR COMPRA: valida proveedor y producto, guarda la compra y suma al inventario ----
+                            case 1:
 
-        System.out.println("Compra #" + (i + 1));
+                                // Limite de 10 compras en el arreglo
+                                if (cantidadCompras >= 10) {
+                                    System.out.println("No se pueden registrar mas compras.");
+                                    break;
+                                }
 
-        compras[i].mostrarCompra();
+                                System.out.println("=========================================");
+                                System.out.println("          REGISTRAR COMPRA");
+                                System.out.println("=========================================");
 
-    }
+                                System.out.print("Ingrese codigo de compra: ");
+                                String codigoCompra = Entrada.next();
 
-    break;
-    // ---- 6.4 ANULAR COMPRA: elimina la compra y descuenta lo comprado del inventario ----
-    case 4:
+                                // Buscar proveedor (la compra debe pertenecer a un proveedor existente)
+                                System.out.print("Ingrese codigo del proveedor: ");
+                                String codigoProveedor = Entrada.next();
 
-    System.out.println("=========================================");
-    System.out.println("             ANULAR COMPRA");
-    System.out.println("=========================================");
+                                int indiceProveedor = -1;
 
-    // Verificar si existen compras
-    if (cantidadCompras == 0) {
-        System.out.println("No hay compras registradas.");
-        break;
-    }
+                                for (int i = 0; i < cantidadProveedores; i++) {
 
-    // Pedir codigo de la compra
-    System.out.print("Ingrese el codigo de la compra que desea anular: ");
-    String codigoAnular = Entrada.next();
+                                    if (proveedores[i].codigoProveedor.equals(codigoProveedor)) {
+                                        indiceProveedor = i;
+                                        break;
+                                    }
+                                }
 
-    int indiceCompra = -1;
+                                if (indiceProveedor == -1) {
+                                    System.out.println("Proveedor no encontrado.");
+                                    break;
+                                }
 
-    // Buscar la compra
-    for (int i = 0; i < cantidadCompras; i++) {
+                                // Buscar producto (debe existir en el inventario)
+                                System.out.print("Ingrese codigo del producto: ");
+                                int codigoProducto = Entrada.nextInt();
 
-        if (compras[i].codigoCompra.equals(codigoAnular)) {
-            indiceCompra = i;
-            break;
-        }
-    }
+                                int indiceProducto = -1;
 
-    // Verificar si se encontro la compra
-    if (indiceCompra == -1) {
-        System.out.println("Compra no encontrada.");
-        break;
-    }
+                                for (int i = 0; i < cantidadProductos; i++) {
 
-    // Buscar el producto relacionado con la compra
-    int indiceProductoCompra = -1;
+                                    if (productos[i].getCodigo() == codigoProducto) {
+                                        indiceProducto = i;
+                                        break;
+                                    }
+                                }
 
-    for (int i = 0; i < cantidadProductos; i++) {
+                                if (indiceProducto == -1) {
+                                    System.out.println("Producto no encontrado.");
+                                    break;
+                                }
 
-        if (productos[i].getCodigo() == compras[indiceCompra].codigoProducto) {
-            indiceProductoCompra = i;
-            break;
-        }
-    }
+                                // Cantidad comprada
+                                System.out.print("Ingrese cantidad comprada: ");
+                                int cantidad = Entrada.nextInt();
 
-    // Verificar si existe el producto
-    if (indiceProductoCompra == -1) {
-        System.out.println("El producto de la compra no existe.");
-        break;
-    }
+                                if (cantidad <= 0) {
+                                    System.out.println("La cantidad debe ser mayor que 0.");
+                                    break;
+                                }
 
-    // Obtener la existencia actual del producto
-    int existenciaAnular =
-            productos[indiceProductoCompra].getCantidad();
+                                // Precio de compra
+                                System.out.print("Ingrese precio de compra: L. ");
+                                double precio = Entrada.nextDouble();
 
-    // Obtener la cantidad que se compro
-    int cantidadComprada =
-            compras[indiceCompra].cantidad;
+                                if (precio < 0) {
+                                    System.out.println("El precio no puede ser negativo.");
+                                    break;
+                                }
 
-    // Verificar que haya suficiente existencia
-    // (si ya se vendio/retiro parte de lo comprado, no se puede anular)
-    if (existenciaAnular < cantidadComprada) {
+                                // Registrar la compra (el total se calcula dentro de la clase Compra)
+                                compras[cantidadCompras] = new Compra(codigoCompra, codigoProveedor, codigoProducto, cantidad, precio);
 
-        System.out.println("No se puede anular la compra.");
-        System.out.println(
-                "La existencia actual es menor que la cantidad comprada."
-        );
+                                // Guarda la compra en el archivo de compras
+                                ArchivoCompras.guardarCompra(compras[cantidadCompras]);
 
-        break;
-    }
+                                // Aumentar existencia del producto (la mercaderia comprada entra al inventario)
+                                int existenciaActual = productos[indiceProducto].getCantidad();
 
-    // Restar la cantidad de la compra
-    productos[indiceProductoCompra].setCantidad(
-            existenciaAnular - cantidadComprada
-    );
+                                productos[indiceProducto].setCantidad(existenciaActual + cantidad);
 
-    // Eliminar la compra del arreglo (mueve las siguientes una posicion a la izquierda)
-    for (int i = indiceCompra; i < cantidadCompras - 1; i++) {
+                                cantidadCompras++;
 
-        compras[i] = compras[i + 1];
-    }
+                                // Guardar cambios del inventario
+                                ArchivoProductos.guardarTodos(productos, cantidadProductos);
 
-    // Limpiar la ultima posicion
-    compras[cantidadCompras - 1] = null;
+                                System.out.println("=========================================");
+                                System.out.println("Compra registrada correctamente.");
+                                System.out.println("Proveedor: "
+                                        + proveedores[indiceProveedor].nombreProveedor);
+                                System.out.println("Producto: "
+                                        + productos[indiceProducto].getNombreProd());
+                                System.out.println("Cantidad comprada: " + cantidad);
+                                System.out.println("Nueva existencia: "
+                                        + productos[indiceProducto].getCantidad());
+                                System.out.println("=========================================");
 
-    // Disminuir la cantidad de compras
-    cantidadCompras--;
-    
-   // Reescribe el archivo de compras sin la compra anulada
-   ArchivoCompras.guardarTodas(compras, cantidadCompras);
+                                break;
 
-    // Guardar el inventario actualizado
-    ArchivoProductos.guardarTodos(
-            productos,
-            cantidadProductos
-    );
+                            // ---- 6.2 BUSCAR COMPRA: por codigo de compra ----
+                            case 2:
 
-    System.out.println("=========================================");
-    System.out.println("Compra anulada correctamente.");
-    System.out.println("Codigo de compra: " + codigoAnular);
-    System.out.println("Producto: "
-            + productos[indiceProductoCompra].getNombreProd());
-    System.out.println("Cantidad anulada: "
-            + cantidadComprada);
-    System.out.println("Nueva existencia: "
-            + productos[indiceProductoCompra].getCantidad());
-    System.out.println("=========================================");
+                                System.out.println("=========================================");
+                                System.out.println("            BUSCAR COMPRA");
+                                System.out.println("=========================================");
 
-    break;
-    
-    // ---- 6.5 DETALLE DE COMPRA: muestra la compra junto con el nombre del proveedor y del producto ----
-    case 5:
+                                if (cantidadCompras == 0) {
+                                    System.out.println("No hay compras registradas.");
+                                    break;
+                                }
 
-    System.out.println("=========================================");
-    System.out.println("       DETALLE DE LA COMPRA");
-    System.out.println("=========================================");
+                                System.out.print("Ingrese el codigo de la compra: ");
+                                String codigoBuscar = Entrada.next();
 
-    if (cantidadCompras == 0) {
-        System.out.println("No hay compras registradas.");
-        break;
-    }
+                                boolean encontrada = false;
 
-    System.out.print("Ingrese el codigo de la compra: ");
-    String codigoDetalle = Entrada.next();
+                                for (int i = 0; i < cantidadCompras; i++) {
 
-    int indiceDetalle = -1;
+                                    if (compras[i].codigoCompra.equals(codigoBuscar)) {
 
-    // Buscar la compra
-    for (int i = 0; i < cantidadCompras; i++) {
+                                        System.out.println("=========================================");
+                                        System.out.println("Compra encontrada");
+                                        System.out.println("=========================================");
 
-        if (compras[i].codigoCompra.equals(codigoDetalle)) {
-            indiceDetalle = i;
-            break;
-        }
-    }
+                                        compras[i].mostrarCompra(); // Imprime los datos de la compra
 
-    // Verificar si existe
-    if (indiceDetalle == -1) {
+                                        encontrada = true;
+                                        break;
+                                    }
+                                }
 
-        System.out.println("Compra no encontrada.");
+                                if (!encontrada) {
+                                    System.out.println("No se encontro ninguna compra con ese codigo.");
+                                }
 
-        break;
-    }
+                                break;
 
-    // Mostrar los datos de la compra
-    compras[indiceDetalle].mostrarCompra();
+                            // ---- 6.3 VER COMPRAS REALIZADAS: lista todas las compras ----
+                            case 3:
 
-    // Buscar el proveedor de esa compra
-    int indiceProveedorDetalle = -1;
+                                System.out.println("=========================================");
+                                System.out.println("         COMPRAS REALIZADAS");
+                                System.out.println("=========================================");
 
-    for (int i = 0; i < cantidadProveedores; i++) {
+                                if (cantidadCompras == 0) {
+                                    System.out.println("No hay compras registradas.");
+                                    break;
+                                }
 
-        if (proveedores[i].codigoProveedor.equals(
-                compras[indiceDetalle].codigoProveedor)) {
+                                for (int i = 0; i < cantidadCompras; i++) {
 
-            indiceProveedorDetalle = i;
-            break;
-        }
-    }
+                                    System.out.println("Compra #" + (i + 1));
 
-    // Mostrar proveedor
-    if (indiceProveedorDetalle != -1) {
+                                    compras[i].mostrarCompra();
 
-        System.out.println("Proveedor: "
-                + proveedores[indiceProveedorDetalle].nombreProveedor);
-    }
+                                }
 
-    // Buscar el producto de esa compra
-    int indiceProductoDetalle = -1;
+                                break;
+                            // ---- 6.4 ANULAR COMPRA: elimina la compra y descuenta lo comprado del inventario ----
+                            case 4:
 
-    for (int i = 0; i < cantidadProductos; i++) {
+                                System.out.println("=========================================");
+                                System.out.println("             ANULAR COMPRA");
+                                System.out.println("=========================================");
 
-        if (productos[i].getCodigo()
-                == compras[indiceDetalle].codigoProducto) {
+                                // Verificar si existen compras
+                                if (cantidadCompras == 0) {
+                                    System.out.println("No hay compras registradas.");
+                                    break;
+                                }
 
-            indiceProductoDetalle = i;
-            break;
-        }
-    }
+                                // Pedir codigo de la compra
+                                System.out.print("Ingrese el codigo de la compra que desea anular: ");
+                                String codigoAnular = Entrada.next();
 
-    // Mostrar producto
-    if (indiceProductoDetalle != -1) {
+                                int indiceCompra = -1;
 
-        System.out.println("Producto: "
-                + productos[indiceProductoDetalle].getNombreProd());
-    }
+                                // Buscar la compra
+                                for (int i = 0; i < cantidadCompras; i++) {
 
-    System.out.println("=========================================");
+                                    if (compras[i].codigoCompra.equals(codigoAnular)) {
+                                        indiceCompra = i;
+                                        break;
+                                    }
+                                }
 
-    break;
-        // ---- 6.6 HISTORIAL DE COMPRAS: lista todas las compras y su total ----
-        case 6:
+                                // Verificar si se encontro la compra
+                                if (indiceCompra == -1) {
+                                    System.out.println("Compra no encontrada.");
+                                    break;
+                                }
 
-    System.out.println("=========================================");
-    System.out.println("          HISTORIAL DE COMPRAS");
-    System.out.println("=========================================");
+                                // Buscar el producto relacionado con la compra
+                                int indiceProductoCompra = -1;
 
-    if (cantidadCompras == 0) {
-        System.out.println("No hay compras registradas.");
-        break;
-    }
+                                for (int i = 0; i < cantidadProductos; i++) {
 
-    for (int i = 0; i < cantidadCompras; i++) {
+                                    if (productos[i].getCodigo() == compras[indiceCompra].codigoProducto) {
+                                        indiceProductoCompra = i;
+                                        break;
+                                    }
+                                }
 
-        System.out.println("Compra #" + (i + 1));
+                                // Verificar si existe el producto
+                                if (indiceProductoCompra == -1) {
+                                    System.out.println("El producto de la compra no existe.");
+                                    break;
+                                }
 
-        compras[i].mostrarCompra();
+                                // Obtener la existencia actual del producto
+                                int existenciaAnular
+                                        = productos[indiceProductoCompra].getCantidad();
 
-    }
+                                // Obtener la cantidad que se compro
+                                int cantidadComprada
+                                        = compras[indiceCompra].cantidad;
 
-    System.out.println("Total de compras realizadas: "
-            + cantidadCompras);
+                                // Verificar que haya suficiente existencia
+                                // (si ya se vendio/retiro parte de lo comprado, no se puede anular)
+                                if (existenciaAnular < cantidadComprada) {
 
-    System.out.println("=========================================");
+                                    System.out.println("No se puede anular la compra.");
+                                    System.out.println(
+                                            "La existencia actual es menor que la cantidad comprada."
+                                    );
 
-    break;
-    
-        case 7:
-        System.out.println("Regresar al menu principal");
-        break;
-        default:
-        System.out.println("opcion invalida");
-        break;
-        }//fin del submenu
-        }while(Smenu !=7 );
-        break;
+                                    break;
+                                }
 
-         // ====================================================================
-         // OPCION 7: MENU DE REPORTES (aun sin implementar, solo imprime texto)
-         // ====================================================================
-         case 7:
-       do{
-      //Sub Menu Principal de reportes
-      System.out.println("=========================================");
-      System.out.println("            Menu de reportes");
-      System.out.println("1.Reportes de venta");
-      System.out.println("2.reportes de producto");
-      System.out.println("3.reporte de clientes");
-      System.out.println("4.reporte de inventario");
-      System.out.println("5.reporte de compras");
-      System.out.println("6.Regresar al menu principal");
-      System.out.println("=========================================");
-      Smenu = Entrada.nextInt();
-      System.out.println("=========================================");
-      
-        switch(Smenu){
-        case 1:
-        System.out.println("Reportes de venta"); // Pendiente de implementar
-        break;
-        case 2:
-        System.out.println("reportes de producto"); // Pendiente de implementar
-        break;
-        case 3:
-        System.out.println("reporte de clientes"); // Pendiente de implementar
-        break;
-        case 4:
-        System.out.println("reporte de inventario"); // Pendiente de implementar
-        break;
-         case 5:
-        System.out.println("reporte de compras"); // Pendiente de implementar
-        break;
-        case 6:
-        System.out.println("Regresar al menu principal");
-        break;
-        default:
-        System.out.println("opcion invalida");
-        break;
-        }//fin del submenu
-        }while(Smenu !=6); // Este submenu termina con la opcion 6
-        break;
+                                // Restar la cantidad de la compra
+                                productos[indiceProductoCompra].setCantidad(
+                                        existenciaAnular - cantidadComprada
+                                );
 
+                                // Eliminar la compra del arreglo (mueve las siguientes una posicion a la izquierda)
+                                for (int i = indiceCompra; i < cantidadCompras - 1; i++) {
 
-         // ====================================================================
-         // OPCION 8: MENU DE CONFIGURACION (aun sin implementar, solo imprime texto)
-         // ====================================================================
-         case 8:
-       do{
-      //Sub Menu Principal de configuracion
-      System.out.println("=========================================");
-      System.out.println("            Menu de Configuracion");
-      System.out.println("1.Datos de la empresa");
-      System.out.println("2.Configurar impuesto");
-      System.out.println("3.configurar descuento");
-      System.out.println("4.configurar sistema");
-      System.out.println("5.Regresar al menu principal");
-      System.out.println("=========================================");
-      Smenu = Entrada.nextInt();
-      System.out.println("=========================================");
-      
-        switch(Smenu){
-        case 1:
-        System.out.println("datos de la empresa"); // Pendiente de implementar
-        break;
-        case 2:
-        System.out.println("configurar impuesto"); // Pendiente de implementar
-        break;
-        case 3:
-        System.out.println("configurar descuento"); // Pendiente de implementar
-        break;
-        case 4:
-        System.out.println("configurar sistema"); // Pendiente de implementar
-        break;
-         case 5:
-        System.out.println("Regresar al menu principal");
-        break;
-        default:
-        System.out.println("opcion invalida");
-        break;
-        }//fin del submenu
-        }while(Smenu !=5 ); // Este submenu termina con la opcion 5
-        break;
-        
-        // ---- 0: SALIR del sistema (el ciclo principal termina porque Menu == 0) ----
-        case 0:
-        System.out.println("saliendo del sistema");
-        break;
-        default:
-        System.out.println("opcion invalida"); // Opcion del menu principal no valida
-        break;
+                                    compras[i] = compras[i + 1];
+                                }
 
-      }//fin del menu
+                                // Limpiar la ultima posicion
+                                compras[cantidadCompras - 1] = null;
 
-      
-        
+                                // Disminuir la cantidad de compras
+                                cantidadCompras--;
 
-      }while(Menu !=0); // Repite el menu principal hasta que el usuario elija 0
+                                // Reescribe el archivo de compras sin la compra anulada
+                                ArchivoCompras.guardarTodas(compras, cantidadCompras);
 
-            
-  }//fin main
+                                // Guardar el inventario actualizado
+                                ArchivoProductos.guardarTodos(
+                                        productos,
+                                        cantidadProductos
+                                );
+
+                                System.out.println("=========================================");
+                                System.out.println("Compra anulada correctamente.");
+                                System.out.println("Codigo de compra: " + codigoAnular);
+                                System.out.println("Producto: "
+                                        + productos[indiceProductoCompra].getNombreProd());
+                                System.out.println("Cantidad anulada: "
+                                        + cantidadComprada);
+                                System.out.println("Nueva existencia: "
+                                        + productos[indiceProductoCompra].getCantidad());
+                                System.out.println("=========================================");
+
+                                break;
+
+                            // ---- 6.5 DETALLE DE COMPRA: muestra la compra junto con el nombre del proveedor y del producto ----
+                            case 5:
+
+                                System.out.println("=========================================");
+                                System.out.println("       DETALLE DE LA COMPRA");
+                                System.out.println("=========================================");
+
+                                if (cantidadCompras == 0) {
+                                    System.out.println("No hay compras registradas.");
+                                    break;
+                                }
+
+                                System.out.print("Ingrese el codigo de la compra: ");
+                                String codigoDetalle = Entrada.next();
+
+                                int indiceDetalle = -1;
+
+                                // Buscar la compra
+                                for (int i = 0; i < cantidadCompras; i++) {
+
+                                    if (compras[i].codigoCompra.equals(codigoDetalle)) {
+                                        indiceDetalle = i;
+                                        break;
+                                    }
+                                }
+
+                                // Verificar si existe
+                                if (indiceDetalle == -1) {
+
+                                    System.out.println("Compra no encontrada.");
+
+                                    break;
+                                }
+
+                                // Mostrar los datos de la compra
+                                compras[indiceDetalle].mostrarCompra();
+
+                                // Buscar el proveedor de esa compra
+                                int indiceProveedorDetalle = -1;
+
+                                for (int i = 0; i < cantidadProveedores; i++) {
+
+                                    if (proveedores[i].codigoProveedor.equals(
+                                            compras[indiceDetalle].codigoProveedor)) {
+
+                                        indiceProveedorDetalle = i;
+                                        break;
+                                    }
+                                }
+
+                                // Mostrar proveedor
+                                if (indiceProveedorDetalle != -1) {
+
+                                    System.out.println("Proveedor: "
+                                            + proveedores[indiceProveedorDetalle].nombreProveedor);
+                                }
+
+                                // Buscar el producto de esa compra
+                                int indiceProductoDetalle = -1;
+
+                                for (int i = 0; i < cantidadProductos; i++) {
+
+                                    if (productos[i].getCodigo()
+                                            == compras[indiceDetalle].codigoProducto) {
+
+                                        indiceProductoDetalle = i;
+                                        break;
+                                    }
+                                }
+
+                                // Mostrar producto
+                                if (indiceProductoDetalle != -1) {
+
+                                    System.out.println("Producto: "
+                                            + productos[indiceProductoDetalle].getNombreProd());
+                                }
+
+                                System.out.println("=========================================");
+
+                                break;
+                            // ---- 6.6 HISTORIAL DE COMPRAS: lista todas las compras y su total ----
+                            case 6:
+
+                                System.out.println("=========================================");
+                                System.out.println("          HISTORIAL DE COMPRAS");
+                                System.out.println("=========================================");
+
+                                if (cantidadCompras == 0) {
+                                    System.out.println("No hay compras registradas.");
+                                    break;
+                                }
+
+                                for (int i = 0; i < cantidadCompras; i++) {
+
+                                    System.out.println("Compra #" + (i + 1));
+
+                                    compras[i].mostrarCompra();
+
+                                }
+
+                                System.out.println("Total de compras realizadas: "
+                                        + cantidadCompras);
+
+                                System.out.println("=========================================");
+
+                                break;
+
+                            case 7:
+                                System.out.println("Regresar al menu principal");
+                                break;
+                            default:
+                                System.out.println("opcion invalida");
+                                break;
+                        }//fin del submenu
+                    } while (Smenu != 7);
+                    break;
+
+                // ====================================================================
+                // OPCION 7: MENU DE REPORTES (aun sin implementar, solo imprime texto)
+                // ====================================================================
+                                // ====================================================================
+                // OPCION 7: MENU DE REPORTES
+                // Permite consultar informacion general de ventas, productos,
+                // clientes, inventario y compras.
+                // ====================================================================
+                case 7:
+                    
+                    do {
+                        // Sub Menu Principal de reportes
+                        System.out.println("=========================================");
+                        System.out.println("            Menu de reportes");
+                        System.out.println("1.Reportes de venta");
+                        System.out.println("2.reportes de producto");
+                        System.out.println("3.reporte de clientes");
+                        System.out.println("4.reporte de inventario");
+                        System.out.println("5.reporte de compras");
+                        System.out.println("6.Regresar al menu principal");
+                        System.out.println("=========================================");
+                        Smenu = Entrada.nextInt();
+                        System.out.println("=========================================");
+
+                        switch (Smenu) {
+
+                            // ---- 7.1 REPORTE DE VENTAS ----
+                            case 1:
+
+                                System.out.println("=========================================");
+                                System.out.println("            REPORTE DE VENTAS");
+                                System.out.println("=========================================");
+
+                                // Verificar si existen facturas
+                                if (cantidadFacturas == 0) {
+
+                                    System.out.println("No hay facturas registradas.");
+
+                                } else {
+
+                                    double totalVentas = 0;
+
+                                    // Recorrer todas las facturas
+                                    for (int i = 0; i < cantidadFacturas; i++) {
+
+                                        System.out.println("Factura #" + (i + 1));
+                                        System.out.println("Numero de factura: "
+                                                + facturas[i].numeroFactura);
+                                        System.out.println("Fecha: "
+                                                + facturas[i].fecha);
+                                        System.out.println("Cliente: "
+                                                + facturas[i].cliente.nombreCliente);
+                                        System.out.println("Total: L. "
+                                                + facturas[i].getTotalPagar());
+
+                                        // Sumar el total de cada factura
+                                        totalVentas = totalVentas
+                                                + facturas[i].getTotalPagar();
+
+                                        System.out.println("-----------------------------------------");
+                                    }
+
+                                    // Mostrar resumen de ventas
+                                    System.out.println("Cantidad de facturas: "
+                                            + cantidadFacturas);
+                                    System.out.println("Total de ventas: L. "
+                                            + totalVentas);
+                                }
+
+                                System.out.println("=========================================");
+
+                                break;
+
+
+                            // ---- 7.2 REPORTE DE PRODUCTOS ----
+                            case 2:
+
+                                System.out.println("=========================================");
+                                System.out.println("          REPORTE DE PRODUCTOS");
+                                System.out.println("=========================================");
+
+                                // Verificar si existen productos
+                                if (cantidadProductos == 0) {
+
+                                    System.out.println("No hay productos registrados.");
+
+                                } else {
+
+                                    // Recorrer todos los productos
+                                    for (int i = 0; i < cantidadProductos; i++) {
+
+                                        System.out.println("Producto #" + (i + 1));
+                                        System.out.println("Codigo: "
+                                                + productos[i].getCodigo());
+                                        System.out.println("Nombre: "
+                                                + productos[i].getNombreProd());
+                                        System.out.println("Categoria: "
+                                                + productos[i].getCategoria());
+                                        System.out.println("Precio: L. "
+                                                + productos[i].getPrecio());
+                                        System.out.println("Existencia: "
+                                                + productos[i].getCantidad());
+                                        System.out.println("Peso: "
+                                                + productos[i].getPeso());
+
+                                        System.out.println("-----------------------------------------");
+                                    }
+
+                                    System.out.println("Total de productos: "
+                                            + cantidadProductos);
+                                }
+
+                                System.out.println("=========================================");
+
+                                break;
+
+
+                            // ---- 7.3 REPORTE DE CLIENTES ----
+                            case 3:
+
+                                System.out.println("=========================================");
+                                System.out.println("            REPORTE DE CLIENTES");
+                                System.out.println("=========================================");
+
+                                // Verificar si existen clientes
+                                if (cantidadClientes == 0) {
+
+                                    System.out.println("No hay clientes registrados.");
+
+                                } else {
+
+                                    // Recorrer todos los clientes
+                                    for (int i = 0; i < cantidadClientes; i++) {
+
+                                        System.out.println("Cliente #" + (i + 1));
+                                        System.out.println("Nombre: "
+                                                + clientes[i].nombreCliente);
+                                        System.out.println("Member ID: "
+                                                + clientes[i].memberID);
+                                        System.out.println("Tipo de miembro: "
+                                                + clientes[i].getmemberType());
+                                        System.out.println("RTN: "
+                                                + clientes[i].RTN);
+                                        System.out.println("Edad: "
+                                                + clientes[i].getEdad());
+
+                                        System.out.println("-----------------------------------------");
+                                    }
+
+                                    System.out.println("Total de clientes: "
+                                            + cantidadClientes);
+                                }
+
+                                System.out.println("=========================================");
+
+                                break;
+
+
+                            // ---- 7.4 REPORTE DE INVENTARIO ----
+                            case 4:
+
+                                System.out.println("=========================================");
+                                System.out.println("          REPORTE DE INVENTARIO");
+                                System.out.println("=========================================");
+
+                                // Verificar si existen productos
+                                if (cantidadProductos == 0) {
+
+                                    System.out.println("No hay productos registrados.");
+
+                                } else {
+
+                                    int totalExistencias = 0;
+
+                                    // Recorrer los productos para sumar las existencias
+                                    for (int i = 0; i < cantidadProductos; i++) {
+
+                                        totalExistencias = totalExistencias
+                                                + productos[i].getCantidad();
+                                    }
+
+                                    System.out.println("Cantidad de productos: "
+                                            + cantidadProductos);
+
+                                    System.out.println("Total de unidades en inventario: "
+                                            + totalExistencias);
+
+                                    System.out.println("-----------------------------------------");
+
+                                    // Mostrar el detalle del inventario
+                                    for (int i = 0; i < cantidadProductos; i++) {
+
+                                        System.out.println("Codigo: "
+                                                + productos[i].getCodigo());
+                                        System.out.println("Producto: "
+                                                + productos[i].getNombreProd());
+                                        System.out.println("Existencia: "
+                                                + productos[i].getCantidad());
+
+                                        System.out.println("-----------------------------------------");
+                                    }
+                                }
+
+                                System.out.println("=========================================");
+
+                                break;
+
+
+                            // ---- 7.5 REPORTE DE COMPRAS ----
+                            case 5:
+
+                                System.out.println("=========================================");
+                                System.out.println("            REPORTE DE COMPRAS");
+                                System.out.println("=========================================");
+
+                                // Verificar si existen compras
+                                if (cantidadCompras == 0) {
+
+                                    System.out.println("No hay compras registradas.");
+
+                                } else {
+
+                                    double totalCompras = 0;
+
+                                    // Recorrer todas las compras
+                                    for (int i = 0; i < cantidadCompras; i++) {
+
+                                        System.out.println("Compra #" + (i + 1));
+                                        System.out.println("Codigo de compra: "
+                                                + compras[i].codigoCompra);
+                                        System.out.println("Codigo de proveedor: "
+                                                + compras[i].codigoProveedor);
+                                        System.out.println("Codigo de producto: "
+                                                + compras[i].codigoProducto);
+                                        System.out.println("Cantidad: "
+                                                + compras[i].cantidad);
+                                        System.out.println("Precio: L. "
+                                                + compras[i].precio);
+                                        System.out.println("Total: L. "
+                                                + compras[i].total);
+
+                                        // Sumar el total de cada compra
+                                        totalCompras = totalCompras
+                                                + compras[i].total;
+
+                                        System.out.println("-----------------------------------------");
+                                    }
+
+                                    // Mostrar resumen de compras
+                                    System.out.println("Cantidad de compras: "
+                                            + cantidadCompras);
+                                    System.out.println("Total de compras: L. "
+                                            + totalCompras);
+                                }
+
+                                System.out.println("=========================================");
+
+                                break;
+
+
+                            // ---- 7.6 REGRESAR AL MENU PRINCIPAL ----
+                            case 6:
+
+                                System.out.println("Regresar al menu principal");
+
+                                break;
+
+
+                            // ---- OPCION NO VALIDA ----
+                            default:
+
+                                System.out.println("opcion invalida");
+
+                                break;
+                        }//fin del submenu
+
+                    } while (Smenu != 6); // Repite hasta seleccionar regresar
+
+                    break;
+
+
+            }//fin del menu
+
+        } while (Menu != 0); // Repite el menu principal hasta que el usuario elija 0
+
+    }//fin main
 
 }//fin class
