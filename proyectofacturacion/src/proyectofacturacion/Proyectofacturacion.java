@@ -5,7 +5,7 @@
 package proyectofacturacion;
 
 import java.util.Scanner;
-
+import java.util.ArrayList;
 
 /**
  *
@@ -26,6 +26,7 @@ public class Proyectofacturacion {
       int cantidadProveedores = 0;
       int cantidadClientes = 0;
       int cantidadProductos = 0;
+      int cantidadFacturas = 0;
       int Menu =0;
       int Smenu =0;
       
@@ -38,7 +39,7 @@ public class Proyectofacturacion {
      Producto[] productos = new Producto[10];
      cantidadProductos = ArchivoProductos.cargarProductos(productos);
    
-
+     Factura[] facturas = new Factura[10];
       
       
       //Titulos del sistema 
@@ -82,23 +83,308 @@ public class Proyectofacturacion {
       Smenu = Entrada.nextInt();
       System.out.println("=========================================");
         switch(Smenu){
-        case 1:
-        System.out.println("Nueva Factura");
+      case 1:
+
+        System.out.println("           NUEVA FACTURA");
+        System.out.println("=========================================");
+
+            if (cantidadClientes == 0) {
+
+        System.out.println("No hay clientes registrados. Registre uno primero.");
+
+        } else {
+
+        System.out.print("Ingrese el Member ID del cliente: ");
+        String memberIDFactura = Entrada.next();
+
+        Cliente clienteFactura = null;
+
+        for (int i = 0; i < cantidadClientes; i++) {
+
+        if (clientes[i].memberID.equals(memberIDFactura)) {
+
+            clienteFactura = clientes[i];
+            break;
+        }
+        }
+
+        if (clienteFactura == null) {
+
+        System.out.println("Cliente no encontrado.");
+
+        } else {
+
+        System.out.println("Cliente encontrado: " + clienteFactura.nombreCliente);
+
+        ArrayList<Producto> productosFactura = new ArrayList<Producto>();
+        String respuesta;
+
+        do {
+
+            System.out.print("Ingrese el codigo del producto: ");
+            int codigoFactura = Entrada.nextInt();
+
+            Producto productoEncontrado = null;
+
+            for (int j = 0; j < cantidadProductos; j++) {
+
+                if (productos[j].getCodigo() == codigoFactura) {
+
+                    productoEncontrado = productos[j];
+                    break;
+                }
+            }
+
+            if (productoEncontrado == null) {
+
+                System.out.println("Producto no encontrado.");
+
+            } else {
+
+                System.out.print("Ingrese la cantidad a comprar: ");
+                int cantidadComprada = Entrada.nextInt();
+
+                Producto lineaFactura = new Producto(
+                    productoEncontrado.getNombreProd(),
+                    productoEncontrado.getPrecio(),
+                    cantidadComprada,
+                    productoEncontrado.getCodigo(),
+                    productoEncontrado.getCategoria(),
+                    productoEncontrado.getPeso()
+                );
+
+                productosFactura.add(lineaFactura);
+
+                System.out.println("Producto agregado a la factura.");
+            }
+
+            System.out.print("Desea agregar otro producto? (s/n): ");
+            respuesta = Entrada.next();
+
+        } while (respuesta.equalsIgnoreCase("s"));
+
+        System.out.println("Productos en la factura: " + productosFactura.size());
+        System.out.print("Fecha (dd/mm/aaaa): ");
+        String fechaFactura = Entrada.next();
+
+        System.out.print("Hora: ");
+        String horaFactura = Entrada.next();
+
+        System.out.print("Metodo de pago (E = Efectivo, T = Tarjeta): ");
+        char metodoPagoFactura = Entrada.next().charAt(0);
+
+        System.out.print("Efectivo recibido: ");
+        double efectivoFactura = Entrada.nextDouble();
+
+        String numeroFacturaNueva = "F" + String.format("%03d", cantidadFacturas + 1);
+
+        Factura facturaNueva = new Factura(
+            numeroFacturaNueva,
+            fechaFactura,
+            horaFactura,
+            metodoPagoFactura,
+            clienteFactura,
+            productosFactura,
+            efectivoFactura
+        );
+
+        facturaNueva.calcularTotales();
+
+        facturas[cantidadFacturas] = facturaNueva;
+        cantidadFacturas++;
+
+        System.out.println("=========================================");
+        System.out.println("           RECIBO DE FACTURA");
+        System.out.println("=========================================");
+        System.out.println("Factura: " + facturaNueva.numeroFactura);
+        System.out.println("Cliente: " + clienteFactura.nombreCliente);
+        System.out.println("Cantidad de productos: " + facturaNueva.getTotalProductos());
+        System.out.println("Subtotal: L. " + facturaNueva.getSubtotal());
+        System.out.println("Impuesto: L. " + facturaNueva.getImpuesto());
+        System.out.println("Total a pagar: L. " + facturaNueva.getTotalPagar());
+        System.out.println("Efectivo recibido: L. " + facturaNueva.getefectivoRecibido());
+        System.out.println("Cambio: L. " + facturaNueva.getCambio());
+        System.out.println("=========================================");
+        }
+        }
+
         break;
-        case 2:
-        System.out.println("Buscar factura");
+            case 2:
+
+        System.out.println("           BUSCAR FACTURA");
+        System.out.println("=========================================");
+
+         if (cantidadFacturas == 0) {
+
+              System.out.println("No hay facturas registradas.");
+
+          } else {
+
+              System.out.print("Ingrese el numero de factura: ");
+              String numeroBuscar = Entrada.next();
+
+              boolean encontrada = false;
+
+              for (int i = 0; i < cantidadFacturas; i++) {
+
+                  if (facturas[i].numeroFactura.equals(numeroBuscar)) {
+
+                      System.out.println("=========================================");
+                      System.out.println("Factura: " + facturas[i].numeroFactura);
+                      System.out.println("Fecha: " + facturas[i].fecha + "  Hora: " + facturas[i].hora);
+                      System.out.println("Cliente: " + facturas[i].cliente.nombreCliente);
+                      System.out.println("Cantidad de productos: " + facturas[i].getTotalProductos());
+                      System.out.println("Subtotal: L. " + facturas[i].getSubtotal());
+                      System.out.println("Impuesto: L. " + facturas[i].getImpuesto());
+                      System.out.println("Total a pagar: L. " + facturas[i].getTotalPagar());
+                      System.out.println("Cambio: L. " + facturas[i].getCambio());
+                      System.out.println("=========================================");
+
+                      encontrada = true;
+                      break;
+                  }//Fin if
+              }// Fin For
+
+              if (!encontrada) {
+                  System.out.println("Factura no encontrada.");
+              }//Fin If
+          }// Fin Else
+
         break;
         case 3:
-        System.out.println("Anular factura");
+
+        System.out.println("          ANULAR FACTURA");
+        System.out.println("=========================================");
+
+        if (cantidadFacturas == 0) {
+
+            System.out.println("No hay facturas registradas.");
+
+        } else {
+
+            System.out.print("Ingrese el numero de factura a anular: ");
+            String numeroAnular = Entrada.next();
+
+            boolean encontrada = false;
+
+            for (int i = 0; i < cantidadFacturas; i++) {
+
+                if (facturas[i].numeroFactura.equals(numeroAnular)) {
+
+                    for (int j = i; j < cantidadFacturas - 1; j++) {
+                        facturas[j] = facturas[j + 1];
+                    }
+
+                    facturas[cantidadFacturas - 1] = null;
+                    cantidadFacturas--;
+
+                    encontrada = true;
+
+                    System.out.println("=========================================");
+                    System.out.println("Factura anulada correctamente.");
+                    System.out.println("=========================================");
+
+                    break;
+                }// Fin If
+            }// Fin For
+
+            if (!encontrada) {
+                System.out.println("Factura no encontrada.");
+            }
+        }
+
         break;
         case 4:
-        System.out.println("facturas del dia");
+
+        System.out.println("         FACTURAS DEL DIA");
+        System.out.println("=========================================");
+
+        if (cantidadFacturas == 0) {
+
+            System.out.println("No hay facturas registradas.");
+
+        } else {
+
+            for (int i = 0; i < cantidadFacturas; i++) {
+
+                System.out.println("Factura: " + facturas[i].numeroFactura);
+                System.out.println("Cliente: " + facturas[i].cliente.nombreCliente);
+                System.out.println("Total a pagar: L. " + facturas[i].getTotalPagar());
+                System.out.println("-----------------------------------------");
+            }
+        }
+
         break;
-         case 5:
-        System.out.println("facturas por fechas");
+        case 5:
+
+        System.out.println("        FACTURAS POR FECHA");
+        System.out.println("=========================================");
+
+        if (cantidadFacturas == 0) {
+
+            System.out.println("No hay facturas registradas.");
+
+        } else {
+
+            System.out.print("Ingrese la fecha a buscar (dd/mm/aaaa): ");
+            String fechaBuscar = Entrada.next();
+
+            boolean encontrada = false;
+
+            for (int i = 0; i < cantidadFacturas; i++) {
+
+                if (facturas[i].fecha.equals(fechaBuscar)) {
+
+                    System.out.println("Factura: " + facturas[i].numeroFactura);
+                    System.out.println("Cliente: " + facturas[i].cliente.nombreCliente);
+                    System.out.println("Total a pagar: L. " + facturas[i].getTotalPagar());
+                    System.out.println("-----------------------------------------");
+
+                    encontrada = true;
+                }//fin if
+            }//Fin for
+
+            if (!encontrada) {
+                System.out.println("No hay facturas en esa fecha.");
+            }//fin If
+        }// Fin Else
+
         break;
-        case 6:
-        System.out.println("devoluciones");
+     case 6:
+
+        System.out.println("           DEVOLUCIONES");
+        System.out.println("=========================================");
+
+        if (cantidadFacturas == 0) {
+
+            System.out.println("No hay facturas registradas.");
+
+        } else {
+
+            System.out.print("Ingrese el numero de factura a devolver: ");
+            String numeroDevolucion = Entrada.next();
+
+            boolean encontrada = false;
+
+            for (int i = 0; i < cantidadFacturas; i++) {
+
+                if (facturas[i].numeroFactura.equals(numeroDevolucion)) {
+
+                    System.out.println("=========================================");
+                    System.out.println("Devolucion registrada para la factura " + facturas[i].numeroFactura);
+                    System.out.println("Monto a devolver: L. " + facturas[i].getTotalPagar());
+                    System.out.println("=========================================");
+
+                    encontrada = true;
+                    break;
+                }
+            }
+
+            if (!encontrada) {
+                System.out.println("Factura no encontrada.");
+            }
+        }
+
         break;
         case 7:
         System.out.println("Regresar al menu principal");
@@ -199,7 +485,7 @@ public class Proyectofacturacion {
         System.out.print("Ingrese el codigo: ");
         int codigo = Entrada.nextInt();
 
-        System.out.print("Ingrese la categoria (I/E): ");
+        System.out.print("Ingrese la categoria (I/L): ");
         char categoria = Entrada.next().charAt(0);
 
         System.out.print("Ingrese el peso: ");
@@ -1255,8 +1541,6 @@ public class Proyectofacturacion {
 
       }//fin del menu
 
-      
-        
 
       }while(Menu !=0);
 
