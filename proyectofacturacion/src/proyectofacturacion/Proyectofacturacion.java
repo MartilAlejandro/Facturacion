@@ -23,11 +23,16 @@ public class Proyectofacturacion {
         
    Scanner Entrada = new Scanner(System.in);
    
+      
+      int cantidadCompras = 0;
       int cantidadProveedores = 0;
       int cantidadClientes = 0;
       int cantidadProductos = 0;
       int Menu =0;
       int Smenu =0;
+      
+     Compra[] compras = new Compra[10];
+     cantidadCompras = ArchivoCompras.cargarCompras(compras);
       
      Proveedor[] proveedores = new Proveedor[10];
      cantidadProveedores = ArchivoProveedores.cargarProveedores(proveedores);
@@ -59,8 +64,7 @@ public class Proyectofacturacion {
       System.out.println("5.Proveedores");
       System.out.println("6.Compras");
       System.out.println("7.Reportes");
-      System.out.println("8.Usuario");
-      System.out.println("9.Configuracion");
+      System.out.println("8.Configuracion");
       System.out.println("0.Salir");
       System.out.println("=========================================");
       Menu = Entrada.nextInt();
@@ -128,23 +132,362 @@ public class Proyectofacturacion {
       
         switch(Smenu){
         case 1:
-        System.out.println("inventario");
-        break;
+
+    System.out.println("=========================================");
+    System.out.println("             VER INVENTARIO");
+    System.out.println("=========================================");
+
+    if (cantidadProductos == 0) {
+
+        System.out.println("No hay productos registrados.");
+
+    } else {
+
+        for (int i = 0; i < cantidadProductos; i++) {
+
+            System.out.println("Producto #" + (i + 1));
+            System.out.println("Codigo: "
+                    + productos[i].getCodigo());
+            System.out.println("Nombre: "
+                    + productos[i].getNombreProd());
+            System.out.println("Categoria: "
+                    + productos[i].getCategoria());
+            System.out.println("Precio: L. "
+                    + productos[i].getPrecio());
+            System.out.println("Existencia: "
+                    + productos[i].getCantidad());
+            System.out.println("Peso: "
+                    + productos[i].getPeso());
+
+            System.out.println("-----------------------------------------");
+        }
+
+        System.out.println("Total de productos: "
+                + cantidadProductos);
+    }
+
+    System.out.println("=========================================");
+
+    break;
         case 2:
-        System.out.println("entrada de producto");
+
+    System.out.println("=========================================");
+    System.out.println("          ENTRADA DE PRODUCTO");
+    System.out.println("=========================================");
+
+    if (cantidadProductos == 0) {
+
+        System.out.println("No hay productos registrados.");
+
         break;
+    }
+
+    System.out.print("Ingrese el codigo del producto: ");
+    int codigoEntrada = Entrada.nextInt();
+
+    int indiceEntrada = -1;
+
+    // Buscar el producto
+    for (int i = 0; i < cantidadProductos; i++) {
+
+        if (productos[i].getCodigo() == codigoEntrada) {
+
+            indiceEntrada = i;
+
+            break;
+        }
+    }
+
+    // Verificar si existe
+    if (indiceEntrada == -1) {
+
+        System.out.println("Producto no encontrado.");
+
+        break;
+    }
+
+    System.out.print("Ingrese la cantidad que desea agregar: ");
+    int cantidadEntrada = Entrada.nextInt();
+
+    // Validar cantidad
+    if (cantidadEntrada <= 0) {
+
+        System.out.println("La cantidad debe ser mayor que 0.");
+
+        break;
+    }
+
+    // Obtener existencia actual
+    int existenciaActual =
+            productos[indiceEntrada].getCantidad();
+
+    // Aumentar existencia
+    productos[indiceEntrada].setCantidad(
+            existenciaActual + cantidadEntrada
+    );
+
+    // Guardar cambios
+    ArchivoProductos.guardarTodos(
+            productos,
+            cantidadProductos
+    );
+
+    System.out.println("=========================================");
+    System.out.println("Entrada registrada correctamente.");
+    System.out.println("Producto: "
+            + productos[indiceEntrada].getNombreProd());
+    System.out.println("Cantidad agregada: "
+            + cantidadEntrada);
+    System.out.println("Nueva existencia: "
+            + productos[indiceEntrada].getCantidad());
+    System.out.println("=========================================");
+
+    break;
+    
         case 3:
-        System.out.println("salida de producto");
+
+    System.out.println("=========================================");
+    System.out.println("           SALIDA DE PRODUCTO");
+    System.out.println("=========================================");
+
+    if (cantidadProductos == 0) {
+
+        System.out.println("No hay productos registrados.");
+
         break;
+    }
+
+    System.out.print("Ingrese el codigo del producto: ");
+    int codigoSalida = Entrada.nextInt();
+
+    int indiceSalida = -1;
+
+    // Buscar el producto
+    for (int i = 0; i < cantidadProductos; i++) {
+
+        if (productos[i].getCodigo() == codigoSalida) {
+
+            indiceSalida = i;
+
+            break;
+        }
+    }
+
+    // Verificar si existe
+    if (indiceSalida == -1) {
+
+        System.out.println("Producto no encontrado.");
+
+        break;
+    }
+
+    System.out.println("Producto: "
+            + productos[indiceSalida].getNombreProd());
+
+    System.out.println("Existencia actual: "
+            + productos[indiceSalida].getCantidad());
+
+    System.out.print("Ingrese la cantidad que desea retirar: ");
+    int cantidadSalida = Entrada.nextInt();
+
+    // Validar cantidad
+    if (cantidadSalida <= 0) {
+
+        System.out.println("La cantidad debe ser mayor que 0.");
+
+        break;
+    }
+
+    // Verificar existencia suficiente
+    if (cantidadSalida > productos[indiceSalida].getCantidad()) {
+
+        System.out.println("No hay suficiente existencia.");
+
+        break;
+    }
+
+    // Restar existencia
+    int existenciaActual1 =productos[indiceSalida].getCantidad();
+
+    productos[indiceSalida].setCantidad(existenciaActual1 - cantidadSalida);
+
+    // Guardar cambios
+    ArchivoProductos.guardarTodos(
+            productos,
+            cantidadProductos
+    );
+
+    System.out.println("=========================================");
+    System.out.println("Salida registrada correctamente.");
+    System.out.println("Producto: "
+            + productos[indiceSalida].getNombreProd());
+    System.out.println("Cantidad retirada: "
+            + cantidadSalida);
+    System.out.println("Nueva existencia: "
+            + productos[indiceSalida].getCantidad());
+    System.out.println("=========================================");
+
+    break;
+    
         case 4:
-        System.out.println("ajustar existencia");
+
+    System.out.println("=========================================");
+    System.out.println("           AJUSTAR EXISTENCIA");
+    System.out.println("=========================================");
+
+    if (cantidadProductos == 0) {
+
+        System.out.println("No hay productos registrados.");
+
         break;
-         case 5:
-        System.out.println("productos con bajo stock");
+    }
+
+    System.out.print("Ingrese el codigo del producto: ");
+    int codigoAjustar = Entrada.nextInt();
+
+    int indiceAjustar = -1;
+
+    // Buscar el producto
+    for (int i = 0; i < cantidadProductos; i++) {
+
+        if (productos[i].getCodigo() == codigoAjustar) {
+
+            indiceAjustar = i;
+
+            break;
+        }
+    }
+
+    // Verificar si existe
+    if (indiceAjustar == -1) {
+
+        System.out.println("Producto no encontrado.");
+
         break;
+    }
+
+    System.out.println("Producto: "
+            + productos[indiceAjustar].getNombreProd());
+
+    System.out.println("Existencia actual: "
+            + productos[indiceAjustar].getCantidad());
+
+    System.out.print("Ingrese la nueva existencia: ");
+    int nuevaExistencia = Entrada.nextInt();
+
+    // Validar existencia
+    if (nuevaExistencia < 0) {
+
+        System.out.println("La existencia no puede ser negativa.");
+
+        break;
+    }
+
+    // Ajustar existencia
+    productos[indiceAjustar].setCantidad(nuevaExistencia);
+
+    // Guardar cambios
+    ArchivoProductos.guardarTodos(
+            productos,
+            cantidadProductos
+    );
+
+    System.out.println("=========================================");
+    System.out.println("Existencia ajustada correctamente.");
+    System.out.println("Producto: "
+            + productos[indiceAjustar].getNombreProd());
+    System.out.println("Nueva existencia: "
+            + productos[indiceAjustar].getCantidad());
+    System.out.println("=========================================");
+
+    break;
+    
+        case 5:
+
+    System.out.println("=========================================");
+    System.out.println("        PRODUCTOS CON BAJO STOCK");
+    System.out.println("=========================================");
+
+    if (cantidadProductos == 0) {
+
+        System.out.println("No hay productos registrados.");
+
+        break;
+    }
+
+    boolean hayBajoStock = false;
+
+    for (int i = 0; i < cantidadProductos; i++) {
+
+        if (productos[i].getCantidad() <= 5) {
+
+            System.out.println("Codigo: "
+                    + productos[i].getCodigo());
+            System.out.println("Nombre: "
+                    + productos[i].getNombreProd());
+            System.out.println("Categoria: "
+                    + productos[i].getCategoria());
+            System.out.println("Precio: L. "
+                    + productos[i].getPrecio());
+            System.out.println("Existencia: "
+                    + productos[i].getCantidad());
+
+            System.out.println("-----------------------------------------");
+
+            hayBajoStock = true;
+        }
+    }
+
+    if (!hayBajoStock) {
+
+        System.out.println("No hay productos con bajo stock.");
+    }
+
+    System.out.println("=========================================");
+
+    break;
+    
         case 6:
-        System.out.println("historial de movimientos");
+
+    System.out.println("=========================================");
+    System.out.println("       HISTORIAL DE MOVIMIENTOS");
+    System.out.println("=========================================");
+
+    if (cantidadCompras == 0) {
+
+        System.out.println("No hay movimientos registrados.");
+
         break;
+    }
+
+    for (int i = 0; i < cantidadCompras; i++) {
+
+        System.out.println("Movimiento #" + (i + 1));
+
+        System.out.println("Tipo: Entrada");
+        System.out.println("Codigo de compra: "
+                + compras[i].codigoCompra);
+        System.out.println("Codigo de proveedor: "
+                + compras[i].codigoProveedor);
+        System.out.println("Codigo de producto: "
+                + compras[i].codigoProducto);
+        System.out.println("Cantidad: "
+                + compras[i].cantidad);
+        System.out.println("Precio: L. "
+                + compras[i].precio);
+        System.out.println("Total: L. "
+                + compras[i].total);
+
+        System.out.println("-----------------------------------------");
+    }
+
+    System.out.println("Total de movimientos: "
+            + cantidadCompras);
+
+    System.out.println("=========================================");
+
+    break;
+    
         case 7:
         System.out.println("Regresar al menu principal");
         break;
@@ -179,7 +522,6 @@ public class Proyectofacturacion {
         switch (Smenu) {
 
            
-    
     case 1:
 
     if (cantidadProductos < 10) {
@@ -356,7 +698,7 @@ public class Proyectofacturacion {
                     productos[j] = productos[j + 1];
                 }
 
-                // Dejar vacía la última posición
+                // Dejar vacia la ultima posicion
                 productos[cantidadProductos - 1] = null;
 
                 cantidadProductos--;
@@ -506,7 +848,7 @@ public class Proyectofacturacion {
       System.out.println("3.Modificar cliente");
       System.out.println("4.Eliminar cliente");
       System.out.println("5.Listar clientes");
-      System.out.println("6.Historial de compras");
+      System.out.println("6.Historial de clientes");
       System.out.println("7.Regresar al menu principal");
       System.out.println("=========================================");
       Smenu = Entrada.nextInt();
@@ -688,7 +1030,7 @@ public class Proyectofacturacion {
                     clientes[j] = clientes[j + 1];
                 }
 
-                // Dejar vacía la última posición
+                // Dejar vacia la ultima posicion
                 clientes[cantidadClientes - 1] = null;
 
                 cantidadClientes--;
@@ -804,7 +1146,7 @@ public class Proyectofacturacion {
       System.out.println("3.Modificar Proveedor");
       System.out.println("4.Eliminar Proveedor");
       System.out.println("5.Lista de Proveedores");
-      System.out.println("6.Historial de compras");
+      System.out.println("6.Historial de Proveedores");
       System.out.println("7.Regresar al menu principal");
       System.out.println("=========================================");
       Smenu = Entrada.nextInt();
@@ -976,7 +1318,7 @@ public class Proyectofacturacion {
                     proveedores[j] = proveedores[j + 1];
                 }
 
-                // Dejar vacía la última posición
+                // Dejar vacia la ultima posicion
                 proveedores[cantidadProveedores - 1] = null;
 
                 cantidadProveedores--;
@@ -1027,7 +1369,7 @@ public class Proyectofacturacion {
     
         case 6:
 
-    System.out.println("        HISTORIAL DE COMPRAS");
+    System.out.println("        HISTORIAL DE PROVEEDORES");
     System.out.println("=========================================");
 
     if (cantidadProveedores == 0) {
@@ -1099,24 +1441,373 @@ public class Proyectofacturacion {
       System.out.println("=========================================");
       
         switch(Smenu){
-        case 1:
-        System.out.println("registrar compras");
+       case 1:
+
+    if (cantidadCompras >= 10) {
+        System.out.println("No se pueden registrar mas compras.");
         break;
+    }
+
+    System.out.println("=========================================");
+    System.out.println("          REGISTRAR COMPRA");
+    System.out.println("=========================================");
+
+    System.out.print("Ingrese codigo de compra: ");
+    String codigoCompra = Entrada.next();
+
+    // Buscar proveedor
+    System.out.print("Ingrese codigo del proveedor: ");
+    String codigoProveedor = Entrada.next();
+
+    int indiceProveedor = -1;
+
+    for (int i = 0; i < cantidadProveedores; i++) {
+
+        if (proveedores[i].codigoProveedor.equals(codigoProveedor)) {
+            indiceProveedor = i;
+            break;
+        }
+    }
+
+    if (indiceProveedor == -1) {
+        System.out.println("Proveedor no encontrado.");
+        break;
+    }
+
+    // Buscar producto
+    System.out.print("Ingrese codigo del producto: ");
+    int codigoProducto = Entrada.nextInt();
+
+    int indiceProducto = -1;
+
+    for (int i = 0; i < cantidadProductos; i++) {
+
+        if (productos[i].getCodigo() == codigoProducto) {
+            indiceProducto = i;
+            break;
+        }
+    }
+
+    if (indiceProducto == -1) {
+        System.out.println("Producto no encontrado.");
+        break;
+    }
+
+    // Cantidad comprada
+    System.out.print("Ingrese cantidad comprada: ");
+    int cantidad = Entrada.nextInt();
+
+    if (cantidad <= 0) {
+        System.out.println("La cantidad debe ser mayor que 0.");
+        break;
+    }
+
+    // Precio de compra
+    System.out.print("Ingrese precio de compra: L. ");
+    double precio = Entrada.nextDouble();
+
+    if (precio < 0) {
+        System.out.println("El precio no puede ser negativo.");
+        break;
+    }
+
+    // Registrar la compra
+    compras[cantidadCompras] = new Compra(codigoCompra,codigoProveedor,codigoProducto,cantidad,precio);
+    
+    ArchivoCompras.guardarCompra(compras[cantidadCompras]);
+
+    // Aumentar existencia del producto
+    int existenciaActual = productos[indiceProducto].getCantidad();
+
+    productos[indiceProducto].setCantidad(existenciaActual + cantidad);
+
+    cantidadCompras++;
+
+    // Guardar cambios del inventario
+    ArchivoProductos.guardarTodos(productos, cantidadProductos);
+
+    System.out.println("=========================================");
+    System.out.println("Compra registrada correctamente.");
+    System.out.println("Proveedor: " +
+                       proveedores[indiceProveedor].nombreProveedor);
+    System.out.println("Producto: " +
+                       productos[indiceProducto].getNombreProd());
+    System.out.println("Cantidad comprada: " + cantidad);
+    System.out.println("Nueva existencia: " +
+                       productos[indiceProducto].getCantidad());
+    System.out.println("=========================================");
+
+    break;
+    
         case 2:
-        System.out.println("Buscar compras");
+
+    System.out.println("=========================================");
+    System.out.println("            BUSCAR COMPRA");
+    System.out.println("=========================================");
+
+    if (cantidadCompras == 0) {
+        System.out.println("No hay compras registradas.");
         break;
+    }
+
+    System.out.print("Ingrese el codigo de la compra: ");
+    String codigoBuscar = Entrada.next();
+
+    boolean encontrada = false;
+
+    for (int i = 0; i < cantidadCompras; i++) {
+
+        if (compras[i].codigoCompra.equals(codigoBuscar)) {
+
+            System.out.println("=========================================");
+            System.out.println("Compra encontrada");
+            System.out.println("=========================================");
+
+            compras[i].mostrarCompra();
+
+            encontrada = true;
+            break;
+        }
+    }
+
+    if (!encontrada) {
+        System.out.println("No se encontro ninguna compra con ese codigo.");
+    }
+
+    break;
+    
         case 3:
-        System.out.println("ver compras realizadas");
+
+    System.out.println("=========================================");
+    System.out.println("         COMPRAS REALIZADAS");
+    System.out.println("=========================================");
+
+    if (cantidadCompras == 0) {
+        System.out.println("No hay compras registradas.");
         break;
-        case 4:
-        System.out.println("anular compra");
+    }
+
+    for (int i = 0; i < cantidadCompras; i++) {
+
+        System.out.println("Compra #" + (i + 1));
+
+        compras[i].mostrarCompra();
+
+    }
+
+    break;
+    case 4:
+
+    System.out.println("=========================================");
+    System.out.println("             ANULAR COMPRA");
+    System.out.println("=========================================");
+
+    // Verificar si existen compras
+    if (cantidadCompras == 0) {
+        System.out.println("No hay compras registradas.");
         break;
-         case 5:
-        System.out.println("consultar detalle de compras");
+    }
+
+    // Pedir codigo de la compra
+    System.out.print("Ingrese el codigo de la compra que desea anular: ");
+    String codigoAnular = Entrada.next();
+
+    int indiceCompra = -1;
+
+    // Buscar la compra
+    for (int i = 0; i < cantidadCompras; i++) {
+
+        if (compras[i].codigoCompra.equals(codigoAnular)) {
+            indiceCompra = i;
+            break;
+        }
+    }
+
+    // Verificar si se encontro la compra
+    if (indiceCompra == -1) {
+        System.out.println("Compra no encontrada.");
         break;
+    }
+
+    // Buscar el producto relacionado con la compra
+    int indiceProductoCompra = -1;
+
+    for (int i = 0; i < cantidadProductos; i++) {
+
+        if (productos[i].getCodigo() == compras[indiceCompra].codigoProducto) {
+            indiceProductoCompra = i;
+            break;
+        }
+    }
+
+    // Verificar si existe el producto
+    if (indiceProductoCompra == -1) {
+        System.out.println("El producto de la compra no existe.");
+        break;
+    }
+
+    // Obtener la existencia actual del producto
+    int existenciaAnular =
+            productos[indiceProductoCompra].getCantidad();
+
+    // Obtener la cantidad que se compro
+    int cantidadComprada =
+            compras[indiceCompra].cantidad;
+
+    // Verificar que haya suficiente existencia
+    if (existenciaAnular < cantidadComprada) {
+
+        System.out.println("No se puede anular la compra.");
+        System.out.println(
+                "La existencia actual es menor que la cantidad comprada."
+        );
+
+        break;
+    }
+
+    // Restar la cantidad de la compra
+    productos[indiceProductoCompra].setCantidad(
+            existenciaAnular - cantidadComprada
+    );
+
+    // Eliminar la compra del arreglo
+    for (int i = indiceCompra; i < cantidadCompras - 1; i++) {
+
+        compras[i] = compras[i + 1];
+    }
+
+    // Limpiar la ultima posicion
+    compras[cantidadCompras - 1] = null;
+
+    // Disminuir la cantidad de compras
+    cantidadCompras--;
+    
+   ArchivoCompras.guardarTodas(compras, cantidadCompras);
+
+    // Guardar el inventario actualizado
+    ArchivoProductos.guardarTodos(
+            productos,
+            cantidadProductos
+    );
+
+    System.out.println("=========================================");
+    System.out.println("Compra anulada correctamente.");
+    System.out.println("Codigo de compra: " + codigoAnular);
+    System.out.println("Producto: "
+            + productos[indiceProductoCompra].getNombreProd());
+    System.out.println("Cantidad anulada: "
+            + cantidadComprada);
+    System.out.println("Nueva existencia: "
+            + productos[indiceProductoCompra].getCantidad());
+    System.out.println("=========================================");
+
+    break;
+    
+    case 5:
+
+    System.out.println("=========================================");
+    System.out.println("       DETALLE DE LA COMPRA");
+    System.out.println("=========================================");
+
+    if (cantidadCompras == 0) {
+        System.out.println("No hay compras registradas.");
+        break;
+    }
+
+    System.out.print("Ingrese el codigo de la compra: ");
+    String codigoDetalle = Entrada.next();
+
+    int indiceDetalle = -1;
+
+    // Buscar la compra
+    for (int i = 0; i < cantidadCompras; i++) {
+
+        if (compras[i].codigoCompra.equals(codigoDetalle)) {
+            indiceDetalle = i;
+            break;
+        }
+    }
+
+    // Verificar si existe
+    if (indiceDetalle == -1) {
+
+        System.out.println("Compra no encontrada.");
+
+        break;
+    }
+
+    // Mostrar los datos de la compra
+    compras[indiceDetalle].mostrarCompra();
+
+    // Buscar el proveedor
+    int indiceProveedorDetalle = -1;
+
+    for (int i = 0; i < cantidadProveedores; i++) {
+
+        if (proveedores[i].codigoProveedor.equals(
+                compras[indiceDetalle].codigoProveedor)) {
+
+            indiceProveedorDetalle = i;
+            break;
+        }
+    }
+
+    // Mostrar proveedor
+    if (indiceProveedorDetalle != -1) {
+
+        System.out.println("Proveedor: "
+                + proveedores[indiceProveedorDetalle].nombreProveedor);
+    }
+
+    // Buscar el producto
+    int indiceProductoDetalle = -1;
+
+    for (int i = 0; i < cantidadProductos; i++) {
+
+        if (productos[i].getCodigo()
+                == compras[indiceDetalle].codigoProducto) {
+
+            indiceProductoDetalle = i;
+            break;
+        }
+    }
+
+    // Mostrar producto
+    if (indiceProductoDetalle != -1) {
+
+        System.out.println("Producto: "
+                + productos[indiceProductoDetalle].getNombreProd());
+    }
+
+    System.out.println("=========================================");
+
+    break;
         case 6:
-        System.out.println("Historial de compras");
+
+    System.out.println("=========================================");
+    System.out.println("          HISTORIAL DE COMPRAS");
+    System.out.println("=========================================");
+
+    if (cantidadCompras == 0) {
+        System.out.println("No hay compras registradas.");
         break;
+    }
+
+    for (int i = 0; i < cantidadCompras; i++) {
+
+        System.out.println("Compra #" + (i + 1));
+
+        compras[i].mostrarCompra();
+
+    }
+
+    System.out.println("Total de compras realizadas: "
+            + cantidadCompras);
+
+    System.out.println("=========================================");
+
+    break;
+    
         case 7:
         System.out.println("Regresar al menu principal");
         break;
@@ -1168,52 +1859,12 @@ public class Proyectofacturacion {
         }while(Smenu !=6);
         break;
 
-         case 8:
-       do{
-      //Sub Menu Principal de usuario
-      System.out.println("=========================================");
-      System.out.println("            Menu de Proveedores");
-      System.out.println("1.Registrar usuario");
-      System.out.println("2.Buscar usuario");
-      System.out.println("3.Modificar usuario");
-      System.out.println("4.Eliminar usuario");
-      System.out.println("5.Lista de usuarios");
-      System.out.println("6.Regresar al menu principal");
-      System.out.println("=========================================");
-      Smenu = Entrada.nextInt();
-      System.out.println("=========================================");
-      
-        switch(Smenu){
-        case 1:
-        System.out.println("registrar usuario");
-        break;
-        case 2:
-        System.out.println("Buscar usuario");
-        break;
-        case 3:
-        System.out.println("Modificar usuario");
-        break;
-        case 4:
-        System.out.println("Eliminar usuario");
-        break;
-         case 5:
-        System.out.println("Lista de usuario");
-        break;
-        case 6:
-        System.out.println("Regresar al menu principal");
-        break;
-        default:
-        System.out.println("opcion invalida");
-        break;
-        }//fin del submenu
-        }while(Smenu !=6 );
-        break;
 
-         case 9:
+         case 8:
        do{
       //Sub Menu Principal de configuracion
       System.out.println("=========================================");
-      System.out.println("            Menu de Proveedores");
+      System.out.println("            Menu de Configuracion");
       System.out.println("1.Datos de la empresa");
       System.out.println("2.Configurar impuesto");
       System.out.println("3.configurar descuento");
@@ -1264,4 +1915,3 @@ public class Proyectofacturacion {
   }//fin main
 
 }//fin class
-
