@@ -4,120 +4,65 @@
  */
 package proyectofacturacion;
 
-import java.util.Scanner; // Clase para leer datos que el usuario escribe por teclado
-
+import java.util.ArrayList;
+import java.util.Scanner;
 
 /**
  *
  * @author marti
- */
-
-
-/*
- * ============================================================================
- * DESCRIPCION GENERAL DEL PROGRAMA
- * ============================================================================
- * Sistema de facturacion por consola (texto). Muestra un menu principal con
- * varios submenus (Facturacion, Inventarios, Productos, Clientes, Proveedores,
- * Compras, Reportes y Configuracion).
- *
- * - Los datos se guardan en arreglos en memoria (maximo 10 elementos cada uno).
- * - Los datos tambien se guardan en archivos mediante las clases
- *   ArchivoProductos, ArchivoClientes, ArchivoProveedores y ArchivoCompras,
- *   y se cargan al iniciar el programa.
- * - Las clases Producto, Cliente, Proveedor y Compra representan cada entidad.
- * - Algunos submenus (Facturacion, Reportes, Configuracion) todavia solo
- *   imprimen un mensaje: estan pendientes de implementar.
- * ============================================================================
  */
 public class Proyectofacturacion {
 
     /**
      * @param args the command line arguments
      */
-    // Metodo principal: aqui empieza a ejecutarse el programa
     public static void main(String[] args) {
-        // TODO code application logic here
-        
-   // Objeto Scanner para leer lo que el usuario escribe en la consola
-   Scanner Entrada = new Scanner(System.in);
-   
-      
-      // Contadores: llevan la cuenta de cuantos elementos hay registrados en cada arreglo
-      int cantidadCompras = 0;
-      int cantidadProveedores = 0;
-      int cantidadClientes = 0;
-      int cantidadProductos = 0;
-      int Menu =0;  
-      int Smenu =0; 
-      
-     // Arreglo de compras (capacidad 10). Se cargan las compras guardadas en archivo
-     // y el metodo devuelve cuantas se cargaron.
-     Compra[] compras = new Compra[10];
-     cantidadCompras = ArchivoCompras.cargarCompras(compras);
-      
-     // Arreglo de proveedores (capacidad 10), cargado desde archivo
-     Proveedor[] proveedores = new Proveedor[10];
-     cantidadProveedores = ArchivoProveedores.cargarProveedores(proveedores);
-      
-     // Arreglo de clientes (capacidad 10), cargado desde archivo
-     Cliente[] clientes = new Cliente[10];
-     cantidadClientes = ArchivoClientes.cargarClientes(clientes);
-     
-     // Arreglo de productos (capacidad 10), cargado desde archivo
-     Producto[] productos = new Producto[10];
-     cantidadProductos = ArchivoProductos.cargarProductos(productos);
-   
+        Scanner Entrada = new Scanner(System.in);
 
-      
-      
-      //Titulos del sistema 
-      System.out.println("                      ======================");
-      System.out.println("                      Sistema de facturacion");
-      System.out.println("                      ======================");
+        int cantidadCompras = 0;
+        int cantidadFacturas = 0;
+        int cantidadProveedores = 0;
+        int cantidadClientes = 0;
+        int cantidadProductos = 0;
+        int Menu = 0;
+        int Smenu = 0;
 
-    
-    
-      // Ciclo del menu principal: se repite hasta que el usuario elija 0 (Salir)
-      do{
-      //Menu Principal del sistema de facturacion 
-      System.out.println("=========================================");
-      System.out.println("Menu principal del sistema de facturacion");
-      System.out.println("1.Facturacion");
-      System.out.println("2.Inventarios");
-      System.out.println("3.Productos");
-      System.out.println("4.Clientes");
-      System.out.println("5.Proveedores");
-      System.out.println("6.Compras");
-      System.out.println("7.Reportes");
-      System.out.println("8.Configuracion");
-      System.out.println("0.Salir");
-      System.out.println("=========================================");
-      Menu = Entrada.nextInt(); // Lee la opcion del menu principal
-    
-      // Segun la opcion elegida se entra a un submenu diferente
-      switch(Menu){
+        Compra[] compras = new Compra[10];
+        cantidadCompras = ArchivoCompras.cargarCompras(compras);
 
-        // ====================================================================
-        // OPCION 1: MENU DE FACTURACION (aun sin implementar, solo imprime texto)
-        // ====================================================================
-        case 1:
-       do{
-      //Sub Menu Principal del sistema de facturacion 
-      System.out.println("=========================================");
-      System.out.println("          Menu de facturacion");
-      System.out.println("1.Nueva Factura");
-      System.out.println("2.Buscar Factura");
-      System.out.println("3.Anular factura");
-      System.out.println("4.Facturas del dia");
-      System.out.println("5.Facturas por fecha");
-      System.out.println("6.Devoluciones");
-      System.out.println("7.Regresar al menu principal");
-      System.out.println("=========================================");
-      Smenu = Entrada.nextInt(); // Lee la opcion del submenu
-      System.out.println("=========================================");
-        switch(Smenu){
-        case 1:
+        Proveedor[] proveedores = new Proveedor[10];
+        cantidadProveedores = ArchivoProveedores.cargarProveedores(proveedores);
+
+        Cliente[] clientes = new Cliente[10];
+        cantidadClientes = ArchivoClientes.cargarClientes(clientes);
+
+        Producto[] productos = new Producto[10];
+        cantidadProductos = ArchivoProductos.cargarProductos(productos);
+
+        Factura[] facturas = new Factura[10];
+
+        System.out.println("                      ======================");
+        System.out.println("                      Sistema de facturacion");
+        System.out.println("                      ======================");
+
+        do {
+            System.out.println("=========================================");
+            System.out.println("Menu principal del sistema de facturacion");
+            System.out.println("1.Facturacion");
+            System.out.println("2.Inventarios");
+            System.out.println("3.Productos");
+            System.out.println("4.Clientes");
+            System.out.println("5.Proveedores");
+            System.out.println("6.Compras");
+            System.out.println("7.Reportes");
+            System.out.println("8.Usuario");
+            System.out.println("9.Configuracion");
+            System.out.println("0.Salir");
+            System.out.println("=========================================");
+            Menu = Entrada.nextInt();
+
+            switch (Menu) {
+                case 1:
                     do {
                         System.out.println("=========================================");
                         System.out.println("          Menu de facturacion");
