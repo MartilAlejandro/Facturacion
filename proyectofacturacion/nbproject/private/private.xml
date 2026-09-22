@@ -3,9 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Q3_26SIETE/CLON/Facturacion/proyectofacturacion/src/proyectofacturacion/Proyectofacturacion.java</file>
-            <file>file:/D:/Q3_26SIETE/CLON/Facturacion/proyectofacturacion/src/proyectofacturacion/Producto.java</file>
+            <file>file:/D:/Q3_26SIETE/CLON/Facturacion/proyectofacturacion/src/proyectofacturacion/ArchivoClientes.java</file>
+            <file>file:/D:/Q3_26SIETE/CLON/Facturacion/proyectofacturacion/src/proyectofacturacion/ArchivoProductos.java</file>
+            <file>file:/D:/Q3_26SIETE/CLON/Facturacion/proyectofacturacion/src/proyectofacturacion/ArchivoProveedores.java</file>
             <file>file:/D:/Q3_26SIETE/CLON/Facturacion/proyectofacturacion/src/proyectofacturacion/Cliente.java</file>
+            <file>file:/D:/Q3_26SIETE/CLON/Facturacion/proyectofacturacion/src/proyectofacturacion/Factura.java</file>
+            <file>file:/D:/Q3_26SIETE/CLON/Facturacion/proyectofacturacion/src/proyectofacturacion/Producto.java</file>
+            <file>file:/D:/Q3_26SIETE/CLON/Facturacion/proyectofacturacion/src/proyectofacturacion/Proveedor.java</file>
+            <file>file:/D:/Q3_26SIETE/CLON/Facturacion/proyectofacturacion/src/proyectofacturacion/Proyectofacturacion.java</file>
         </group>
     </open-files>
 </project-private>

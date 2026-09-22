@@ -138,51 +138,68 @@ public class Proyectofacturacion {
                                         } while (respuesta.equalsIgnoreCase("s"));
 
                                         System.out.println("Productos en la factura: " + productosFactura.size());
-                                        System.out.print("Fecha (dd/mm/aaaa): ");
-                                        String fechaFactura = Entrada.next();
+                    Entrada.nextLine(); // limpia el salto de línea pendiente del Entrada.next() anterior
 
-                                        System.out.print("Hora: ");
-                                        String horaFactura = Entrada.next();
+                   System.out.print("Fecha (dd/mm/aaaa): ");
+                   String fechaFactura = Entrada.nextLine();
 
-                                        System.out.print("Metodo de pago (E = Efectivo, T = Tarjeta): ");
-                                        char metodoPagoFactura = Entrada.next().charAt(0);
+                   System.out.print("Hora: ");
+                   String horaFactura = Entrada.nextLine();
 
-                                        System.out.print("Efectivo recibido: ");
-                                        double efectivoFactura = Entrada.nextDouble();
+                   char metodoPagoFactura = ' ';
+                   do {
+                       System.out.print("Metodo de pago (E = Efectivo, T = Tarjeta): ");
+                       String metodoPagoStr = Entrada.nextLine().trim().toUpperCase();
+                       if (!metodoPagoStr.isEmpty()) {
+                           metodoPagoFactura = metodoPagoStr.charAt(0);
+                       }
+                       if (metodoPagoFactura != 'E' && metodoPagoFactura != 'T') {
+                           System.out.println("Opcion invalida, ingrese E o T.");
+                       }
+                   } while (metodoPagoFactura != 'E' && metodoPagoFactura != 'T');
 
-                                        String numeroFacturaNueva = "F" + String.format("%03d", cantidadFacturas + 1);
+                   double efectivoFactura = 0;
+                   if (metodoPagoFactura == 'E') {
+                       System.out.print("Efectivo recibido: ");
+                       efectivoFactura = Entrada.nextDouble();
+                       Entrada.nextLine(); // limpia el salto de línea del nextDouble
+                   } else {
+                       System.out.println("Pago con tarjeta registrado.");
+                   }
 
-                                        Factura facturaNueva = new Factura(
-                                                numeroFacturaNueva,
-                                                fechaFactura,
-                                                horaFactura,
-                                                metodoPagoFactura,
-                                                clienteFactura,
-                                                productosFactura,
-                                                efectivoFactura
-                                        );
+                   String numeroFacturaNueva = "F" + String.format("%03d", cantidadFacturas + 1);
 
-                                        facturaNueva.calcularTotales();
-                                        facturas[cantidadFacturas] = facturaNueva;
-                                        cantidadFacturas++;
+                   Factura facturaNueva = new Factura(
+                   numeroFacturaNueva,
+                   fechaFactura,
+                   horaFactura,
+                   metodoPagoFactura,
+                   clienteFactura,
+                   productosFactura,
+                   efectivoFactura
+                   );
 
-                                        System.out.println("=========================================");
-                                        System.out.println("           RECIBO DE FACTURA");
-                                        System.out.println("=========================================");
-                                        System.out.println("Factura: " + facturaNueva.numeroFactura);
-                                        System.out.println("Cliente: " + clienteFactura.nombreCliente);
-                                        System.out.println("Cantidad de productos: " + facturaNueva.getTotalProductos());
-                                        System.out.println("Subtotal: L. " + facturaNueva.getSubtotal());
-                                        System.out.println("Impuesto: L. " + facturaNueva.getImpuesto());
-                                        System.out.println("Total a pagar: L. " + facturaNueva.getTotalPagar());
-                                        System.out.println("Efectivo recibido: L. " + facturaNueva.getefectivoRecibido());
-                                        System.out.println("Cambio: L. " + facturaNueva.getCambio());
-                                        System.out.println("=========================================");
-                                    }
-                                }
-                                break;
+                   facturaNueva.calcularTotales();
+                   facturas[cantidadFacturas] = facturaNueva;
+                   cantidadFacturas++;
 
-                            case 2:
+                   System.out.println("=========================================");
+                   System.out.println("           RECIBO DE FACTURA");
+                   System.out.println("=========================================");
+                   System.out.println("Factura: " + facturaNueva.numeroFactura);
+                   System.out.println("Cliente: " + clienteFactura.nombreCliente);
+                   System.out.println("Cantidad de productos: " + facturaNueva.getTotalProductos());
+                   System.out.println("Subtotal: L. " + facturaNueva.getSubtotal());
+                   System.out.println("Impuesto: L. " + facturaNueva.getImpuesto());
+                   System.out.println("Total a pagar: L. " + facturaNueva.getTotalPagar());
+                   System.out.println("Efectivo recibido: L. " + facturaNueva.getefectivoRecibido());
+                   System.out.println("Cambio: L. " + facturaNueva.getCambio());
+                   System.out.println("=========================================");
+                   }
+                   }
+                   break;
+
+                   case 2:
                                 System.out.println("           BUSCAR FACTURA");
                                 System.out.println("=========================================");
 
@@ -763,8 +780,9 @@ public class Proyectofacturacion {
                                     System.out.println("          REGISTRAR PRODUCTO");
                                     System.out.println("=========================================");
 
+                                    Entrada.nextLine(); // Limpia el salto de linea pendiente
                                     System.out.print("Ingrese el nombre del producto: ");
-                                    String nombreProd = Entrada.next();
+                                    String nombreProd = Entrada.nextLine();
 
                                     System.out.print("Ingrese el precio: ");
                                     double precio = Entrada.nextDouble();
@@ -1112,8 +1130,9 @@ public class Proyectofacturacion {
                                     System.out.println("          REGISTRAR CLIENTE");
                                     System.out.println("=========================================");
 
+                                    Entrada.nextLine(); // Limpia el salto de linea pendiente
                                     System.out.print("Ingrese el nombre del cliente: ");
-                                    String nombreCliente = Entrada.next();
+                                    String nombreCliente = Entrada.nextLine();
 
                                     System.out.print("Ingrese el Member ID: ");
                                     String memberID = Entrada.next(); // Identificador unico del cliente
@@ -1222,8 +1241,9 @@ public class Proyectofacturacion {
                                             System.out.println("Cliente encontrado.");
                                             System.out.println("=========================================");
 
+                                            Entrada.nextLine(); // Limpia el salto de linea pendiente
                                             System.out.print("Ingrese el nuevo nombre: ");
-                                            clientes[i].nombreCliente = Entrada.next();
+                                            clientes[i].nombreCliente = Entrada.nextLine();
 
                                             System.out.print("Ingrese el nuevo tipo de miembro (P/B): ");
                                             char memberType = Entrada.next().charAt(0);
@@ -1425,8 +1445,9 @@ public class Proyectofacturacion {
                                     System.out.println("         REGISTRAR PROVEEDOR");
                                     System.out.println("=========================================");
 
+                                    Entrada.nextLine(); // Limpia el salto de linea pendiente
                                     System.out.print("Ingrese el nombre del proveedor: ");
-                                    String nombreProveedor = Entrada.next();
+                                    String nombreProveedor = Entrada.nextLine();
 
                                     System.out.print("Ingrese el codigo del proveedor: ");
                                     String codigoProveedor = Entrada.next(); // Identificador unico del proveedor
@@ -1528,8 +1549,9 @@ public class Proyectofacturacion {
                                             System.out.println("Proveedor encontrado.");
                                             System.out.println("=========================================");
 
+                                            Entrada.nextLine(); // Limpia el salto de linea pendiente
                                             System.out.print("Ingrese el nuevo nombre: ");
-                                            proveedores[i].nombreProveedor = Entrada.next();
+                                            proveedores[i].nombreProveedor = Entrada.nextLine();
 
                                             System.out.print("Ingrese el nuevo RTN: ");
                                             proveedores[i].RTN = Entrada.next();

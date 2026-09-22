@@ -124,7 +124,11 @@ public double getefectivoRecibido(){
         }//fin For
         
         this.totalPagar = this.subtotal + this.impuesto - this.descuento;
-        this.cambio = this.efectivoRecibido - this.totalPagar;
+       if (this.metodoPago == 'T') {
+    this.cambio = 0; // con tarjeta se cobra el total exacto, no hay cambio
+} else {
+    this.cambio = this.efectivoRecibido - this.totalPagar;
+}
     }// Fin calcularTotales
 
 }// Fin class Factura
